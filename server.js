@@ -19,6 +19,11 @@ app.get('/', function(request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
+app.get( '/wp/v2/types/wp_block', function( request, response) {
+    response.setHeader( 'Content-Type', 'application/json' );
+    response.end( JSON.stringify( {} ) );
+} );
+
 // listen for requests :)
 const listener = app.listen(process.env.PORT, function() {
   console.log('Your app is listening on port ' + listener.address().port);
