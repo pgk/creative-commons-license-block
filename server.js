@@ -8,6 +8,9 @@ const app = express();
 // we've started you off with Express, 
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
 
+// Serve up cgb dist files
+app.use(express.static('dist'));
+
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
 
