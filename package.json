@@ -7,11 +7,13 @@
   "description": "A simple Node app built on Express, instantly up and running.",
   "main": "server.js",
   "scripts": {
-    "start": "cgb-scripts start"
+    "/start": "cgb-scripts start",
+    "start": "concurrently \"node server.js\" \"cgb-scripts start\""
   },
   "dependencies": {
     "express": "^4.16.4",
-    "cgb-scripts": "^1.17.0"
+    "cgb-scripts": "^1.17.0",
+    "concurrently": "^4.1.0"
   },
   "engines": {
     "node": "8.x"
