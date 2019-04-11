@@ -12,7 +12,7 @@ import './editor.scss';
 // const { __ } = wp.i18n; // Import __() from wp.i18n
 const __ = ( arg ) => arg;
 // const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-import { registerBlockType } from '@wordpress/block-library';
+import { registerBlockType } from '@wordpress/blocks';
 
 
 /**

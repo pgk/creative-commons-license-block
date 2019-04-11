@@ -1,5 +1,6 @@
 dependencies:
   '@wordpress/block-library': 2.4.2
+  '@wordpress/blocks': 6.2.2
   cgb-scripts: 1.17.0
   concurrently: 4.1.0
   express: 4.16.4
@@ -7005,6 +7006,7 @@ shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
   '@wordpress/block-library': ^2.4.2
+  '@wordpress/blocks': ^6.2.2
   cgb-scripts: ^1.17.0
   concurrently: ^4.1.0
   express: ^4.16.4
