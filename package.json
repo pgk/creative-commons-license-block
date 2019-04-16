@@ -8,7 +8,8 @@
   "main": "server.js",
   "scripts": {
     "/start": "cgb-scripts start",
-    "start": "concurrently \"node server.js\" \"cgb-scripts start\""
+    "start": "concurrently \"node server.js\" \"cgb-scripts start\"",
+    "playground:build": "parcel build playground/src/index.html -d playground/dist"
   },
   "dependencies": {
     "@wordpress/a11y": "^2.2.0",
@@ -67,5 +68,9 @@
     "node",
     "glitch",
     "express"
-  ]
+  ],
+  "devDependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
 }
