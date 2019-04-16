@@ -49,9 +49,12 @@ registerBlockType( 'cgb/block-my-block', {
 		// Creates a <p class='wp-block-cgb-block-my-block'></p>.
 		return (
 			<div className={ props.className }>
-				<p>— Hello from the backend.</p>
+				<p>— Hello from the GEORGE.</p>
+        <p>aoeuaoe aoeu aaoeu aoaoeu</p>
 				<p>
 					CGB BLOCK: <code>my-block</code> is a new Gutenberg block
+          aoeuhaoe aoeuth oeauth aoetuhoetuhoe aoteuhoteauh
+          
 				</p>
 				<p>
 					It was created via{ ' ' }
