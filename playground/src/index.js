@@ -39,7 +39,7 @@ import * as deprecated from '@wordpress/deprecated';
 import * as dom from '@wordpress/dom';
 import * as domReady from '@wordpress/dom-ready';
 import * as editPost from '@wordpress/edit-post';
-import * as editWidgets from '@wordpress/edit-widgets';
+// import * as editWidgets from '@wordpress/edit-widgets';
 import * as editor from '@wordpress/editor';
 import * as element from '@wordpress/element';
 import * as escapeHtml from '@wordpress/escape-html';
@@ -82,7 +82,7 @@ const wp = {
     dom,
     domReady,
     editPost,
-    editWidgets,
+    // editWidgets,
     editor,
     element,
     escapeHtml,
