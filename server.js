@@ -40,7 +40,7 @@ app.get( '/wp/v2/types/wp_block', function( request, response) {
 app.get( '/wp/v2/blocks', function( request, response) {
     response.setHeader( 'Content-Type', 'application/json' );
     response.end( JSON.stringify( {
-    content: "<!-- wp:paragraph -->↵    <p>3</p>↵    <!-- /wp:paragraph -->",
+    content: '<!-- cgb/block-my-block -->↵<div class="wp-block-cgb-block-my-block"><p>— Hello from the frontend.</p><p>CGB BLOCK: <code>my-block</code> is a new Gutenberg block.</p><p>It was created via <code><a href="https://github.com/ahmadawais/create-guten-block">create-guten-block</a></code>.</p></div><!-- /cgb/block-my-block -->',
     id: 42,
     title: "Guten Tag You're It",
   } ) );
