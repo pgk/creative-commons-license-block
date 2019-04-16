@@ -19,9 +19,31 @@ app.get('/', function(request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
+// Mock out some API responses
 app.get( '/wp/v2/types/wp_block', function( request, response) {
     response.setHeader( 'Content-Type', 'application/json' );
-    response.end( JSON.stringify( {} ) );
+    response.end( JSON.stringify( {
+      "capabilities": { },
+      "description": "",
+      "hierarchical": false,
+      "labels": {},
+      "name": "Blocks",
+      "slug": "wp_block",
+      "taxonomies": [],
+      "rest_base": "blocks",
+      "supports": {},
+      "viewable": false,
+      "_links": {}
+  } ) );
+} );
+
+app.get( '/wp/v2/blocks', function( request, response) {
+    response.setHeader( 'Content-Type', 'application/json' );
+    response.end( JSON.stringify( {
+    content: "<!-- wp:paragraph -->↵    <p>3</p>↵    <!-- /wp:paragraph -->",
+    id: 42,
+    title: "Guten Tag You're It",
+  } ) );
 } );
 
 // listen for requests :)
