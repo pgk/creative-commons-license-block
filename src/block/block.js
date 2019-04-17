@@ -50,7 +50,7 @@ registerBlockType( 'cgb/block-my-block', {
 		return (
 			<div className={ props.className }>
 				<p>Blah blah blah blah blah</p>
-        <p>baoeuaoe uaoeu aoeu eoa u</p>
+        <p>Hello Tinker</p>
 				<p>
 					CGB BLOCK: <code>my-block</code> is a new Gutenberg block
 				</p>
