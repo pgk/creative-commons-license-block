@@ -50,15 +50,7 @@ registerBlockType( 'cgb/block-my-block', {
 		return (
 			<div className={ props.className }>
 				<p>
-					Test test test that's four tests
-				</p>
-				<p>
-					It was created via{ ' ' }
-					<code>
-						<a href="https://github.com/ahmadawais/create-guten-block">
-							create-guten-block
-						</a>
-					</code>.
+					aoeu aoeu aoeu aoeu aoeu aoeu 
 				</p>
 			</div>
 		);
