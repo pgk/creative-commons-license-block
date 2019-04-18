@@ -4,12 +4,15 @@
   "description": "I'm just a poor Glitch, I need no sympathy",
   "main": "server.js",
   "scripts": {
-    "start": "cgb-scripts build && node server.js"
+    "start": "cgb-scripts build && node server.js",
+    "build": "parcel build src/index.html -d dist"
   },
   "dependencies": {
     "cgb-scripts": "^1.17.0",
     "express": "^4.16.4",
-    "parcel": "^1.12.3"
+    "parcel-bundler": "^1.12.3",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "engines": {
     "node": "8.x"

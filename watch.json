@@ -1,7 +1,7 @@
 {
   "restart": {
     "exclude": [
-      "^src"
+      "^dist/"
     ]
   }
 }
