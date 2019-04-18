@@ -50,8 +50,9 @@ registerBlockType( 'cgb/block-my-block', {
 		return (
 			<div className={ props.className }>
 				<p>
-					aoeu aoeu aoeu aoeu aoeu aoeu 
+					blah blah blah
 				</p>
+        <img src="https://placekitten.com/200/200" />
 			</div>
 		);
 	},

@@ -10,3 +10,6 @@
  */
 
 import './block/block.js';
+
+wp.data.dispatch( 'core/editor' ).insertBlock( wp.blocks.createBlock( 'cgb/block-my-block', {} ) );
+wp.data.dispatch( 'core/editor' ).resetEditorBlocks( wp.data.select( 'core/editor' ).getBlocks() );
