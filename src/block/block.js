@@ -52,7 +52,7 @@ registerBlockType( 'cgb/block-my-block', {
 				<p>
 					blah blah blah
 				</p>
-        <img src="https://placekitten.com/200/200" />
+        <img src="https://placekitten.com/400/200" />
 			</div>
 		);
 	},
