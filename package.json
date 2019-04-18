@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "cgb-scripts build && node server.js",
-    "build": "parcel build src/index.html -d dist"
+    "build": "parcel build src/index.html -d dist",
+    "foo": "parcel src/index.html -p 1234"
   },
   "dependencies": {
     "cgb-scripts": "^1.17.0",
