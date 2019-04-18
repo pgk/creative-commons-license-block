@@ -50,7 +50,7 @@ registerBlockType( 'cgb/block-my-block', {
 		return (
 			<div className={ props.className }>
 				<p>
-					Hello Automattic
+					Test test test that's four tests
 				</p>
 				<p>
 					It was created via{ ' ' }

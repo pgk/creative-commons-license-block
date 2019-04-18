@@ -4,8 +4,7 @@
   "description": "I'm just a poor Glitch, I need no sympathy",
   "main": "server.js",
   "scripts": {
-    "/start": "cgb-scripts start",
-    "start": "concurrently \"node server.js\" \"cgb-scripts start\""
+    "start": "cgb-scripts build && node server.js"
   },
   "dependencies": {
     "cgb-scripts": "^1.17.0",
