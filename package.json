@@ -15,12 +15,12 @@
     "node": "8.x"
   },
   "repository": {
-    "url": "https://glitch.com/edit/#!/hello-express"
+    "url": "https://glitch.com/edit/#!/george-gutenberg-experiment"
   },
   "license": "MIT",
   "keywords": [
-    "node",
     "glitch",
-    "express"
+    "gutenberg",
+    "wordpress"
   ]
 }
