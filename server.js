@@ -38,15 +38,15 @@ app.get( '/wp/v2/blocks', function( request, response) {
 
 // Proxy requests to parcel server
 app.use( '/proxy', proxy( 'localhost:1234' ) );
-// app.get( '/', proxy( 'localhost:1234' ) );
+app.use( '/', proxy( 'localhost:1234' ) );
 
 // Serve up cgb dist files
 app.use( '/dist', express.static('dist'));
 
 // http://expressjs.com/en/starter/basic-routing.html
-app.get('/', function(request, response) {
-  response.sendFile(__dirname + '/views/index.html');
-});
+// app.get('/', function(request, response) {
+//   response.sendFile(__dirname + '/views/index.html');
+// });
 
 
 // listen for requests :)
