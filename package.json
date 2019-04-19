@@ -27,5 +27,8 @@
     "glitch",
     "gutenberg",
     "wordpress"
-  ]
+  ],
+  "devDependencies": {
+    "sass": "^1.19.0"
+  }
 }
