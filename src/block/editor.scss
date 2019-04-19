@@ -4,7 +4,8 @@
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
-
+@import "../common.scss";
+  
 .wp-block-cgb-block-my-block  {
   background: $green;
   border: 0.2rem solid $black;

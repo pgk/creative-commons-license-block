@@ -41,7 +41,7 @@ app.use( '/proxy', proxy( 'localhost:1234' ) );
 // app.get( '/', proxy( 'localhost:1234' ) );
 
 // Serve up cgb dist files
-// app.use( '/dist', express.static('dist'));
+app.use( '/dist', express.static('dist'));
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get('/', function(request, response) {

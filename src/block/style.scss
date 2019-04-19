@@ -4,6 +4,8 @@
  * CSS for both Frontend+Backend.
  */
 
+@import "../common.scss";
+
 .wp-block-cgb-block-my-block  {
   background: $red;
   border: 0.2rem solid $black;
