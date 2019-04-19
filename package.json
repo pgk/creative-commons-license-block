@@ -4,7 +4,8 @@
   "description": "I'm just a poor Glitch, I need no sympathy",
   "main": "server.js",
   "scripts": {
-    "start": "cgb-scripts build && node server.js",
+    "//start": "concurrently \"parcel src/index.html -p 1234\" \"node server.js\"",
+    "start": "node server.js",
     "build": "parcel build src/index.html -d dist",
     "foo": "parcel src/index.html -p 1234"
   },
@@ -14,7 +15,9 @@
     "parcel-bundler": "^1.12.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "express-http-proxy": "^1.5.1"
+    "express-http-proxy": "^1.5.1",
+    "concurrently": "^4.1.0",
+    "babel-loader": "^8.0.5"
   },
   "engines": {
     "node": "8.x"
@@ -27,8 +30,5 @@
     "glitch",
     "gutenberg",
     "wordpress"
-  ],
-  "devDependencies": {
-    "sass": "^1.19.0"
-  }
+  ]
 }
