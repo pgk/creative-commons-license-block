@@ -12,7 +12,6 @@ import './editor.scss';
 const { __ } = window.wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = window.wp.blocks; // Import registerBlockType() from wp.blocks
 
-
 /**
  * Register: aa Gutenberg Block.
  *
