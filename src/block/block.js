@@ -4,6 +4,8 @@
  * Registering a basic block with Gutenberg.
  * Simple block, renders and saves the same content without any interactivity.
  */
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 //  Import CSS.
 import './style.scss';
@@ -51,7 +53,7 @@ registerBlockType( 'cgb/block-my-block', {
 				<p>
 					blah blah blah
 				</p>
-        <img src="https://placekitten.com/600/300" />
+        <img src="https://placekitten.com/700/400" />
 			</div>
 		);
 	},

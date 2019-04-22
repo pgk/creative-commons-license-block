@@ -1,7 +1,12 @@
+/* global wp */
+
+// Seem to need these for Parcel to render the JSX
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 /**
  * Import the things we need from Gutenberg on the window.wp object
  */
-/* global wp */
 const { compose } = wp;
 const { render, Fragment } = wp.element;
 const {
@@ -59,5 +64,3 @@ render(
 /**
  * Auto-add our block to the editor
  */
-// dispatch( 'core/editor' ).insertBlock( wp.blocks.createBlock( 'cgb/block-my-block', {} ) );
-// dispatch( 'core/editor' ).resetEditorBlocks( wp.data.select( 'core/editor' ).getBlocks() );
