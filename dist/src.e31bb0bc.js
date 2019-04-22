@@ -117,168 +117,68 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
+})({"index.js":[function(require,module,exports) {
+/**
+ * Import the things we need from Gutenberg on the window.wp object
+ */
 
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
+/* global wp */
+var _wp = wp,
+    compose = _wp.compose;
+var _wp$element = wp.element,
+    render = _wp$element.render,
+    Fragment = _wp$element.Fragment;
+var _wp$blockEditor = wp.blockEditor,
+    BlockEditorProvider = _wp$blockEditor.BlockEditorProvider,
+    BlockList = _wp$blockEditor.BlockList,
+    WritingFlow = _wp$blockEditor.WritingFlow,
+    ObserveTyping = _wp$blockEditor.ObserveTyping;
+var Popover = wp.components.Popover;
+var registerCoreBlocks = wp.blockLibrary.registerCoreBlocks;
+var _wp$data = wp.data,
+    withSelect = _wp$data.withSelect,
+    withDispatch = _wp$data.withDispatch,
+    dispatch = _wp$data.dispatch;
+var App = compose.compose(withSelect(function (select) {
+  var _select = select('core/editor'),
+      getEditorBlocks = _select.getEditorBlocks;
 
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
+  return {
+    blocks: getEditorBlocks()
   };
+}), withDispatch(function (dispatch) {
+  var _dispatch = dispatch('core/editor'),
+      resetEditorBlocks = _dispatch.resetEditorBlocks;
 
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-
-    cssTimeout = null;
-  }, 50);
-}
-
-module.exports = reloadCSS;
-},{"./bundle-url":"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"common.scss":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"block/style.scss":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"block/editor.scss":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"block/block.js":[function(require,module,exports) {
-"use strict";
-
-require("./style.scss");
-
-require("./editor.scss");
-
-/**
- * BLOCK: my-block
- *
- * Registering a basic block with Gutenberg.
- * Simple block, renders and saves the same content without any interactivity.
- */
-//  Import CSS.
-var __ = window.wp.i18n.__; // Import __() from wp.i18n
-
-var registerBlockType = window.wp.blocks.registerBlockType; // Import registerBlockType() from wp.blocks
-
-/**
- * Register: aa Gutenberg Block.
- *
- * Registers a new block provided a unique name and an object defining its
- * behavior. Once registered, the block is made editor as an option to any
- * editor interface where blocks are implemented.
- *
- * @link https://wordpress.org/gutenberg/handbook/block-api/
- * @param  {string}   name     Block name.
- * @param  {Object}   settings Block settings.
- * @return {?WPBlock}          The block, if it has been successfully
- *                             registered; otherwise `undefined`.
- */
-
-registerBlockType('cgb/block-my-block', {
-  // Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
-  title: __('my-block - CGB Block'),
-  // Block title.
-  icon: 'shield',
-  // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
-  category: 'common',
-  // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
-  keywords: [__('my-block — CGB Block'), __('CGB Example'), __('create-guten-block')],
-
-  /**
-   * The edit function describes the structure of your block in the context of the editor.
-   * This represents what the editor will render when the block is used.
-   *
-   * The "edit" property must be a valid function.
-   *
-   * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
-   */
-  edit: function edit(props) {
-    // Creates a <p class='wp-block-cgb-block-my-block'></p>.
-    return React.createElement("div", {
-      className: props.className
-    }, React.createElement("p", null, "blah blah blah"), React.createElement("img", {
-      src: "https://placekitten.com/600/300"
-    }));
-  },
-
-  /**
-   * The save function defines the way in which the different attributes should be combined
-   * into the final markup, which is then serialized by Gutenberg into post_content.
-   *
-   * The "save" property must be specified and must be a valid function.
-   *
-   * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
-   */
-  save: function save(props) {
-    return React.createElement("div", null, React.createElement("p", null, "\u2014 Hello from the frontend."), React.createElement("p", null, "CGB BLOCK: ", React.createElement("code", null, "my-block"), " is a new Gutenberg block."), React.createElement("p", null, "It was created via", ' ', React.createElement("code", null, React.createElement("a", {
-      href: "https://github.com/ahmadawais/create-guten-block"
-    }, "create-guten-block")), "."));
-  }
+  return {
+    resetEditorBlocks: resetEditorBlocks
+  };
+}))(function (_ref) {
+  var blocks = _ref.blocks,
+      resetEditorBlocks = _ref.resetEditorBlocks;
+  return React.createElement(Fragment, null, React.createElement("div", {
+    className: "playground__header"
+  }, React.createElement("h1", {
+    className: "playground__logo"
+  }, "Gutenberg Playground")), React.createElement("div", {
+    className: "playground__body"
+  }, React.createElement(BlockEditorProvider, {
+    value: blocks,
+    onInput: resetEditorBlocks,
+    onChange: resetEditorBlocks
+  }, React.createElement("div", {
+    className: "editor-styles-wrapper"
+  }, React.createElement(WritingFlow, null, React.createElement(ObserveTyping, null, React.createElement(BlockList, null)))), React.createElement(Popover.Slot, null))));
 });
-},{"./style.scss":"block/style.scss","./editor.scss":"block/editor.scss"}],"blocks.js":[function(require,module,exports) {
-"use strict";
+registerCoreBlocks();
+/**
+ * Auto-add our block to the editor
+ */
 
-require("./common.scss");
-
-require("./block/block.js");
-},{"./common.scss":"common.scss","./block/block.js":"block/block.js"}],"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+dispatch('core/editor').insertBlock(wp.blocks.createBlock('cgb/block-my-block', {}));
+dispatch('core/editor').resetEditorBlocks(wp.data.select('core/editor').getBlocks());
+render(React.createElement(App, null), document.querySelector('#app'));
+},{}],"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -481,5 +381,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","blocks.js"], null)
-//# sourceMappingURL=/blocks.73cdef9e.js.map
+},{}]},{},["../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
+//# sourceMappingURL=/src.e31bb0bc.js.map
