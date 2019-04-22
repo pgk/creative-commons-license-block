@@ -69,18 +69,8 @@ registerBlockType( 'cgb/block-my-block', {
 	save: function( props ) {
 		return (
 			<div>
-				<p>— Hello from the frontend.</p>
-				<p>
-					CGB BLOCK: <code>my-block</code> is a new Gutenberg block.
-				</p>
-				<p>
-					It was created via{ ' ' }
-					<code>
-						<a href="https://github.com/ahmadawais/create-guten-block">
-							create-guten-block
-						</a>
-					</code>.
-				</p>
+				<p>aoeu aoeu aoeu aoeu</p>
+        <img src="https://lorempixel.com/400/200/" />
 			</div>
 		);
 	},

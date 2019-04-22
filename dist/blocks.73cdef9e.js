@@ -25904,9 +25904,9 @@ registerBlockType('cgb/block-my-block', {
    * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
    */
   save: function save(props) {
-    return _react.default.createElement("div", null, _react.default.createElement("p", null, "\u2014 Hello from the frontend."), _react.default.createElement("p", null, "CGB BLOCK: ", _react.default.createElement("code", null, "my-block"), " is a new Gutenberg block."), _react.default.createElement("p", null, "It was created via", ' ', _react.default.createElement("code", null, _react.default.createElement("a", {
-      href: "https://github.com/ahmadawais/create-guten-block"
-    }, "create-guten-block")), "."));
+    return _react.default.createElement("div", null, _react.default.createElement("p", null, "aoeu aoeu aoeu aoeu"), _react.default.createElement("img", {
+      src: "https://lorempixel.com/400/200/"
+    }));
   }
 });
 },{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./style.scss":"block/style.scss","./editor.scss":"block/editor.scss"}],"blocks.js":[function(require,module,exports) {
