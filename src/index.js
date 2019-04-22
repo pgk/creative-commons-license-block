@@ -51,13 +51,13 @@ const App = compose.compose(
 
 registerCoreBlocks();
 
-/**
- * Auto-add our block to the editor
- */
-dispatch( 'core/editor' ).insertBlock( wp.blocks.createBlock( 'cgb/block-my-block', {} ) );
-dispatch( 'core/editor' ).resetEditorBlocks( wp.data.select( 'core/editor' ).getBlocks() );
-
 render(
 	<App />,
 	document.querySelector( '#app' )
 );
+
+/**
+ * Auto-add our block to the editor
+ */
+// dispatch( 'core/editor' ).insertBlock( wp.blocks.createBlock( 'cgb/block-my-block', {} ) );
+// dispatch( 'core/editor' ).resetEditorBlocks( wp.data.select( 'core/editor' ).getBlocks() );

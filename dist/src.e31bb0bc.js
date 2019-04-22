@@ -171,13 +171,12 @@ var App = compose.compose(withSelect(function (select) {
   }, React.createElement(WritingFlow, null, React.createElement(ObserveTyping, null, React.createElement(BlockList, null)))), React.createElement(Popover.Slot, null))));
 });
 registerCoreBlocks();
+render(React.createElement(App, null), document.querySelector('#app'));
 /**
  * Auto-add our block to the editor
  */
-
-dispatch('core/editor').insertBlock(wp.blocks.createBlock('cgb/block-my-block', {}));
-dispatch('core/editor').resetEditorBlocks(wp.data.select('core/editor').getBlocks());
-render(React.createElement(App, null), document.querySelector('#app'));
+// dispatch( 'core/editor' ).insertBlock( wp.blocks.createBlock( 'cgb/block-my-block', {} ) );
+// dispatch( 'core/editor' ).resetEditorBlocks( wp.data.select( 'core/editor' ).getBlocks() );
 },{}],"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
