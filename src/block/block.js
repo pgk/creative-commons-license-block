@@ -51,7 +51,11 @@ registerBlockType( 'cgb/block-my-block', {
 		return (
 			<div className={ props.className }>
 				<p>
-					blah blah blah
+					Welcome to Glitchenberg. This is a tool to build blocks for the Gutenberg 
+          block editor. To get started building your own block, 
+          <a href="https://glitch.com/~george-gutenberg-experiment">visit the project
+          page</a>, click 
+          <a href="https://glitch.com/edit/#!/remix/george-gutenberg-experiment" class="glitch-remix">remix button</a>
 				</p>
         <img src="https://placekitten.com/700/400" />
 			</div>
