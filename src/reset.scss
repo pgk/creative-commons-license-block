@@ -14,10 +14,6 @@
 	word-wrap: normal !important;
 }
 
-:root {
-	@include reset;
-}
-
 html,
 body {
 	margin: 0;
