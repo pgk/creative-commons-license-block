@@ -29,13 +29,12 @@ const { registerBlockType } = window.wp.blocks; // Import registerBlockType() fr
  */
 registerBlockType( 'automattic/glitch-block', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
-	title: __( 'my-block - CGB Block' ), // Block title.
-	icon: 'shield', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
+	title: __( 'My Glitch Block' ), // Block title.
+	icon: 'smiley', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
 	category: 'common', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
 	keywords: [
-		__( 'my-block — CGB Block' ),
-		__( 'CGB Example' ),
-		__( 'create-guten-block' ),
+		__( 'Glitch' ),
+		__( 'Block' ),
 	],
 
 	/**

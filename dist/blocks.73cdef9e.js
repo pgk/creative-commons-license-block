@@ -25870,13 +25870,13 @@ var registerBlockType = window.wp.blocks.registerBlockType; // Import registerBl
 
 registerBlockType('automattic/glitch-block', {
   // Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
-  title: __('my-block - CGB Block'),
+  title: __('My Glitch Block'),
   // Block title.
-  icon: 'shield',
+  icon: 'smiley',
   // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
   category: 'common',
   // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
-  keywords: [__('my-block — CGB Block'), __('CGB Example'), __('create-guten-block')],
+  keywords: [__('Glitch'), __('Block')],
 
   /**
    * The edit function describes the structure of your block in the context of the editor.
