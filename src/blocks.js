@@ -2,14 +2,16 @@
 
 // We are going to observe calls to wp.blocks.registerBlockType so that we
 // know the names of the custom blocks that are being registered.
-const _oldRegisterBlockType = wp.blocks.registerBlockType;
+const _oldBlocks = wp.blocks;
 const glitchBlocks = new Set();
 
-Object.defineProperty( wp.blocks, 'registerBlockType', ( name, settings ) => {
+const observedRegisterBlockType = ( name, settings ) => {
   console.log( name );
   glitchBlocks.add( name );
-  return _oldRegisterBlockType( name, settings );
-} );
+  return _oldBlocks.registerBlockType( name, settings );
+}
+
+wp.blocks = Object.assign( _oldBlocks, { registerBlockType: observedRegisterBlockType } );
 
 // Load our custom blocks
 import './common.scss';
@@ -28,4 +30,4 @@ dispatch( 'core/editor' ).resetEditorBlocks( select( 'core/editor' ).getBlocks()
 document.querySelector( '#preview' ).innerHTML = wp.blocks.getBlockContent( block );
 
 // Restore the original, unobserved registerBlockType
-Object.defineProperty( wp.blocks, 'registerBlockType', _oldRegisterBlockType );
+wp.blocks = _oldBlocks;
