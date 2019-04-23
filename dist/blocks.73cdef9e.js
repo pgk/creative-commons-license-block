@@ -25933,8 +25933,10 @@ var observedRegisterBlockType = function observedRegisterBlockType(name, setting
   return _oldBlocks.registerBlockType(name, settings);
 };
 
-wp.blocks = Object.assign(_oldBlocks, {
-  registerBlockType: observedRegisterBlockType
+wp.blocks = Object.assign({}, _oldBlocks);
+Object.defineProperty(wp.blocks, 'registerBlockType', {
+  value: observedRegisterBlockType,
+  writable: true
 }); // Load our custom blocks
 
 // Add our custom blocks to the editor, so they show on reload
