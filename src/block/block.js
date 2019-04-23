@@ -75,7 +75,7 @@ registerBlockType( 'automattic/glitch-block', {
 		return (
 			<div>
 				<p>This is from the block's <tt>save()</tt> method, and shows what the block will look like when rendered.</p>
-        <img src="https://lorempixel.com/400/300/" />
+        <img src="https://lorempixel.com/600/300/cats" />
 			</div>
 		);
 	},

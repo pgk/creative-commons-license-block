@@ -4,6 +4,19 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
+body {
+  background: url(http://lorempixel.com/1920/1920/cats/) no-repeat center center fixed;
+  background-size: cover;
+  padding: 32px;
+}
+
+img {
+  opacity: 0.75;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: white;
+}
 /**
  * #.# Styles
  *
@@ -15,6 +28,20 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
+body {
+  background: url(http://lorempixel.com/1920/1920/cats/) no-repeat center center fixed;
+  background-size: cover;
+  padding: 32px;
+}
+
+img {
+  opacity: 0.75;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: white;
+}
+
 .wp-block-automattic-glitch-block {
   background: orangered;
   border: 0.2rem solid #292929;
@@ -35,8 +62,22 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
+body {
+  background: url(http://lorempixel.com/1920/1920/cats/) no-repeat center center fixed;
+  background-size: cover;
+  padding: 32px;
+}
+
+img {
+  opacity: 0.75;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: white;
+}
+
 .wp-block-automattic-glitch-block {
-  background: rgba(128, 128, 0, 0.5);
+  background: rgba(128, 128, 0, 0.25);
   border: 0.2rem solid #292929;
   color: #292929;
   margin: 0 auto;
