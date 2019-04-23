@@ -52,12 +52,12 @@ registerBlockType( 'cgb/block-my-block', {
 			<div className={ props.className }>
 				<p>
 					Welcome to Glitchenberg. This is a tool to build blocks for the Gutenberg 
-          block editor. To get started building your own block, 
-          <a href="https://glitch.com/~george-gutenberg-experiment">visit the project
-          page to read more</a> or go ahead and remix:
+          block editor. To get started building your own 
+          block, <a href="https://glitch.com/~george-gutenberg-experiment">visit 
+          the project page to read more</a> or go ahead and remix:
         </p>
         <p>
-          <a href="https://glitch.com/edit/#!/remix/george-gutenberg-experiment" class="glitch-remix">remix button</a>
+          <a href="https://glitch.com/edit/#!/remix/george-gutenberg-experiment" class="glitch-remix" target="_blank">remix button</a>
 				</p>
         <img src="https://placekitten.com/600/400" />
 			</div>
@@ -76,7 +76,7 @@ registerBlockType( 'cgb/block-my-block', {
 		return (
 			<div>
 				<p>This is from the block's <tt>save()</tt> method, and shows what the block will look like when rendered.</p>
-        <img src="https://lorempixel.com/400/200/" />
+        <img src="https://lorempixel.com/400/300/" />
 			</div>
 		);
 	},

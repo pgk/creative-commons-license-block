@@ -25812,7 +25812,7 @@ var App = compose(withSelect(function (select) {
   };
 }))(Editor);
 registerCoreBlocks();
-render(_react.default.createElement(App, null), document.querySelector('#app'));
+render(_react.default.createElement(App, null), document.querySelector('#editor'));
 },{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js"}],"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

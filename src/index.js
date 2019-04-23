@@ -60,5 +60,5 @@ registerCoreBlocks();
 
 render(
 	<App />,
-	document.querySelector( '#app' )
+	document.querySelector( '#editor' )
 );
