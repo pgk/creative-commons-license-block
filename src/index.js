@@ -42,7 +42,9 @@ const Editor = ( { blocks, resetEditorBlocks } ) =>
 			</div>
 		</Fragment>
 
-
+/**
+ * This connects the Editor to our data layer's select and dispatch
+ */
 const App = compose(
 	withSelect( ( select ) => {
 		const { getEditorBlocks } = select( 'core/editor' );
@@ -56,8 +58,10 @@ const App = compose(
 	} )
 )( Editor );
 
+// Add all the core blocks. The custom blocks are registered in src/blocks.js
 registerCoreBlocks();
 
+// Render the editor on the page
 render(
 	<App />,
 	document.querySelector( '#editor' )

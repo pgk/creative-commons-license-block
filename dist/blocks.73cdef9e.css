@@ -4,7 +4,6 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-
 /**
  * #.# Styles
  *
@@ -16,14 +15,14 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.wp-block-cgb-block-my-block {
+.wp-block-automattic-glitch-block {
   background: orangered;
   border: 0.2rem solid #292929;
   color: #292929;
   margin: 0 auto;
   max-width: 740px;
-  padding: 2rem; }
-
+  padding: 2rem;
+}
 /**
  * #.# Editor Styles
  *
@@ -36,13 +35,13 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.wp-block-cgb-block-my-block {
+.wp-block-automattic-glitch-block {
   background: #bada55;
   border: 0.2rem solid #292929;
   color: #292929;
   margin: 0 auto;
   max-width: 740px;
-  padding: 2rem; }
-
+  padding: 2rem;
+}
 
 /*# sourceMappingURL=/blocks.73cdef9e.css.map */

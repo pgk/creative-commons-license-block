@@ -6,6 +6,7 @@ dependencies:
   parcel-bundler: 1.12.3
   react: 16.8.6
   react-dom: 16.8.6
+  sass: 1.19.0
 packages:
   /@babel/code-frame/7.0.0:
     dependencies:
@@ -4974,6 +4975,15 @@ packages:
       node: '>=4.0.0'
     resolution:
       integrity: sha512-mAkc9NX+ULPw4qX+lkFVuIhXQbjFaX97fWFj6atFXMG11lUX4rXfQY6Q0VFf1wfJfqCHYO7cxtC7cA8fIkWsLQ==
+  /sass/1.19.0:
+    dependencies:
+      chokidar: 2.1.5
+    dev: false
+    engines:
+      node: '>=0.11.8'
+    hasBin: true
+    resolution:
+      integrity: sha512-8kzKCgxCzh8/zEn3AuRwzLWVSSFj8omkiGwqdJdeOufjM+I88dXxu9LYJ/Gw4rRTHXesN0r1AixBuqM6yLQUJw==
   /sax/1.2.4:
     dev: false
     resolution:
@@ -5909,3 +5919,4 @@ specifiers:
   parcel-bundler: ^1.12.3
   react: ^16.8.6
   react-dom: ^16.8.6
+  sass: ^1.19.0

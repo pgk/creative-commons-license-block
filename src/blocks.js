@@ -8,7 +8,6 @@ const {
 import './common.scss';
 import './block/block.js';
 
-
 // Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
 const glitchBlocks = getBlockTypes().filter( b => ! b.name.startsWith( 'core' ) );
 

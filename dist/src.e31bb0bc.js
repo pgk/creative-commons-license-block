@@ -25795,6 +25795,10 @@ var Editor = function Editor(_ref) {
     className: "editor-styles-wrapper"
   }, _react.default.createElement(WritingFlow, null, _react.default.createElement(ObserveTyping, null, _react.default.createElement(BlockList, null)))), _react.default.createElement(Popover.Slot, null))));
 };
+/**
+ * This connects the Editor to our data layer's select and dispatch
+ */
+
 
 var App = compose(withSelect(function (select) {
   var _select = select('core/editor'),
@@ -25810,8 +25814,10 @@ var App = compose(withSelect(function (select) {
   return {
     resetEditorBlocks: resetEditorBlocks
   };
-}))(Editor);
-registerCoreBlocks();
+}))(Editor); // Add all the core blocks. The custom blocks are registered in src/blocks.js
+
+registerCoreBlocks(); // Render the editor on the page
+
 render(_react.default.createElement(App, null), document.querySelector('#editor'));
 },{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js"}],"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -25841,7 +25847,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38159" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40562" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
