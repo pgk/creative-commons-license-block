@@ -25763,19 +25763,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /**
  * Import the things we need from Gutenberg on the window.wp object
  */
-
-/*
-const {
-  blockEditor: { BlockEditorProvider, BlockList, WritingFlow, ObserveTyping },
-  blockLibrary: { registerCoreBlocks },
-  components: { Popover },
-  compose: { compose },
-  data: { withSelect, withDispatch, dispatch },
-  element: { render, Fragment },
-} = wp;
-*/
-var _wp = wp,
-    compose = _wp.compose;
+var compose = wp.compose.compose;
 var _wp$element = wp.element,
     render = _wp$element.render,
     Fragment = _wp$element.Fragment;
@@ -25790,7 +25778,25 @@ var _wp$data = wp.data,
     withSelect = _wp$data.withSelect,
     withDispatch = _wp$data.withDispatch,
     dispatch = _wp$data.dispatch;
-var App = compose.compose(withSelect(function (select) {
+/**
+ * Create a basic block editor
+ */
+
+var Editor = function Editor(_ref) {
+  var blocks = _ref.blocks,
+      resetEditorBlocks = _ref.resetEditorBlocks;
+  return _react.default.createElement(Fragment, null, _react.default.createElement("div", {
+    className: "playground__body"
+  }, _react.default.createElement(BlockEditorProvider, {
+    value: blocks,
+    onInput: resetEditorBlocks,
+    onChange: resetEditorBlocks
+  }, _react.default.createElement("div", {
+    className: "editor-styles-wrapper"
+  }, _react.default.createElement(WritingFlow, null, _react.default.createElement(ObserveTyping, null, _react.default.createElement(BlockList, null)))), _react.default.createElement(Popover.Slot, null))));
+};
+
+var App = compose(withSelect(function (select) {
   var _select = select('core/editor'),
       getEditorBlocks = _select.getEditorBlocks;
 
@@ -25804,19 +25810,7 @@ var App = compose.compose(withSelect(function (select) {
   return {
     resetEditorBlocks: resetEditorBlocks
   };
-}))(function (_ref) {
-  var blocks = _ref.blocks,
-      resetEditorBlocks = _ref.resetEditorBlocks;
-  return _react.default.createElement(Fragment, null, _react.default.createElement("div", {
-    className: "playground__body"
-  }, _react.default.createElement(BlockEditorProvider, {
-    value: blocks,
-    onInput: resetEditorBlocks,
-    onChange: resetEditorBlocks
-  }, _react.default.createElement("div", {
-    className: "editor-styles-wrapper"
-  }, _react.default.createElement(WritingFlow, null, _react.default.createElement(ObserveTyping, null, _react.default.createElement(BlockList, null)))), _react.default.createElement(Popover.Slot, null))));
-});
+}))(Editor);
 registerCoreBlocks();
 render(_react.default.createElement(App, null), document.querySelector('#app'));
 },{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js"}],"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
