@@ -25925,13 +25925,11 @@ require("./block/block.js");
 // We are going to observe calls to wp.blocks.registerBlockType so that we
 // know the names of the custom blocks that are being registered.
 var _oldRegisterBlockType = wp.blocks.registerBlockType;
-var glitchBlocks = new Set();
-
-wp.blocks.registerBlockType = function (name, settings) {
-  glitchBlocks.add(name);
-  return _oldRegisterBlockType(name, settings);
-}; // Load our custom blocks
-
+var glitchBlocks = new Set(); // wp.blocks.registerBlockType = ( name, settings ) => {
+//   glitchBlocks.add( name );
+//   return _oldRegisterBlockType( name, settings );
+// }
+// Load our custom blocks
 
 // Add our custom blocks to the editor, so it shows on reload
 var _wp = wp,
@@ -25941,8 +25939,7 @@ var _wp = wp,
     createBlock = _wp.blocks.createBlock;
 dispatch('core/editor').insertBlock(createBlock('cgb/block-my-block', {}));
 dispatch('core/editor').resetEditorBlocks(select('core/editor').getBlocks()); // Restore the original, unobserved registerBlockType
-
-wp.blocks.registerBlockType = _oldRegisterBlockType;
+// wp.blocks.registerBlockType = _oldRegisterBlockType;
 },{"./common.scss":"common.scss","./block/block.js":"block/block.js"}],"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

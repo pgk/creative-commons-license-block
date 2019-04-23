@@ -5,10 +5,10 @@
 const _oldRegisterBlockType = wp.blocks.registerBlockType;
 const glitchBlocks = new Set();
 
-wp.blocks.registerBlockType = ( name, settings ) => {
-  glitchBlocks.add( name );
-  return _oldRegisterBlockType( name, settings );
-}
+// wp.blocks.registerBlockType = ( name, settings ) => {
+//   glitchBlocks.add( name );
+//   return _oldRegisterBlockType( name, settings );
+// }
 
 // Load our custom blocks
 import './common.scss';
@@ -24,4 +24,4 @@ dispatch( 'core/editor' ).insertBlock( createBlock( 'cgb/block-my-block', {} ) )
 dispatch( 'core/editor' ).resetEditorBlocks( select( 'core/editor' ).getBlocks() );
 
 // Restore the original, unobserved registerBlockType
-wp.blocks.registerBlockType = _oldRegisterBlockType;
+// wp.blocks.registerBlockType = _oldRegisterBlockType;
