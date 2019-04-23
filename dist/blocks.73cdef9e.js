@@ -25868,7 +25868,7 @@ var registerBlockType = window.wp.blocks.registerBlockType; // Import registerBl
  *                             registered; otherwise `undefined`.
  */
 
-registerBlockType('automattic/glitch-block', {
+registerBlockType('tinker/glitch-block', {
   // Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
   title: __('My Glitch Block'),
   // Block title.
@@ -25891,13 +25891,13 @@ registerBlockType('automattic/glitch-block', {
     return _react.default.createElement("div", {
       className: props.className
     }, _react.default.createElement("p", null, "Welcome to Glitchenberg! This is a tool to build blocks for the Gutenberg block editor. To get started building your own block => ", _react.default.createElement("a", {
-      href: "https://glitch.com/~george-gutenberg-experiment"
+      href: "https://glitch.com/~gutenberg-block-kit"
     }, "visit the project page to read more"), " or go ahead and remix:"), _react.default.createElement("p", null, _react.default.createElement("a", {
-      href: "https://glitch.com/edit/#!/remix/george-gutenberg-experiment",
+      href: "https://glitch.com/edit/#!/remix/gutenberg-block-kit",
       class: "glitch-remix",
       target: "_blank"
     }, "remix button")), _react.default.createElement("img", {
-      src: "https://placekitten.com/600/400"
+      src: "//placekitten.com/600/400"
     }));
   },
 
@@ -25911,7 +25911,7 @@ registerBlockType('automattic/glitch-block', {
    */
   save: function save(props) {
     return _react.default.createElement("div", null, _react.default.createElement("p", null, "This is from the block's ", _react.default.createElement("tt", null, "save()"), " method, and shows what the block will look like when rendered."), _react.default.createElement("img", {
-      src: "https://lorempixel.com/600/300/cats"
+      src: "//lorempixel.com/600/300/cats"
     }));
   }
 });
@@ -25973,7 +25973,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40562" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46642" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

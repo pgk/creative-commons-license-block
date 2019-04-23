@@ -27,7 +27,7 @@ const { registerBlockType } = window.wp.blocks; // Import registerBlockType() fr
  * @return {?WPBlock}          The block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-registerBlockType( 'automattic/glitch-block', {
+registerBlockType( 'tinker/glitch-block', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
 	title: __( 'My Glitch Block' ), // Block title.
 	icon: 'smiley', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
@@ -52,13 +52,13 @@ registerBlockType( 'automattic/glitch-block', {
 				<p>
 					Welcome to Glitchenberg! This is a tool to build blocks for the Gutenberg 
           block editor. To get started building your own 
-          block => <a href="https://glitch.com/~george-gutenberg-experiment">visit 
+          block => <a href="https://glitch.com/~gutenberg-block-kit">visit 
           the project page to read more</a> or go ahead and remix:
         </p>
         <p>
-          <a href="https://glitch.com/edit/#!/remix/george-gutenberg-experiment" class="glitch-remix" target="_blank">remix button</a>
+          <a href="https://glitch.com/edit/#!/remix/gutenberg-block-kit" class="glitch-remix" target="_blank">remix button</a>
 				</p>
-        <img src="https://placekitten.com/600/400" />
+        <img src="//placekitten.com/600/400" />
 			</div>
 		);
 	},
@@ -75,7 +75,7 @@ registerBlockType( 'automattic/glitch-block', {
 		return (
 			<div>
 				<p>This is from the block's <tt>save()</tt> method, and shows what the block will look like when rendered.</p>
-        <img src="https://lorempixel.com/600/300/cats" />
+        <img src="//lorempixel.com/600/300/cats" />
 			</div>
 		);
 	},
