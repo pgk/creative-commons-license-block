@@ -36,7 +36,7 @@
  * that are used across the project.
 */
 .wp-block-automattic-glitch-block {
-  background: #bada55;
+  background: rgba(128, 128, 0, 0.5);
   border: 0.2rem solid #292929;
   color: #292929;
   margin: 0 auto;
