@@ -25909,7 +25909,7 @@ registerBlockType('cgb/block-my-block', {
    * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
    */
   save: function save(props) {
-    return _react.default.createElement("div", null, _react.default.createElement("p", null, "This is from the ", _react.default.createElement("tt", null, "save()"), " method, and shows what the block will look like when rendered."), _react.default.createElement("img", {
+    return _react.default.createElement("div", null, _react.default.createElement("p", null, "This is from the block's ", _react.default.createElement("tt", null, "save()"), " method, and shows what the block will look like when rendered."), _react.default.createElement("img", {
       src: "https://lorempixel.com/400/200/"
     }));
   }
