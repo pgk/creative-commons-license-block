@@ -1,7 +1,7 @@
 /* global wp */
 const { 
   data: { dispatch, select }, 
-  blocks: { createBlock, getBlockTypes } 
+  blocks: { createBlock, getBlockContent, getBlockTypes } 
 } = wp;
 
 // Load our custom blocks
@@ -9,13 +9,16 @@ import './common.scss';
 import './block/block.js';
 
 
-const glitchBlocks = getBlockTypes().filter( b => ! b.name );
-console.log( glitchBlocks );
+// Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
+const glitchBlocks = getBlockTypes().filter( b => ! b.name.startsWith( 'core' ) );
 
 // Add our custom blocks to the editor, so they show on reload
-const block = createBlock( 'cgb/block-my-block', {} );
-dispatch( 'core/editor' ).insertBlock( block );
-dispatch( 'core/editor' ).resetEditorBlocks( select( 'core/editor' ).getBlocks() );
+let htmlPreview = '';
+glitchBlocks.forEach( b => {
+  const block = createBlock( b.name, {} );
+  dispatch( 'core/editor' ).insertBlock( block );
+  dispatch( 'core/editor' ).resetEditorBlocks( select( 'core/editor' ).getBlocks() );
+  htmlPreview += getBlockContent( block );
+} );
 
-document.querySelector( '#preview' ).innerHTML = wp.blocks.getBlockContent( block );
-
+document.querySelector( '#preview' ).innerHTML = htmlPreview;

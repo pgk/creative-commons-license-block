@@ -25855,7 +25855,7 @@ var __ = window.wp.i18n.__; // Import __() from wp.i18n
 var registerBlockType = window.wp.blocks.registerBlockType; // Import registerBlockType() from wp.blocks
 
 /**
- * Register: aa Gutenberg Block.
+ * Register: a Gutenberg Block.
  *
  * Registers a new block provided a unique name and an object defining its
  * behavior. Once registered, the block is made editor as an option to any
@@ -25868,7 +25868,7 @@ var registerBlockType = window.wp.blocks.registerBlockType; // Import registerBl
  *                             registered; otherwise `undefined`.
  */
 
-registerBlockType('cgb/block-my-block', {
+registerBlockType('automattic/glitch-block', {
   // Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
   title: __('my-block - CGB Block'),
   // Block title.
@@ -25929,17 +25929,22 @@ var _wp = wp,
     select = _wp$data.select,
     _wp$blocks = _wp.blocks,
     createBlock = _wp$blocks.createBlock,
+    getBlockContent = _wp$blocks.getBlockContent,
     getBlockTypes = _wp$blocks.getBlockTypes; // Load our custom blocks
 
+// Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
 var glitchBlocks = getBlockTypes().filter(function (b) {
-  return !b.name;
-});
-console.log(glitchBlocks); // Add our custom blocks to the editor, so they show on reload
+  return !b.name.startsWith('core');
+}); // Add our custom blocks to the editor, so they show on reload
 
-var block = createBlock('cgb/block-my-block', {});
-dispatch('core/editor').insertBlock(block);
-dispatch('core/editor').resetEditorBlocks(select('core/editor').getBlocks());
-document.querySelector('#preview').innerHTML = wp.blocks.getBlockContent(block);
+var htmlPreview = '';
+glitchBlocks.forEach(function (b) {
+  var block = createBlock(b.name, {});
+  dispatch('core/editor').insertBlock(block);
+  dispatch('core/editor').resetEditorBlocks(select('core/editor').getBlocks());
+  htmlPreview += getBlockContent(block);
+});
+document.querySelector('#preview').innerHTML = htmlPreview;
 },{"./common.scss":"common.scss","./block/block.js":"block/block.js"}],"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
