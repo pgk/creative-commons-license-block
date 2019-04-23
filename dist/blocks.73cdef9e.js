@@ -25890,7 +25890,7 @@ registerBlockType('automattic/glitch-block', {
     // Creates a <p class='wp-block-cgb-block-my-block'></p>.
     return _react.default.createElement("div", {
       className: props.className
-    }, _react.default.createElement("p", null, "Welcome to Glitchenberg. This is a tool to build blocks for the Gutenberg block editor. To get started building your own block, ", _react.default.createElement("a", {
+    }, _react.default.createElement("p", null, "Welcome to Glitchenberg!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! This is a tool to build blocks for the Gutenberg block editor. To get started building your own block => ", _react.default.createElement("a", {
       href: "https://glitch.com/~george-gutenberg-experiment"
     }, "visit the project page to read more"), " or go ahead and remix:"), _react.default.createElement("p", null, _react.default.createElement("a", {
       href: "https://glitch.com/edit/#!/remix/george-gutenberg-experiment",
