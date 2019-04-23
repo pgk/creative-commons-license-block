@@ -6,10 +6,9 @@ const express = require('express');
 const proxy = require('express-http-proxy');
 const app = express();
 
-// we've started you off with Express, 
-// but feel free to use whatever libs or frameworks you'd like through `package.json`.
+// http://expressjs.com/en/starter/basic-routing.html
 
-// Mock out some API responses
+// Mock out some API responses that Gutenberg expects:
 app.get( '/wp/v2/types/wp_block', function( request, response) {
     response.setHeader( 'Content-Type', 'application/json' );
     response.end( JSON.stringify( {
@@ -36,14 +35,8 @@ app.get( '/wp/v2/blocks', function( request, response) {
   } ) );
 } );
 
-// Proxy requests to parcel server
+// Proxy remaining requests to parcel server
 app.use( '/', proxy( 'localhost:1234' ) );
-
-// http://expressjs.com/en/starter/basic-routing.html
-// app.get('/', function(request, response) {
-//   response.sendFile(__dirname + '/views/index.html');
-// });
-
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, function() {

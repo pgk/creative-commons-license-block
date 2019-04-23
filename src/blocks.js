@@ -21,8 +21,11 @@ const {
   blocks: { createBlock } 
 } = wp;
 
-dispatch( 'core/editor' ).insertBlock( createBlock( 'cgb/block-my-block', {} ) );
+const block = createBlock( 'cgb/block-my-block', {} );
+dispatch( 'core/editor' ).insertBlock( block );
 dispatch( 'core/editor' ).resetEditorBlocks( select( 'core/editor' ).getBlocks() );
+
+document.querySelector( '#preview' ).innerHTML = wp.blocks.getBlockContent( block );
 
 // Restore the original, unobserved registerBlockType
 Object.defineProperty( wp.blocks, 'registerBlockType', _oldRegisterBlockType );

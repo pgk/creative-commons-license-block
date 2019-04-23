@@ -75,7 +75,7 @@ registerBlockType( 'cgb/block-my-block', {
 	save: function( props ) {
 		return (
 			<div>
-				<p>aoeu aoeu aoeu aoeu</p>
+				<p>This is from the <tt>save()</tt> method, and shows what the block will look like when rendered.</p>
         <img src="https://lorempixel.com/400/200/" />
 			</div>
 		);

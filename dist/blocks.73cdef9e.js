@@ -25909,7 +25909,7 @@ registerBlockType('cgb/block-my-block', {
    * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
    */
   save: function save(props) {
-    return _react.default.createElement("div", null, _react.default.createElement("p", null, "aoeu aoeu aoeu aoeu"), _react.default.createElement("img", {
+    return _react.default.createElement("div", null, _react.default.createElement("p", null, "This is from the ", _react.default.createElement("tt", null, "save()"), " method, and shows what the block will look like when rendered."), _react.default.createElement("img", {
       src: "https://lorempixel.com/400/200/"
     }));
   }
@@ -25938,8 +25938,10 @@ var _wp = wp,
     dispatch = _wp$data.dispatch,
     select = _wp$data.select,
     createBlock = _wp.blocks.createBlock;
-dispatch('core/editor').insertBlock(createBlock('cgb/block-my-block', {}));
-dispatch('core/editor').resetEditorBlocks(select('core/editor').getBlocks()); // Restore the original, unobserved registerBlockType
+var block = createBlock('cgb/block-my-block', {});
+dispatch('core/editor').insertBlock(block);
+dispatch('core/editor').resetEditorBlocks(select('core/editor').getBlocks());
+document.querySelector('#preview').innerHTML = wp.blocks.getBlockContent(block); // Restore the original, unobserved registerBlockType
 
 Object.defineProperty(wp.blocks, 'registerBlockType', _oldRegisterBlockType);
 },{"./common.scss":"common.scss","./block/block.js":"block/block.js"}],"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -25970,7 +25972,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41898" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38159" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
