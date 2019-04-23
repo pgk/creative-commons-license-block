@@ -7,6 +7,16 @@ import ReactDOM from 'react-dom';
 /**
  * Import the things we need from Gutenberg on the window.wp object
  */
+/*
+const {
+  blockEditor: { BlockEditorProvider, BlockList, WritingFlow, ObserveTyping },
+  blockLibrary: { registerCoreBlocks },
+  components: { Popover },
+  compose: { compose },
+  data: { withSelect, withDispatch, dispatch },
+  element: { render, Fragment },
+} = wp;
+*/
 const { compose } = wp;
 const { render, Fragment } = wp.element;
 const {

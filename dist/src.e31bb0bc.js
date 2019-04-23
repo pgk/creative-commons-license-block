@@ -25763,6 +25763,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /**
  * Import the things we need from Gutenberg on the window.wp object
  */
+
+/*
+const {
+  blockEditor: { BlockEditorProvider, BlockList, WritingFlow, ObserveTyping },
+  blockLibrary: { registerCoreBlocks },
+  components: { Popover },
+  compose: { compose },
+  data: { withSelect, withDispatch, dispatch },
+  element: { render, Fragment },
+} = wp;
+*/
 var _wp = wp,
     compose = _wp.compose;
 var _wp$element = wp.element,
