@@ -17,7 +17,8 @@
     "react-dom": "^16.8.6",
     "express-http-proxy": "^1.5.1",
     "concurrently": "^4.1.0",
-    "babel-loader": "^8.0.5"
+    "babel-loader": "^8.0.5",
+    "sass": "^1.19.0"
   },
   "engines": {
     "node": "8.x"
