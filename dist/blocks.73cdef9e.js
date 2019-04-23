@@ -25922,6 +25922,12 @@ require("./common.scss");
 require("./block/block.js");
 
 /* global wp */
+// We are going to observe calls to wp.blocks.registerBlockType so that we
+// know the names of the custom blocks that are being registered.
+var _oldRegisterBlockType = wp.blocks.registerBlockType;
+
+wp.blocks.registerBlockType = function (name, settings) {};
+
 var _wp = wp,
     _wp$data = _wp.data,
     dispatch = _wp$data.dispatch,
