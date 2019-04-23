@@ -54,10 +54,12 @@ registerBlockType( 'cgb/block-my-block', {
 					Welcome to Glitchenberg. This is a tool to build blocks for the Gutenberg 
           block editor. To get started building your own block, 
           <a href="https://glitch.com/~george-gutenberg-experiment">visit the project
-          page</a>, click 
+          page to read more</a> or go ahead and remix:
+        </p>
+        <p>
           <a href="https://glitch.com/edit/#!/remix/george-gutenberg-experiment" class="glitch-remix">remix button</a>
 				</p>
-        <img src="https://placekitten.com/700/400" />
+        <img src="https://placekitten.com/600/400" />
 			</div>
 		);
 	},

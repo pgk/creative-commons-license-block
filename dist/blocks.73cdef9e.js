@@ -25892,11 +25892,11 @@ registerBlockType('cgb/block-my-block', {
       className: props.className
     }, _react.default.createElement("p", null, "Welcome to Glitchenberg. This is a tool to build blocks for the Gutenberg block editor. To get started building your own block,", _react.default.createElement("a", {
       href: "https://glitch.com/~george-gutenberg-experiment"
-    }, "visit the project page"), ", click the", _react.default.createElement("a", {
+    }, "visit the project page to read more"), " or go ahead and remix:"), _react.default.createElement("p", null, _react.default.createElement("a", {
       href: "https://glitch.com/edit/#!/remix/george-gutenberg-experiment",
       class: "glitch-remix"
     }, "remix button")), _react.default.createElement("img", {
-      src: "https://placekitten.com/700/400"
+      src: "https://placekitten.com/600/400"
     }));
   },
 

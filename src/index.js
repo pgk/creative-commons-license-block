@@ -32,9 +32,6 @@ const App = compose.compose(
 	} )
 )( ( { blocks, resetEditorBlocks } ) =>
 		<Fragment>
-			<div className="playground__header">
-				<h1 className="playground__logo">Gutenberg Playground</h1>
-			</div>
 			<div className="playground__body">
 				<BlockEditorProvider
 					value={ blocks }
@@ -60,7 +57,3 @@ render(
 	<App />,
 	document.querySelector( '#app' )
 );
-
-/**
- * Auto-add our block to the editor
- */
