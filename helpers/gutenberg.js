@@ -1,6 +1,9 @@
 /**
  * This is the file that creates the Gutenberg assets on the Glitch CDN
  *
+ * It is here for reference and reproducability, you shouldn't actually need this
+ * to do any block development.
+ *
  * It imports all the packages, then exports them on `window.wp`. You may need
  * to update this when a new version of Gutenberg is released. Or you can re-remix
  * the original project, it will be kept up to date with Gutenberg.
@@ -15,7 +18,8 @@
  *     6a. You should probably update the .js and .css files' sourcemaps with the CDN URLs
  *  7. Update src/index.html with the new CDN URLs
  *
- * This _could_ be built on Glitch, but not all packages 
+ * Theoretcially, this _could_ be built on Glitch, but not all packages are currently 
+ * published to npm and it exceeds the resource limits in tests.
  */
 
 /**
