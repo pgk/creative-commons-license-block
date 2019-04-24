@@ -75,7 +75,7 @@ registerBlockType( 'tinker/glitch-block', {
 		return (
 			<div>
 				<p>This is from the block's <tt>save()</tt> method, and shows what the block will look like when rendered.</p>
-        <img src="//lorempixel.com/600/300/cats" />
+        <img src="//lorempixel.com/600/300/city" />
 			</div>
 		);
 	},

@@ -25911,7 +25911,7 @@ registerBlockType('tinker/glitch-block', {
    */
   save: function save(props) {
     return _react.default.createElement("div", null, _react.default.createElement("p", null, "This is from the block's ", _react.default.createElement("tt", null, "save()"), " method, and shows what the block will look like when rendered."), _react.default.createElement("img", {
-      src: "//lorempixel.com/600/300/cats"
+      src: "//lorempixel.com/600/300/city"
     }));
   }
 });
@@ -25973,7 +25973,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45624" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40844" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
