@@ -25843,37 +25843,52 @@ require("./editor.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//  Import CSS.
+// Parcel seems to need these
 
 /* global wp */
 var __ = wp.i18n.__;
-var registerBlockType = wp.blocks.registerBlockType;
+var registerBlockType = wp.blocks.registerBlockType; //  Import CSS.
+
 /**
  * Register our block with the editor
  * 
- * The first argument is the name, which must be in form of namespace/block-name
- * with only letters, numbers, and hyphens.
+ * The first argument is the name of the block. It must be in form of namespace/block-name with 
+ * only letters, numbers, and hyphens. This is how the editor knows which block controls to use
  *
- * The second argument is the block settings object. You can read about all the
- * options available at 
- * https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-registration/
+ * @see https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-registration/
  */
-
 registerBlockType('automattic/glitch-block', {
-  // This is the display title for your block, which can be translated with our translation functions. The block inserter will show this name.
+  // This is the display title for your block, which can be translated with our translation 
+  // functions. The block inserter will show this name.
   title: __('Glitch Block'),
-  // This is a short description for your block, which can be translated with our translation functions. This will be shown in the block inspector.
+  // This is a short description for your block, which can be translated with our translation 
+  // functions. This will be shown in the block inspector.
   description: __('This will be shown in the block inspector.'),
   // Blocks are grouped into categories to help users browse and discover them.
   // The core provided categories are: common, formatting, layout, widgets, embed
   category: 'common',
-  // An icon property should be specified to make it easier to identify a block. These can be any of WordPress’ Dashicons, or a custom svg element.
+  // An icon property should be specified to make it easier to identify a block. These can be any 
+  // of WordPress’ Dashicons, or a custom svg element.
+  // See https://developer.wordpress.org/resource/dashicons/
   icon: 'smiley',
+  // Sometimes a block could have aliases that help users discover it while searching. 
+  // For example, an image block could also want to be discovered by photo. You can do so by 
+  // providing an array of terms (which can be translated).
   keywords: [__('glitch')],
-  edit: function edit(props) {
+
+  /**
+   * The edit function describes the structure of your block in the context of the editor. This 
+   * represents what the editor will render when the block is used.
+   * @see https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-edit-save/
+   */
+  edit: function edit(_ref) {
+    var attributes = _ref.attributes,
+        className = _ref.className,
+        isSelected = _ref.isSelected,
+        setAttributes = _ref.setAttributes;
     return _react.default.createElement("div", {
-      className: props.className
-    }, _react.default.createElement("p", null, "Welcome to Glitchenberg! This is a tool to build blocks for the Gutenberg block editor. To get started building your own block => ", _react.default.createElement("a", {
+      className: className
+    }, _react.default.createElement("p", null, "Welcome to Glitchenberg! This is a tool to build blocks for the Gutenberg block editor. To get started building your own block =>", _react.default.createElement("a", {
       href: "https://glitch.com/~gutenberg-block-kit"
     }, "visit the project page to read more"), " or go ahead and remix:"), _react.default.createElement("p", null, _react.default.createElement("a", {
       href: "https://glitch.com/edit/#!/remix/gutenberg-block-kit",
@@ -25883,7 +25898,14 @@ registerBlockType('automattic/glitch-block', {
       src: "//placekitten.com/600/400"
     }));
   },
-  save: function save() {
+
+  /**
+   * The save function defines the way in which the different attributes should be combined into 
+   * the final markup, which is then serialized by Gutenberg into post_content.
+   * @see https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-edit-save/
+   */
+  save: function save(_ref2) {
+    var attributes = _ref2.attributes;
     return _react.default.createElement("div", null, _react.default.createElement("p", null, "This is from the block's ", _react.default.createElement("tt", null, "save()"), " method, and shows what the block will look like when rendered."), _react.default.createElement("img", {
       src: "//lorempixel.com/600/300/city"
     }));
