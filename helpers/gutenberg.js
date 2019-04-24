@@ -14,6 +14,8 @@
  *  6. Upload the files in dest/ to the Glitch assets 
  *     6a. You should probably update the .js and .css files' sourcemaps with the CDN URLs
  *  7. Update src/index.html with the new CDN URLs
+ *
+ * This _could_ be built on Glitch, but not all packages 
  */
 
 /**
