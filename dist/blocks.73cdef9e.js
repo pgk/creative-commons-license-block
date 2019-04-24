@@ -25849,41 +25849,27 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var __ = wp.i18n.__;
 var registerBlockType = wp.blocks.registerBlockType;
 /**
- * The name for a block is a unique string that identifies a block. Names have to be structured as namespace/block-name, where namespace is the name of your plugin or theme.
+ * Register our block with the editor
+ * 
+ * The first argument is the name, which must be in form of namespace/block-name
+ * with only letters, numbers, and hyphens.
+ *
+ * The second argument is the block settings object. You can read about all the
+ * options available at 
+ * https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-registration/
  */
 
 registerBlockType('automattic/glitch-block', {
+  // This is the display title for your block, which can be translated with our translation functions. The block inserter will show this name.
   title: __('Glitch Block'),
+  // This is a short description for your block, which can be translated with our translation functions. This will be shown in the block inspector.
   description: __('This will be shown in the block inspector.'),
-  icon: 'smiley',
+  // Blocks are grouped into categories to help users browse and discover them.
+  // The core provided categories are: common, formatting, layout, widgets, embed
   category: 'common',
+  // An icon property should be specified to make it easier to identify a block. These can be any of WordPress’ Dashicons, or a custom svg element.
+  icon: 'smiley',
   keywords: [__('glitch')],
-  supports: {
-    // Support for block's alignment (left, center, right, wide, full). When true, it adds block controls to change block’s alignment.
-    align: false,
-
-    /* if set to true, the 'align' option below can be used*/
-    // Pick which alignment options to display.
-
-    /*align: [ 'left', 'right', 'full' ],*/
-    // Support for wide alignment, that requires additional support in themes.
-    alignWide: true,
-    // When true, a new field in the block sidebar allows to define an id for the block and a button to copy the direct link.
-    anchor: false,
-    // When true, a new field in the block sidebar allows to define a custom className for the block’s wrapper.
-    customClassName: true,
-    // When false, Gutenberg won't add a class like .wp-block-your-block-name to the root element of your saved markup
-    className: true,
-    // Setting this to false suppress the ability to edit a block’s markup individually. We often set this to false in Jetpack blocks.
-    html: false,
-    // Passing false hides this block in Gutenberg's visual inserter.
-
-    /*inserter: true,*/
-    // When false, user will only be able to insert the block once per post.
-    multiple: true,
-    // When false, the block won't be available to be converted into a reusable block.
-    reusable: true
-  },
   edit: function edit(props) {
     return _react.default.createElement("div", {
       className: props.className
