@@ -1,11 +1,19 @@
 /**
  * This is the file that creates the Gutenberg assets on the Glitch CDN
  *
+ * It imports all the packages, then exports them on `window.wp`. You may need
+ * to update this when a new version of Gutenberg is released. Or you can re-remix
+ * the original project, it will be kept up to date with Gutenberg.
+ *
  * To build this:
  *  1. Check out Gutenberg locally from https://github.com/wordpress/gutenberg
- *  2. npm install
- *  3. Place this file in the gutenberg directory
- *  4
+ *  2. Add/remove any packages changed below
+ *  3. `npm install`
+ *  4. Place this file in the gutenberg directory
+ *  5. Run this command: `$(npm bin)/parcel build gutenberg.js -d dest/`
+ *  6. Upload the files in dest/ to the Glitch assets 
+ *     6a. You should probably update the .js and .css files' sourcemaps with the CDN URLs
+ *  7. Update src/index.html with the new CDN URLs
  */
 
 /**
