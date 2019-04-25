@@ -117,7 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../node_modules/object-assign/index.js":[function(require,module,exports) {
+})({"../../node_modules/object-assign/index.js":[function(require,module,exports) {
 /*
 object-assign
 (c) Sindre Sorhus
@@ -213,7 +213,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
   return to;
 };
-},{}],"../node_modules/prop-types/lib/ReactPropTypesSecret.js":[function(require,module,exports) {
+},{}],"../../node_modules/prop-types/lib/ReactPropTypesSecret.js":[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -227,7 +227,7 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 
 module.exports = ReactPropTypesSecret;
 
-},{}],"../node_modules/prop-types/checkPropTypes.js":[function(require,module,exports) {
+},{}],"../../node_modules/prop-types/checkPropTypes.js":[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -323,7 +323,7 @@ checkPropTypes.resetWarningCache = function () {
 };
 
 module.exports = checkPropTypes;
-},{"./lib/ReactPropTypesSecret":"../node_modules/prop-types/lib/ReactPropTypesSecret.js"}],"../node_modules/react/cjs/react.development.js":[function(require,module,exports) {
+},{"./lib/ReactPropTypesSecret":"../../node_modules/prop-types/lib/ReactPropTypesSecret.js"}],"../../node_modules/react/cjs/react.development.js":[function(require,module,exports) {
 /** @license React v16.8.6
  * react.development.js
  *
@@ -2245,7 +2245,7 @@ if (undefined !== "production") {
     module.exports = react;
   })();
 }
-},{"object-assign":"../node_modules/object-assign/index.js","prop-types/checkPropTypes":"../node_modules/prop-types/checkPropTypes.js"}],"../node_modules/react/index.js":[function(require,module,exports) {
+},{"object-assign":"../../node_modules/object-assign/index.js","prop-types/checkPropTypes":"../../node_modules/prop-types/checkPropTypes.js"}],"../../node_modules/react/index.js":[function(require,module,exports) {
 'use strict';
 
 if (undefined === 'production') {
@@ -2253,7 +2253,7 @@ if (undefined === 'production') {
 } else {
   module.exports = require('./cjs/react.development.js');
 }
-},{"./cjs/react.development.js":"../node_modules/react/cjs/react.development.js"}],"../node_modules/scheduler/cjs/scheduler.development.js":[function(require,module,exports) {
+},{"./cjs/react.development.js":"../../node_modules/react/cjs/react.development.js"}],"../../node_modules/scheduler/cjs/scheduler.development.js":[function(require,module,exports) {
 var global = arguments[3];
 /** @license React v0.13.6
  * scheduler.development.js
@@ -2966,7 +2966,7 @@ if (undefined !== "production") {
     exports.unstable_getFirstCallbackNode = unstable_getFirstCallbackNode;
   })();
 }
-},{}],"../node_modules/scheduler/index.js":[function(require,module,exports) {
+},{}],"../../node_modules/scheduler/index.js":[function(require,module,exports) {
 'use strict';
 
 if (undefined === 'production') {
@@ -2974,7 +2974,7 @@ if (undefined === 'production') {
 } else {
   module.exports = require('./cjs/scheduler.development.js');
 }
-},{"./cjs/scheduler.development.js":"../node_modules/scheduler/cjs/scheduler.development.js"}],"../node_modules/scheduler/cjs/scheduler-tracing.development.js":[function(require,module,exports) {
+},{"./cjs/scheduler.development.js":"../../node_modules/scheduler/cjs/scheduler.development.js"}],"../../node_modules/scheduler/cjs/scheduler-tracing.development.js":[function(require,module,exports) {
 /** @license React v0.13.6
  * scheduler-tracing.development.js
  *
@@ -3362,7 +3362,7 @@ if (undefined !== "production") {
     exports.unstable_unsubscribe = unstable_unsubscribe;
   })();
 }
-},{}],"../node_modules/scheduler/tracing.js":[function(require,module,exports) {
+},{}],"../../node_modules/scheduler/tracing.js":[function(require,module,exports) {
 'use strict';
 
 if (undefined === 'production') {
@@ -3370,7 +3370,7 @@ if (undefined === 'production') {
 } else {
   module.exports = require('./cjs/scheduler-tracing.development.js');
 }
-},{"./cjs/scheduler-tracing.development.js":"../node_modules/scheduler/cjs/scheduler-tracing.development.js"}],"../node_modules/react-dom/cjs/react-dom.development.js":[function(require,module,exports) {
+},{"./cjs/scheduler-tracing.development.js":"../../node_modules/scheduler/cjs/scheduler-tracing.development.js"}],"../../node_modules/react-dom/cjs/react-dom.development.js":[function(require,module,exports) {
 /** @license React v16.8.6
  * react-dom.development.js
  *
@@ -25710,7 +25710,7 @@ if (undefined !== "production") {
     module.exports = reactDom;
   })();
 }
-},{"react":"../node_modules/react/index.js","object-assign":"../node_modules/object-assign/index.js","prop-types/checkPropTypes":"../node_modules/prop-types/checkPropTypes.js","scheduler":"../node_modules/scheduler/index.js","scheduler/tracing":"../node_modules/scheduler/tracing.js"}],"../node_modules/react-dom/index.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","object-assign":"../../node_modules/object-assign/index.js","prop-types/checkPropTypes":"../../node_modules/prop-types/checkPropTypes.js","scheduler":"../../node_modules/scheduler/index.js","scheduler/tracing":"../../node_modules/scheduler/tracing.js"}],"../../node_modules/react-dom/index.js":[function(require,module,exports) {
 'use strict';
 
 function checkDCE() {
@@ -25748,279 +25748,88 @@ if (undefined === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"index.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"../../node_modules/react-dom/cjs/react-dom.development.js"}],"style.scss":[function(require,module,exports) {
+
+},{}],"block.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
 
 var _reactDom = _interopRequireDefault(require("react-dom"));
 
+require("./style.scss");
+
+require("./editor.scss");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// Parcel seems to need these
+
 /* global wp */
-// Seem to need these for Parcel to render the JSX
+var __ = wp.i18n.__;
+var registerBlockType = wp.blocks.registerBlockType; //  Import CSS.
 
 /**
- * Import the things we need from Gutenberg on the window.wp object
+ * Register our block with the editor
+ * 
+ * The first argument is the name of the block. It must be in form of namespace/block-name with 
+ * only letters, numbers, and hyphens. This is how the editor knows which block controls to use
+ *
+ * @see https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-registration/
  */
-var compose = wp.compose.compose;
-var _wp$element = wp.element,
-    render = _wp$element.render,
-    Fragment = _wp$element.Fragment;
-var _wp$blockEditor = wp.blockEditor,
-    BlockEditorProvider = _wp$blockEditor.BlockEditorProvider,
-    BlockList = _wp$blockEditor.BlockList,
-    WritingFlow = _wp$blockEditor.WritingFlow,
-    ObserveTyping = _wp$blockEditor.ObserveTyping;
-var Popover = wp.components.Popover;
-var registerCoreBlocks = wp.blockLibrary.registerCoreBlocks;
-var _wp$data = wp.data,
-    withSelect = _wp$data.withSelect,
-    withDispatch = _wp$data.withDispatch,
-    dispatch = _wp$data.dispatch;
-/**
- * Create a basic block editor
- */
+registerBlockType('automattic/glitch-block', {
+  // This is the display title for your block, which can be translated with our translation 
+  // functions. The block inserter will show this name.
+  title: __('Glitch Block'),
+  // This is a short description for your block, which can be translated with our translation 
+  // functions. This will be shown in the block inspector.
+  description: __('This will be shown in the block inspector.'),
+  // Blocks are grouped into categories to help users browse and discover them.
+  // The core provided categories are: common, formatting, layout, widgets, embed
+  category: 'common',
+  // An icon property should be specified to make it easier to identify a block. These can be any 
+  // of WordPress’ Dashicons, or a custom svg element.
+  // See https://developer.wordpress.org/resource/dashicons/
+  icon: 'smiley',
+  // Sometimes a block could have aliases that help users discover it while searching. 
+  // For example, an image block could also want to be discovered by photo. You can do so by 
+  // providing an array of terms (which can be translated).
+  keywords: [__('glitch')],
 
-var Editor = function Editor(_ref) {
-  var blocks = _ref.blocks,
-      resetEditorBlocks = _ref.resetEditorBlocks;
-  return _react.default.createElement(Fragment, null, _react.default.createElement("div", {
-    className: "playground__body"
-  }, _react.default.createElement(BlockEditorProvider, {
-    value: blocks,
-    onInput: resetEditorBlocks,
-    onChange: resetEditorBlocks
-  }, _react.default.createElement("div", {
-    className: "editor-styles-wrapper"
-  }, _react.default.createElement(WritingFlow, null, _react.default.createElement(ObserveTyping, null, _react.default.createElement(BlockList, null)))), _react.default.createElement(Popover.Slot, null))));
-};
-/**
- * This connects the Editor to our data layer's select and dispatch
- */
+  /**
+   * The edit function describes the structure of your block in the context of the editor. This 
+   * represents what the editor will render when the block is used.
+   * @see https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-edit-save/
+   */
+  edit: function edit(_ref) {
+    var attributes = _ref.attributes,
+        className = _ref.className,
+        isSelected = _ref.isSelected,
+        setAttributes = _ref.setAttributes;
+    return _react.default.createElement("div", {
+      className: className
+    }, _react.default.createElement("p", null, "Welcome to the Gutenberg block kit! This is a tool to build blocks for the Gutenberg block editor. To get started building your own block =>", _react.default.createElement("a", {
+      href: "https://glitch.com/~gutenberg-block-kit"
+    }, "visit the project page to read more"), " or go ahead and remix:"), _react.default.createElement("p", null, _react.default.createElement("a", {
+      href: "https://glitch.com/edit/#!/remix/gutenberg-block-kit",
+      class: "glitch-remix",
+      target: "_blank"
+    }, "remix button")), _react.default.createElement("img", {
+      src: "//placekitten.com/600/400"
+    }));
+  },
 
-
-var App = compose(withSelect(function (select) {
-  var _select = select('core/editor'),
-      getEditorBlocks = _select.getEditorBlocks;
-
-  return {
-    blocks: getEditorBlocks()
-  };
-}), withDispatch(function (dispatch) {
-  var _dispatch = dispatch('core/editor'),
-      resetEditorBlocks = _dispatch.resetEditorBlocks;
-
-  return {
-    resetEditorBlocks: resetEditorBlocks
-  };
-}))(Editor); // Add all the core blocks. The custom blocks are registered in src/blocks.js
-
-registerCoreBlocks(); // Render the editor on the page
-
-render(_react.default.createElement(App, null), document.querySelector('#editor'));
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js"}],"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
-var global = arguments[3];
-var OVERLAY_ID = '__parcel__error__overlay__';
-var OldModule = module.bundle.Module;
-
-function Module(moduleName) {
-  OldModule.call(this, moduleName);
-  this.hot = {
-    data: module.bundle.hotData,
-    _acceptCallbacks: [],
-    _disposeCallbacks: [],
-    accept: function (fn) {
-      this._acceptCallbacks.push(fn || function () {});
-    },
-    dispose: function (fn) {
-      this._disposeCallbacks.push(fn);
-    }
-  };
-  module.bundle.hotData = null;
-}
-
-module.bundle.Module = Module;
-var checkedAssets, assetsToAccept;
-var parent = module.bundle.parent;
-
-if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
-  var hostname = "" || location.hostname;
-  var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42862" + '/');
-
-  ws.onmessage = function (event) {
-    checkedAssets = {};
-    assetsToAccept = [];
-    var data = JSON.parse(event.data);
-
-    if (data.type === 'update') {
-      var handled = false;
-      data.assets.forEach(function (asset) {
-        if (!asset.isNew) {
-          var didAccept = hmrAcceptCheck(global.parcelRequire, asset.id);
-
-          if (didAccept) {
-            handled = true;
-          }
-        }
-      }); // Enable HMR for CSS by default.
-
-      handled = handled || data.assets.every(function (asset) {
-        return asset.type === 'css' && asset.generated.js;
-      });
-
-      if (handled) {
-        console.clear();
-        data.assets.forEach(function (asset) {
-          hmrApply(global.parcelRequire, asset);
-        });
-        assetsToAccept.forEach(function (v) {
-          hmrAcceptRun(v[0], v[1]);
-        });
-      } else {
-        window.location.reload();
-      }
-    }
-
-    if (data.type === 'reload') {
-      ws.close();
-
-      ws.onclose = function () {
-        location.reload();
-      };
-    }
-
-    if (data.type === 'error-resolved') {
-      console.log('[parcel] ✨ Error resolved');
-      removeErrorOverlay();
-    }
-
-    if (data.type === 'error') {
-      console.error('[parcel] 🚨  ' + data.error.message + '\n' + data.error.stack);
-      removeErrorOverlay();
-      var overlay = createErrorOverlay(data);
-      document.body.appendChild(overlay);
-    }
-  };
-}
-
-function removeErrorOverlay() {
-  var overlay = document.getElementById(OVERLAY_ID);
-
-  if (overlay) {
-    overlay.remove();
+  /**
+   * The save function defines the way in which the different attributes should be combined into 
+   * the final markup, which is then serialized by Gutenberg into post_content.
+   * @see https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-edit-save/
+   */
+  save: function save(_ref2) {
+    var attributes = _ref2.attributes;
+    return _react.default.createElement("div", null, _react.default.createElement("p", null, "This is from the block's ", _react.default.createElement("tt", null, "save()"), " method, and shows what the block will look like when rendered."), _react.default.createElement("img", {
+      src: "//lorempixel.com/600/300/city"
+    }));
   }
-}
-
-function createErrorOverlay(data) {
-  var overlay = document.createElement('div');
-  overlay.id = OVERLAY_ID; // html encode message and stack trace
-
-  var message = document.createElement('div');
-  var stackTrace = document.createElement('pre');
-  message.innerText = data.error.message;
-  stackTrace.innerText = data.error.stack;
-  overlay.innerHTML = '<div style="background: black; font-size: 16px; color: white; position: fixed; height: 100%; width: 100%; top: 0px; left: 0px; padding: 30px; opacity: 0.85; font-family: Menlo, Consolas, monospace; z-index: 9999;">' + '<span style="background: red; padding: 2px 4px; border-radius: 2px;">ERROR</span>' + '<span style="top: 2px; margin-left: 5px; position: relative;">🚨</span>' + '<div style="font-size: 18px; font-weight: bold; margin-top: 20px;">' + message.innerHTML + '</div>' + '<pre>' + stackTrace.innerHTML + '</pre>' + '</div>';
-  return overlay;
-}
-
-function getParents(bundle, id) {
-  var modules = bundle.modules;
-
-  if (!modules) {
-    return [];
-  }
-
-  var parents = [];
-  var k, d, dep;
-
-  for (k in modules) {
-    for (d in modules[k][1]) {
-      dep = modules[k][1][d];
-
-      if (dep === id || Array.isArray(dep) && dep[dep.length - 1] === id) {
-        parents.push(k);
-      }
-    }
-  }
-
-  if (bundle.parent) {
-    parents = parents.concat(getParents(bundle.parent, id));
-  }
-
-  return parents;
-}
-
-function hmrApply(bundle, asset) {
-  var modules = bundle.modules;
-
-  if (!modules) {
-    return;
-  }
-
-  if (modules[asset.id] || !bundle.parent) {
-    var fn = new Function('require', 'module', 'exports', asset.generated.js);
-    asset.isNew = !modules[asset.id];
-    modules[asset.id] = [fn, asset.deps];
-  } else if (bundle.parent) {
-    hmrApply(bundle.parent, asset);
-  }
-}
-
-function hmrAcceptCheck(bundle, id) {
-  var modules = bundle.modules;
-
-  if (!modules) {
-    return;
-  }
-
-  if (!modules[id] && bundle.parent) {
-    return hmrAcceptCheck(bundle.parent, id);
-  }
-
-  if (checkedAssets[id]) {
-    return;
-  }
-
-  checkedAssets[id] = true;
-  var cached = bundle.cache[id];
-  assetsToAccept.push([bundle, id]);
-
-  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
-    return true;
-  }
-
-  return getParents(global.parcelRequire, id).some(function (id) {
-    return hmrAcceptCheck(global.parcelRequire, id);
-  });
-}
-
-function hmrAcceptRun(bundle, id) {
-  var cached = bundle.cache[id];
-  bundle.hotData = {};
-
-  if (cached) {
-    cached.hot.data = bundle.hotData;
-  }
-
-  if (cached && cached.hot && cached.hot._disposeCallbacks.length) {
-    cached.hot._disposeCallbacks.forEach(function (cb) {
-      cb(bundle.hotData);
-    });
-  }
-
-  delete bundle.cache[id];
-  bundle(id);
-  cached = bundle.cache[id];
-
-  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
-    cached.hot._acceptCallbacks.forEach(function (cb) {
-      cb();
-    });
-
-    return true;
-  }
-}
-},{}]},{},["../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
-//# sourceMappingURL=/src.e31bb0bc.js.map
+});
+},{"react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","./style.scss":"style.scss","./editor.scss":"style.scss"}]},{},["block.js"], null)
+//# sourceMappingURL=/block.js.map
