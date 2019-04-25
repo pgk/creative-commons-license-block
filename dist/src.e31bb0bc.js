@@ -238,7 +238,7 @@ module.exports = ReactPropTypesSecret;
 
 var printWarning = function () {};
 
-if ("development" !== 'production') {
+if (undefined !== 'production') {
   var ReactPropTypesSecret = require('./lib/ReactPropTypesSecret');
 
   var loggedTypeFailures = {};
@@ -273,7 +273,7 @@ if ("development" !== 'production') {
 
 
 function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
-  if ("development" !== 'production') {
+  if (undefined !== 'production') {
     for (var typeSpecName in typeSpecs) {
       if (has(typeSpecs, typeSpecName)) {
         var error; // Prop type validation may throw. In case they do, we don't want to
@@ -317,7 +317,7 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
 
 
 checkPropTypes.resetWarningCache = function () {
-  if ("development" !== 'production') {
+  if (undefined !== 'production') {
     loggedTypeFailures = {};
   }
 };
@@ -334,7 +334,7 @@ module.exports = checkPropTypes;
  */
 'use strict';
 
-if ("development" !== "production") {
+if (undefined !== "production") {
   (function () {
     'use strict';
 
@@ -2248,7 +2248,7 @@ if ("development" !== "production") {
 },{"object-assign":"../node_modules/object-assign/index.js","prop-types/checkPropTypes":"../node_modules/prop-types/checkPropTypes.js"}],"../node_modules/react/index.js":[function(require,module,exports) {
 'use strict';
 
-if ("development" === 'production') {
+if (undefined === 'production') {
   module.exports = require('./cjs/react.production.min.js');
 } else {
   module.exports = require('./cjs/react.development.js');
@@ -2265,7 +2265,7 @@ var global = arguments[3];
  */
 'use strict';
 
-if ("development" !== "production") {
+if (undefined !== "production") {
   (function () {
     'use strict';
 
@@ -2969,7 +2969,7 @@ if ("development" !== "production") {
 },{}],"../node_modules/scheduler/index.js":[function(require,module,exports) {
 'use strict';
 
-if ("development" === 'production') {
+if (undefined === 'production') {
   module.exports = require('./cjs/scheduler.production.min.js');
 } else {
   module.exports = require('./cjs/scheduler.development.js');
@@ -2985,7 +2985,7 @@ if ("development" === 'production') {
  */
 'use strict';
 
-if ("development" !== "production") {
+if (undefined !== "production") {
   (function () {
     'use strict';
 
@@ -3365,7 +3365,7 @@ if ("development" !== "production") {
 },{}],"../node_modules/scheduler/tracing.js":[function(require,module,exports) {
 'use strict';
 
-if ("development" === 'production') {
+if (undefined === 'production') {
   module.exports = require('./cjs/scheduler-tracing.production.min.js');
 } else {
   module.exports = require('./cjs/scheduler-tracing.development.js');
@@ -3381,7 +3381,7 @@ if ("development" === 'production') {
  */
 'use strict';
 
-if ("development" !== "production") {
+if (undefined !== "production") {
   (function () {
     'use strict';
 
@@ -25719,7 +25719,7 @@ function checkDCE() {
     return;
   }
 
-  if ("development" !== 'production') {
+  if (undefined !== 'production') {
     // This branch is unreachable because this function is only called
     // in production, but the condition is true only in development.
     // Therefore if the branch is still here, dead code elimination wasn't
@@ -25740,7 +25740,7 @@ function checkDCE() {
   }
 }
 
-if ("development" === 'production') {
+if (undefined === 'production') {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
@@ -25847,7 +25847,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45472" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39459" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
