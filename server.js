@@ -4,7 +4,6 @@
 // init project
 const express = require( 'express' );
 const Parcel = require( 'parcel-bundler' );
-// const proxy = require( 'express-http-proxy' );
 const app = express();
 
 // http://expressjs.com/en/starter/basic-routing.html
@@ -38,12 +37,11 @@ app.get( '/wp/v2/blocks', function( request, response) {
 
 // Send remaining requests to parcel
 const parcel = new Parcel( 'src/index.html', {} );
-
-parcel.on( 'buildEnd', () => {
-  console.log( parcel );
-});
-
 app.use( '/', parcel.middleware() );
+
+app.get( '/plugin.zip', function ( request, response ) {
+  
+} );
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, function() {
