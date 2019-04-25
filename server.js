@@ -7,7 +7,7 @@ const Parcel = require( 'parcel-bundler' );
 const archiver = require( 'archiver' );
 const app = express();
 
-const parcel = new Parcel( 'src/index.html', {} );
+const parcel = new Parcel( 'src/index.html', { contentHash: false } );
 
 // http://expressjs.com/en/starter/basic-routing.html
 
@@ -40,7 +40,7 @@ app.get( '/wp/v2/blocks', function( request, response) {
 
 // Package up a plugin zip file
 app.get( '/plugin.zip', function ( request, response ) {
-  console.log( parcel );
+  parcel.bundle().then( ( b ) => console.log( b ) );
   response.attachment( 'plugin.zip' ); // force download
   const zipFile = archiver( 'zip' );
   zipFile.directory( 'dist', 'plugin/dist' );
