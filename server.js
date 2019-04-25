@@ -2,10 +2,9 @@
 // where your node app starts
 
 // init project
-const express = require( 'express' );
+const app = require( 'express' )();
 const Parcel = require( 'parcel-bundler' );
 const archiver = require( 'archiver' );
-const app = express();
 
 const parcel = new Parcel( 'src/index.html', { contentHash: false } );
 
@@ -48,12 +47,14 @@ function collectAssets( assets, bundle ) {
 app.get( '/plugin.zip', function ( request, response ) {
   response.attachment( 'plugin.zip' ); // force download
 
-  parcel.bundle().then( ( bundle ) => {
+  parcel.bundle()
+  .then( ( bundle ) => {
     const zipFile = archiver( 'zip' );
     zipFile.directory( 'dist', 'plugin/dist' );
     zipFile.pipe( response );
     zipFile.finalize();
-  } );
+  } )
+  .catch( () => response.sendStatus( 500 ) )
 } );
 
 // Send remaining requests to parcel
