@@ -5,10 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "concurrently \"parcel src/index.html -p 1234 -d dist\" \"node server.js\"",
-    "///start": "node server.js",
-    "/start": "echo hello",
-    "build": "parcel build src/index.html -d dist",
-    "foo": "parcel src/index.html -p 1234"
+    "build": "parcel build src/index.html"
   },
   "dependencies": {
     "express": "^4.16.4",
