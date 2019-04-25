@@ -39,9 +39,16 @@ app.get( '/wp/v2/blocks', function( request, response) {
 } );
 
 // Package up a plugin zip file
+function collectAssets( assets, bundle ) {
+  bundle.
+}
+const prodBuild = new Parcel( 'src/block/block.js', { contentHash: false, watch: false, minify: false } );
 app.get( '/plugin.zip', function ( request, response ) {
-  parcel.bundle().then( ( b ) => console.log( b ) );
   response.attachment( 'plugin.zip' ); // force download
+  parcel.bundle().then( ( bundle ) => {
+    const s = new Set();
+    
+  } );
   const zipFile = archiver( 'zip' );
   zipFile.directory( 'dist', 'plugin/dist' );
   zipFile.pipe( response );
