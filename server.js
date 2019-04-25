@@ -40,14 +40,18 @@ app.get( '/wp/v2/blocks', function( request, response) {
 
 // Package up a plugin zip file
 function collectAssets( assets, bundle ) {
-  bundle.
+  bundle.assets.forEach( a => assets.add( a ) );
+  bundle.assets.forEach( a => console.log( a.name ) );
+  bundle.childBundles.forEach( b => collectAssets( assets, b ) );
 }
-const prodBuild = new Parcel( 'src/block/block.js', { contentHash: false, watch: false, minify: false } );
+
 app.get( '/plugin.zip', function ( request, response ) {
+  const prodBuild = new Parcel( 'src/block/block.js', { contentHash: false, watch: false, minify: false } );
   response.attachment( 'plugin.zip' ); // force download
   parcel.bundle().then( ( bundle ) => {
     const s = new Set();
-    
+    collectAssets( s, bundle );
+    console.log( Array.from( s ).map( a => a.name ) );
   } );
   const zipFile = archiver( 'zip' );
   zipFile.directory( 'dist', 'plugin/dist' );
