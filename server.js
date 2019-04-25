@@ -7,6 +7,8 @@ const Parcel = require( 'parcel-bundler' );
 const archiver = require( 'archiver' );
 const app = express();
 
+const parcel = new Parcel( 'src/index.html', {} );
+
 // http://expressjs.com/en/starter/basic-routing.html
 
 // Mock out some API responses that Gutenberg expects:
@@ -36,17 +38,18 @@ app.get( '/wp/v2/blocks', function( request, response) {
   } ) );
 } );
 
-// Send remaining requests to parcel
-const parcel = new Parcel( 'src/index.html', {} );
-app.use( '/', parcel.middleware() );
-
+// Package up a plugin zip file
 app.get( '/plugin.zip', function ( request, response ) {
+  console.log( parcel );
   response.attachment( 'plugin.zip' ); // force download
   const zipFile = archiver( 'zip' );
-  zipFile.directory( 'dist' );
-  console.log( zipFile );
-  return zipFile.pipe( response );
+  zipFile.directory( 'dist', 'plugin/dist' );
+  zipFile.pipe( response );
+  zipFile.finalize();
 } );
+
+// Send remaining requests to parcel
+app.use( '/', parcel.middleware() );
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, function() {
