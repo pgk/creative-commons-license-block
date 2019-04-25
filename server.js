@@ -4,6 +4,7 @@
 // init project
 const express = require( 'express' );
 const Parcel = require( 'parcel-bundler' );
+const archiver = require( 'archiver' );
 const app = express();
 
 // http://expressjs.com/en/starter/basic-routing.html
