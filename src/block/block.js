@@ -50,7 +50,7 @@ registerBlockType( 'automattic/glitch-block', {
         return (
             <div className={className}>
                 <p>
-                    Welcome to Glitchenberg! This is a tool to build blocks for the Gutenberg 
+                    Welcome to the Gutenberg block kit! This is a tool to build blocks for the Gutenberg 
                     block editor. To get started building your own block => 
                     <a href="https://glitch.com/~gutenberg-block-kit">visit the project page to 
                     read more</a> or go ahead and remix:

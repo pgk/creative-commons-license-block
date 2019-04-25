@@ -36,10 +36,13 @@ app.get( '/wp/v2/blocks', function( request, response) {
   } ) );
 } );
 
-// Proxy remaining requests to parcel server
+// Send remaining requests to parcel
 const parcel = new Parcel( 'src/index.html', {} );
 
-// app.use( '/', proxy( 'localhost:1234' ) );
+parcel.on( 'buildEnd', () => {
+  console.log( parcel );
+});
+
 app.use( '/', parcel.middleware() );
 
 // listen for requests :)
