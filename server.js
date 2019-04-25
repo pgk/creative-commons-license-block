@@ -41,7 +41,11 @@ const parcel = new Parcel( 'src/index.html', {} );
 app.use( '/', parcel.middleware() );
 
 app.get( '/plugin.zip', function ( request, response ) {
-  
+  response.attachment( 'plugin.zip' ); // force download
+  const zipFile = archiver( 'zip' );
+  zipFile.directory( 'dist' );
+  console.log( zipFile );
+  return zipFile.pipe( response );
 } );
 
 // listen for requests :)
