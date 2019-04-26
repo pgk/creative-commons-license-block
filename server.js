@@ -12,10 +12,11 @@ const apiMock = require( './lib/wp-api-mock' );
 // http://expressjs.com/en/starter/basic-routing.html
 
 // Mock out some API responses that Gutenberg expects:
-app.use( '/wp/v2/:path', apiMock );
+app.get( '/wp/v2/types/wp_block', apiMock.typesWPBlock );
+app.get( '/wp/v2/blocks', apiMock.blocks );
 
-// Serve up a plugin ZIP file
-app.use( '/plugin.zip', plugin.middleware( parcel ) );
+// Serve up the block as a WP Plugin
+app.get( '/plugin.zip', plugin( parcel ) );
 
 // Send remaining requests to parcel
 app.use( parcel.middleware() );
