@@ -1,6 +1,6 @@
 {
   "restart": {
     "exclude": [ "^src/", "^/dist" ],
-    "include": [ "server.js" ]
+    "include": [ "server.js", "^lib/" ]
   }
 }
