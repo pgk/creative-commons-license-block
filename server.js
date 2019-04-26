@@ -37,29 +37,7 @@ app.get( '/wp/v2/blocks', function( request, response) {
   } ) );
 } );
 
-// // Package up a plugin zip file
-// function collectFiles( bundle, files = new Set() ) {
-//   files.add( bundle.name );
-//   bundle.childBundles.forEach( child => collectFiles( child, files ) );
-//   return files;
-// }
-
-// app.get( '/plugin.zip', function ( request, response ) {
-//   response.attachment( 'plugin.zip' ); // force download
-
-//   parcel.bundle()
-//   .then( ( bundle ) => {
-//     const files = collectFiles( bundle );
-//     files.delete( bundle.name ); // Remove our index.html entry point
-//     console.log( Array.from( files ) );
-
-//     const zipFile = archiver( 'zip' );
-//     zipFile.directory( 'dist', 'plugin/dist' );
-//     zipFile.pipe( response );
-//     zipFile.finalize();
-//   } )
-//   .catch( () => response.sendStatus( 500 ) )
-// } );
+app.use( '/plugin.zip', plugin.middleware( parcel ) );
 
 // Send remaining requests to parcel
 app.use( parcel.middleware() );
