@@ -38,10 +38,10 @@ app.get( '/wp/v2/blocks', function( request, response) {
 } );
 
 // Package up a plugin zip file
-function collectAssets( assets, bundle ) {
-  bundle.assets.forEach( a => assets.add( a ) );
-  bundle.assets.forEach( a => console.log( a.name ) );
-  bundle.childBundles.forEach( b => collectAssets( assets, b ) );
+function collectFiles( bundle, files = new Set() ) {
+  files.add( bundle.name );
+  bundle.childBundles.forEach( child => collectFiles( child, files ) );
+  return files;
 }
 
 app.get( '/plugin.zip', function ( request, response ) {
@@ -49,6 +49,10 @@ app.get( '/plugin.zip', function ( request, response ) {
 
   parcel.bundle()
   .then( ( bundle ) => {
+    const files = collectFiles( bundle );
+    files.delete( bundle.name ); // Remove our index.html entry point
+    console.log( Array.from( files ) );
+
     const zipFile = archiver( 'zip' );
     zipFile.directory( 'dist', 'plugin/dist' );
     zipFile.pipe( response );
