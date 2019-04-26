@@ -4,9 +4,9 @@
 // init project
 const app = require( 'express' )();
 const Parcel = require( 'parcel-bundler' );
-const archiver = require( 'archiver' );
-
 const parcel = new Parcel( 'src/index.html', { contentHash: false } );
+
+const plugin = require( './lib/plugin' );
 
 // http://expressjs.com/en/starter/basic-routing.html
 
@@ -37,32 +37,32 @@ app.get( '/wp/v2/blocks', function( request, response) {
   } ) );
 } );
 
-// Package up a plugin zip file
-function collectFiles( bundle, files = new Set() ) {
-  files.add( bundle.name );
-  bundle.childBundles.forEach( child => collectFiles( child, files ) );
-  return files;
-}
+// // Package up a plugin zip file
+// function collectFiles( bundle, files = new Set() ) {
+//   files.add( bundle.name );
+//   bundle.childBundles.forEach( child => collectFiles( child, files ) );
+//   return files;
+// }
 
-app.get( '/plugin.zip', function ( request, response ) {
-  response.attachment( 'plugin.zip' ); // force download
+// app.get( '/plugin.zip', function ( request, response ) {
+//   response.attachment( 'plugin.zip' ); // force download
 
-  parcel.bundle()
-  .then( ( bundle ) => {
-    const files = collectFiles( bundle );
-    files.delete( bundle.name ); // Remove our index.html entry point
-    console.log( Array.from( files ) );
+//   parcel.bundle()
+//   .then( ( bundle ) => {
+//     const files = collectFiles( bundle );
+//     files.delete( bundle.name ); // Remove our index.html entry point
+//     console.log( Array.from( files ) );
 
-    const zipFile = archiver( 'zip' );
-    zipFile.directory( 'dist', 'plugin/dist' );
-    zipFile.pipe( response );
-    zipFile.finalize();
-  } )
-  .catch( () => response.sendStatus( 500 ) )
-} );
+//     const zipFile = archiver( 'zip' );
+//     zipFile.directory( 'dist', 'plugin/dist' );
+//     zipFile.pipe( response );
+//     zipFile.finalize();
+//   } )
+//   .catch( () => response.sendStatus( 500 ) )
+// } );
 
 // Send remaining requests to parcel
-app.use( '/', parcel.middleware() );
+app.use( parcel.middleware() );
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, function() {
