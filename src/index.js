@@ -23,7 +23,7 @@ const { withSelect, withDispatch, dispatch, select } = wp.data;
 /**
  * Import our block! We keep it separate so it can be downloaded as a plugin without this custom loader
  */
-import './block/block.js';
+import './block.js';
 
 /**
  * Create a basic block editor
