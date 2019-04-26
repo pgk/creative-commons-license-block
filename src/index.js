@@ -15,9 +15,15 @@ const {
 	WritingFlow,
 	ObserveTyping,
 } = wp.blockEditor;
+const { createBlock, getBlockContent, getBlockTypes } = wp.blocks;
 const { Popover } = wp.components;
 const { registerCoreBlocks } = wp.blockLibrary;
-const { withSelect, withDispatch, dispatch } = wp.data;
+const { withSelect, withDispatch, dispatch, select } = wp.data;
+  
+/**
+ * Import our block! We keep it separate so it can be downloaded as a plugin without this custom loader
+ */
+import './block/block.js';
 
 /**
  * Create a basic block editor
@@ -66,3 +72,20 @@ render(
 	<App />,
 	document.querySelector( '#editor' )
 );
+
+// Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
+// Presumably, this is the the block we are working on
+const glitchBlocks = getBlockTypes()
+  .filter( b => ! b.name.startsWith( 'core/' ) )
+  .filter( b => ! b.name.startsWith( 'core-embed/' ) );
+
+// Add our custom block(s) to the editor, so they show on reload
+let htmlPreview = '';
+glitchBlocks.forEach( b => {
+  const block = createBlock( b.name, {} );
+  dispatch( 'core/editor' ).insertBlock( block );
+  dispatch( 'core/editor' ).resetEditorBlocks( select( 'core/editor' ).getBlocks() );
+  htmlPreview += getBlockContent( block );
+} );
+
+document.querySelector( '#preview' ).innerHTML = htmlPreview;

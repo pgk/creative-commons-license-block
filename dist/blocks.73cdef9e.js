@@ -25927,20 +25927,6 @@ var _wp = wp,
     createBlock = _wp$blocks.createBlock,
     getBlockContent = _wp$blocks.getBlockContent,
     getBlockTypes = _wp$blocks.getBlockTypes; // Load our custom blocks
-
-// Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
-var glitchBlocks = getBlockTypes().filter(function (b) {
-  return !b.name.startsWith('core');
-}); // Add our custom blocks to the editor, so they show on reload
-
-var htmlPreview = '';
-glitchBlocks.forEach(function (b) {
-  var block = createBlock(b.name, {});
-  dispatch('core/editor').insertBlock(block);
-  dispatch('core/editor').resetEditorBlocks(select('core/editor').getBlocks());
-  htmlPreview += getBlockContent(block);
-});
-document.querySelector('#preview').innerHTML = htmlPreview;
 },{"./common.scss":"common.scss","./block/block.js":"block/block.js"}],"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

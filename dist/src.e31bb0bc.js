@@ -25748,12 +25748,172 @@ if (undefined === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"index.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"block/style.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"block/editor.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"block/block.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
 
 var _reactDom = _interopRequireDefault(require("react-dom"));
+
+require("./style.scss");
+
+require("./editor.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Parcel seems to need these
+
+/* global wp */
+var __ = wp.i18n.__;
+var registerBlockType = wp.blocks.registerBlockType; //  Import CSS.
+
+/**
+ * Register our block with the editor
+ * 
+ * The first argument is the name of the block. It must be in form of namespace/block-name with 
+ * only letters, numbers, and hyphens. This is how the editor knows which block controls to use
+ *
+ * @see https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-registration/
+ */
+registerBlockType('automattic/glitch-block', {
+  // This is the display title for your block, which can be translated with our translation 
+  // functions. The block inserter will show this name.
+  title: __('Glitch Block'),
+  // This is a short description for your block, which can be translated with our translation 
+  // functions. This will be shown in the block inspector.
+  description: __('This will be shown in the block inspector.'),
+  // Blocks are grouped into categories to help users browse and discover them.
+  // The core provided categories are: common, formatting, layout, widgets, embed
+  category: 'common',
+  // An icon property should be specified to make it easier to identify a block. These can be any 
+  // of WordPress’ Dashicons, or a custom svg element.
+  // See https://developer.wordpress.org/resource/dashicons/
+  icon: 'smiley',
+  // Sometimes a block could have aliases that help users discover it while searching. 
+  // For example, an image block could also want to be discovered by photo. You can do so by 
+  // providing an array of terms (which can be translated).
+  keywords: [__('glitch')],
+
+  /**
+   * The edit function describes the structure of your block in the context of the editor. This 
+   * represents what the editor will render when the block is used.
+   * @see https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-edit-save/
+   */
+  edit: function edit(_ref) {
+    var attributes = _ref.attributes,
+        className = _ref.className,
+        isSelected = _ref.isSelected,
+        setAttributes = _ref.setAttributes;
+    return _react.default.createElement("div", {
+      className: className
+    }, _react.default.createElement("p", null, "Welcome to the Gutenberg block kit! This is a tool to build blocks for the Gutenberg block editor. To get started building your own block =>", _react.default.createElement("a", {
+      href: "https://glitch.com/~gutenberg-block-kit"
+    }, "visit the project page to read more"), " or go ahead and remix:"), _react.default.createElement("p", null, _react.default.createElement("a", {
+      href: "https://glitch.com/edit/#!/remix/gutenberg-block-kit",
+      class: "glitch-remix",
+      target: "_blank"
+    }, "remix button")), _react.default.createElement("img", {
+      src: "//placekitten.com/600/400"
+    }));
+  },
+
+  /**
+   * The save function defines the way in which the different attributes should be combined into 
+   * the final markup, which is then serialized by Gutenberg into post_content.
+   * @see https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-edit-save/
+   */
+  save: function save(_ref2) {
+    var attributes = _ref2.attributes;
+    return _react.default.createElement("div", null, _react.default.createElement("p", null, "This is from the block's ", _react.default.createElement("tt", null, "save()"), " method, and shows what the block will look like when rendered."), _react.default.createElement("img", {
+      src: "//lorempixel.com/600/300/city"
+    }));
+  }
+});
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./style.scss":"block/style.scss","./editor.scss":"block/editor.scss"}],"index.js":[function(require,module,exports) {
+"use strict";
+
+var _react = _interopRequireDefault(require("react"));
+
+var _reactDom = _interopRequireDefault(require("react-dom"));
+
+require("./block/block.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25772,16 +25932,24 @@ var _wp$blockEditor = wp.blockEditor,
     BlockList = _wp$blockEditor.BlockList,
     WritingFlow = _wp$blockEditor.WritingFlow,
     ObserveTyping = _wp$blockEditor.ObserveTyping;
+var _wp$blocks = wp.blocks,
+    createBlock = _wp$blocks.createBlock,
+    getBlockContent = _wp$blocks.getBlockContent,
+    getBlockTypes = _wp$blocks.getBlockTypes;
 var Popover = wp.components.Popover;
 var registerCoreBlocks = wp.blockLibrary.registerCoreBlocks;
 var _wp$data = wp.data,
     withSelect = _wp$data.withSelect,
     withDispatch = _wp$data.withDispatch,
-    dispatch = _wp$data.dispatch;
+    dispatch = _wp$data.dispatch,
+    select = _wp$data.select;
+/**
+ * Import our block! We keep it separate so it can be downloaded as a plugin without this custom loader
+ */
+
 /**
  * Create a basic block editor
  */
-
 var Editor = function Editor(_ref) {
   var blocks = _ref.blocks,
       resetEditorBlocks = _ref.resetEditorBlocks;
@@ -25818,8 +25986,24 @@ var App = compose(withSelect(function (select) {
 
 registerCoreBlocks(); // Render the editor on the page
 
-render(_react.default.createElement(App, null), document.querySelector('#editor'));
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js"}],"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+render(_react.default.createElement(App, null), document.querySelector('#editor')); // Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
+// Presumably, this is the the block we are working on
+
+var glitchBlocks = getBlockTypes().filter(function (b) {
+  return !b.name.startsWith('core/');
+}).filter(function (b) {
+  return !b.name.startsWith('core-embed/');
+}); // Add our custom block(s) to the editor, so they show on reload
+
+var htmlPreview = '';
+glitchBlocks.forEach(function (b) {
+  var block = createBlock(b.name, {});
+  dispatch('core/editor').insertBlock(block);
+  dispatch('core/editor').resetEditorBlocks(select('core/editor').getBlocks());
+  htmlPreview += getBlockContent(block);
+});
+document.querySelector('#preview').innerHTML = htmlPreview;
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./block/block.js":"block/block.js"}],"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
