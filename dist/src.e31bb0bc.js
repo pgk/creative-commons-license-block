@@ -25965,6 +25965,10 @@ var Editor = function Editor(_ref) {
 };
 /**
  * This connects the Editor to our data layer's select and dispatch
+ * 
+ * withSelect and withDispatch create functions that are bound to 
+ * wp.data's select and dispatch, so when we call getEditorBlocks()
+ * it can select from wp.data's store
  */
 
 
@@ -26031,7 +26035,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44777" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45003" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

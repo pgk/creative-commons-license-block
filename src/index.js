@@ -50,6 +50,10 @@ const Editor = ( { blocks, resetEditorBlocks } ) =>
 
 /**
  * This connects the Editor to our data layer's select and dispatch
+ * 
+ * withSelect and withDispatch create functions that are bound to 
+ * wp.data's select and dispatch, so when we call getEditorBlocks()
+ * it can select from wp.data's store
  */
 const App = compose(
 	withSelect( ( select ) => {
