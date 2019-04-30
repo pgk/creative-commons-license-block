@@ -16,7 +16,7 @@ app.get( '/wp/v2/types/wp_block', apiMock.typesWPBlock );
 app.get( '/wp/v2/blocks', apiMock.blocks );
 
 // Serve up the block as a WP Plugin
-app.get( '/plugin.zip', pluginMaker( parcel ) );
+app.get( '/:namespace/:name.zip', pluginMaker( parcel ) );
 
 // Send remaining requests to parcel
 app.use( parcel.middleware() );

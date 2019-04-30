@@ -26006,7 +26006,11 @@ glitchBlocks.forEach(function (b) {
   dispatch('core/editor').resetEditorBlocks(select('core/editor').getBlocks());
   htmlPreview += getBlockContent(block);
 });
-document.querySelector('#preview').innerHTML = htmlPreview;
+document.querySelector('#preview').innerHTML = htmlPreview; // Create a download link named after the first block we find 
+// (all the blocks should be inculded, but we need a name)
+
+var blockName = glitchBlocks[0].name;
+document.querySelector('#download-plugin').innerHTML = "<a href=\"/".concat(blockName, ".zip\">Download Plugin</a>");
 },{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./block.js":"block.js"}],"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -26035,7 +26039,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33312" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34418" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -93,3 +93,9 @@ glitchBlocks.forEach( b => {
 } );
 
 document.querySelector( '#preview' ).innerHTML = htmlPreview;
+
+// Create a download link named after the first block we find 
+// (all the blocks should be inculded, but we need a name)
+
+const blockName = glitchBlocks[0].name;
+document.querySelector( '#download-plugin' ).innerHTML = `<a href="/${blockName}.zip">Download Plugin</a>`;
