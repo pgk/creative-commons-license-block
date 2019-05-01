@@ -58,7 +58,7 @@ registerBlockType( 'automattic/glitch-block', {
                 <p>
                     <a href="https://glitch.com/edit/#!/remix/gutenberg-block-kit" class="glitch-remix" target="_blank">remix button</a>
                 </p>
-                <img src="//placekitten.com/600/400" />
+                <img src="//placekitten.com/600/300" />
             </div>
         );
     },

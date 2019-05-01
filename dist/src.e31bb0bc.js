@@ -25890,7 +25890,7 @@ registerBlockType('automattic/glitch-block', {
       class: "glitch-remix",
       target: "_blank"
     }, "remix button")), _react.default.createElement("img", {
-      src: "//placekitten.com/600/400"
+      src: "//placekitten.com/600/300"
     }));
   },
 
@@ -26039,7 +26039,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46576" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44040" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
