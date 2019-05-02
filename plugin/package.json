@@ -1,8 +1,7 @@
 {
-  "name": "george_funky",
+  "name": "gutenberg-block-kit-block",
   "version": "1.0.0",
   "description": "This is just some stuff",
-  "main": "src/index.js",
   "scripts": {
     "build": "parcel build src/index.js",
     "develop": "parcel watch src/index.js",
