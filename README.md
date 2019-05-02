@@ -27,5 +27,11 @@ Files
 -----
 
 - `server.js` - This loads up the web server and then lets ParcelJS serve up our live-reloading environment
-- `src/block.js` - This is the JavaScript for our block
-- `dist/*` - These are the brow
+- `src/block.js` - This is the JavaScript for our custom block
+- `src/index.js` - This creates the Gutenberg editor and adds our block to the page
+- `src/editor.scss` - A Sass stylesheet for the editor view of the block
+- `src/style.scss` - A Sass stylesheet for the published version of the block
+- `src/common.scss` - A place to put things used by both `editor.scss` and `style.scss`
+- `src/index.html` - The entry point for ParcelJS, this is what you see in your browser when developing
+- `plugin/*` - These files get added to the plugin ZIP file
+- `lib/*` - These are helpers for `server.js` to build the plugin and serve up API calls

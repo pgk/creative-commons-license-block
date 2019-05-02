@@ -4,7 +4,7 @@
 // init project
 const app = require( 'express' )();
 const Parcel = require( 'parcel-bundler' );
-const parcel = new Parcel( './src/index.html', { contentHash: false } );
+const parcel = new Parcel( './src/index.html', { contentHash: false, outDir: './.dist' } );
 
 const pluginMaker = require( './lib/plugin-maker' );
 const apiMock = require( './lib/wp-api-mock' );
