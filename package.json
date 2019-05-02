@@ -4,9 +4,8 @@
   "description": "I'm just a poor Glitch, I need no sympathy",
   "main": "server.js",
   "scripts": {
-    "//start": "concurrently \"parcel src/index.html -p 1234 -d dist\" \"node server.js\"",
     "start": "node server.js",
-    "build": "parcel build src/index.html"
+    "build": "parcel build src/index.html -d .dist/"
   },
   "dependencies": {
     "express": "^4.16.4",

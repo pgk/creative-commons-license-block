@@ -25999,13 +25999,13 @@ var glitchBlocks = getBlockTypes().filter(function (b) {
   return !b.name.startsWith('core-embed/');
 }); // Add our custom block(s) to the editor, so they show on reload
 
-var htmlPreview = ''; // glitchBlocks.forEach( b => {
-//   const block = createBlock( b.name, {} );
-//   dispatch( 'core/editor' ).insertBlock( block );
-//   dispatch( 'core/editor' ).resetEditorBlocks( select( 'core/editor' ).getBlocks() );
-//   htmlPreview += getBlockContent( block );
-// } );
-
+var htmlPreview = '';
+glitchBlocks.forEach(function (b) {
+  var block = createBlock(b.name, {});
+  dispatch('core/editor').insertBlock(block);
+  dispatch('core/editor').resetEditorBlocks(select('core/editor').getBlocks());
+  htmlPreview += getBlockContent(block);
+});
 document.querySelector('#preview').innerHTML = htmlPreview; // Create a download link named after the first block we find 
 // (all the blocks should be inculded, but we need a name)
 
@@ -26039,7 +26039,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33950" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40210" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
