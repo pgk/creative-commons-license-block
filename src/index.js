@@ -19,6 +19,8 @@ const { createBlock, getBlockContent, getBlockTypes } = wp.blocks;
 const { Popover } = wp.components;
 const { registerCoreBlocks } = wp.blockLibrary;
 const { withSelect, withDispatch, dispatch, select } = wp.data;
+
+wp.data.use( wp.data.plugins.persistence );
   
 /**
  * Import our block! We keep it separate so it can be downloaded as a plugin without this custom loader
@@ -85,12 +87,12 @@ const glitchBlocks = getBlockTypes()
 
 // Add our custom block(s) to the editor, so they show on reload
 let htmlPreview = '';
-glitchBlocks.forEach( b => {
-  const block = createBlock( b.name, {} );
-  dispatch( 'core/editor' ).insertBlock( block );
-  dispatch( 'core/editor' ).resetEditorBlocks( select( 'core/editor' ).getBlocks() );
-  htmlPreview += getBlockContent( block );
-} );
+// glitchBlocks.forEach( b => {
+//   const block = createBlock( b.name, {} );
+//   dispatch( 'core/editor' ).insertBlock( block );
+//   dispatch( 'core/editor' ).resetEditorBlocks( select( 'core/editor' ).getBlocks() );
+//   htmlPreview += getBlockContent( block );
+// } );
 
 document.querySelector( '#preview' ).innerHTML = htmlPreview;
 

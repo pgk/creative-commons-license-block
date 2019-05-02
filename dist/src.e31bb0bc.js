@@ -25943,6 +25943,7 @@ var _wp$data = wp.data,
     withDispatch = _wp$data.withDispatch,
     dispatch = _wp$data.dispatch,
     select = _wp$data.select;
+wp.data.use(wp.data.plugins.persistence);
 /**
  * Import our block! We keep it separate so it can be downloaded as a plugin without this custom loader
  */
@@ -25999,18 +26000,18 @@ var glitchBlocks = getBlockTypes().filter(function (b) {
   return !b.name.startsWith('core-embed/');
 }); // Add our custom block(s) to the editor, so they show on reload
 
-var htmlPreview = '';
-glitchBlocks.forEach(function (b) {
-  var block = createBlock(b.name, {});
-  dispatch('core/editor').insertBlock(block);
-  dispatch('core/editor').resetEditorBlocks(select('core/editor').getBlocks());
-  htmlPreview += getBlockContent(block);
-});
+var htmlPreview = ''; // glitchBlocks.forEach( b => {
+//   const block = createBlock( b.name, {} );
+//   dispatch( 'core/editor' ).insertBlock( block );
+//   dispatch( 'core/editor' ).resetEditorBlocks( select( 'core/editor' ).getBlocks() );
+//   htmlPreview += getBlockContent( block );
+// } );
+
 document.querySelector('#preview').innerHTML = htmlPreview; // Create a download link named after the first block we find 
 // (all the blocks should be inculded, but we need a name)
 
 var blockName = glitchBlocks[0].name;
-document.querySelector('#download-plugin').innerHTML = "<a href=\"/".concat(blockName, ".zip\">Download Block Plugin for WordPr</a>");
+document.querySelector('#download-plugin').innerHTML = "<a href=\"/".concat(blockName, ".zip\">Download Block Plugin for WordPress</a>");
 },{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./block.js":"block.js"}],"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
