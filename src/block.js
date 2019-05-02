@@ -18,10 +18,10 @@ import './editor.scss';
  *
  * @see https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-registration/
  */
-registerBlockType( 'automattic/glitch-block', {
+registerBlockType( 'block-kit/block', {
     // This is the display title for your block, which can be translated with our translation 
     // functions. The block inserter will show this name.
-    title: __( 'Glitch Block' ),
+    title: __( 'My Block' ),
 
     // This is a short description for your block, which can be translated with our translation 
     // functions. This will be shown in the block inspector.

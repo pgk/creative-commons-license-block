@@ -98,4 +98,4 @@ document.querySelector( '#preview' ).innerHTML = htmlPreview;
 // (all the blocks should be inculded, but we need a name)
 
 const blockName = glitchBlocks[0].name;
-document.querySelector( '#download-plugin' ).innerHTML = `<a href="/${blockName}.zip">Download Plugin</a>`;
+document.querySelector( '#download-plugin' ).innerHTML = `<a href="/${blockName}.zip">Download Block Plugin for WordPress</a>`;
