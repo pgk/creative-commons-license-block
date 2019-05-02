@@ -22,3 +22,10 @@ Going Further
 
 - [Learn more about making Gutenberg blocks](https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/)
 - Download your block as a WordPress plugin and try it out on your own site
+
+Files
+-----
+
+- `server.js` - This loads up the web server and then lets ParcelJS serve up our live-reloading environment
+- `src/block.js` - This is the JavaScript for our block
+- `dist/*` - These are the brow
