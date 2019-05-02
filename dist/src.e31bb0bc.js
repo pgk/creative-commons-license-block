@@ -25942,8 +25942,8 @@ var _wp$data = wp.data,
     withSelect = _wp$data.withSelect,
     withDispatch = _wp$data.withDispatch,
     dispatch = _wp$data.dispatch,
-    select = _wp$data.select;
-wp.data.use(wp.data.plugins.persistence);
+    select = _wp$data.select; // wp.data.use( wp.data.plugins.persistence );
+
 /**
  * Import our block! We keep it separate so it can be downloaded as a plugin without this custom loader
  */
