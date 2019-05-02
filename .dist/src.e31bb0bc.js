@@ -25906,4 +25906,314 @@ registerBlockType('block-kit/block', {
     }));
   }
 });
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./style.scss":"style.scss","./editor.scss":"editor.scss"}]
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./style.scss":"style.scss","./editor.scss":"editor.scss"}],"index.js":[function(require,module,exports) {
+"use strict";
+
+var _react = _interopRequireDefault(require("react"));
+
+var _reactDom = _interopRequireDefault(require("react-dom"));
+
+require("./block.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/* global wp */
+// Seem to need these for Parcel to render the JSX
+
+/**
+ * Import the things we need from Gutenberg on the window.wp object
+ */
+var compose = wp.compose.compose;
+var _wp$element = wp.element,
+    render = _wp$element.render,
+    Fragment = _wp$element.Fragment;
+var _wp$blockEditor = wp.blockEditor,
+    BlockEditorProvider = _wp$blockEditor.BlockEditorProvider,
+    BlockList = _wp$blockEditor.BlockList,
+    WritingFlow = _wp$blockEditor.WritingFlow,
+    ObserveTyping = _wp$blockEditor.ObserveTyping;
+var _wp$blocks = wp.blocks,
+    createBlock = _wp$blocks.createBlock,
+    getBlockContent = _wp$blocks.getBlockContent,
+    getBlockTypes = _wp$blocks.getBlockTypes;
+var Popover = wp.components.Popover;
+var registerCoreBlocks = wp.blockLibrary.registerCoreBlocks;
+var _wp$data = wp.data,
+    withSelect = _wp$data.withSelect,
+    withDispatch = _wp$data.withDispatch,
+    dispatch = _wp$data.dispatch,
+    select = _wp$data.select;
+/**
+ * Import our block! We keep it separate so it can be downloaded as a plugin without this custom loader
+ */
+
+/**
+ * Create a basic block editor
+ */
+var Editor = function Editor(_ref) {
+  var blocks = _ref.blocks,
+      resetEditorBlocks = _ref.resetEditorBlocks;
+  return _react.default.createElement(Fragment, null, _react.default.createElement("div", {
+    className: "playground__body"
+  }, _react.default.createElement(BlockEditorProvider, {
+    value: blocks,
+    onInput: resetEditorBlocks,
+    onChange: resetEditorBlocks
+  }, _react.default.createElement("div", {
+    className: "editor-styles-wrapper"
+  }, _react.default.createElement(WritingFlow, null, _react.default.createElement(ObserveTyping, null, _react.default.createElement(BlockList, null)))), _react.default.createElement(Popover.Slot, null))));
+};
+/**
+ * This connects the Editor to our data layer's select and dispatch
+ * 
+ * withSelect and withDispatch create functions that are bound to 
+ * wp.data's select and dispatch, so when we call getEditorBlocks()
+ * it can select from wp.data's store
+ */
+
+
+var App = compose(withSelect(function (select) {
+  var _select = select('core/editor'),
+      getEditorBlocks = _select.getEditorBlocks;
+
+  return {
+    blocks: getEditorBlocks()
+  };
+}), withDispatch(function (dispatch) {
+  var _dispatch = dispatch('core/editor'),
+      resetEditorBlocks = _dispatch.resetEditorBlocks;
+
+  return {
+    resetEditorBlocks: resetEditorBlocks
+  };
+}))(Editor); // Add all the core blocks. The custom blocks are registered in src/blocks.js
+
+registerCoreBlocks(); // Render the editor on the page
+
+render(_react.default.createElement(App, null), document.querySelector('#editor')); // Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
+// Presumably, this is the the block we are working on
+
+var glitchBlocks = getBlockTypes().filter(function (b) {
+  return !b.name.startsWith('core/');
+}).filter(function (b) {
+  return !b.name.startsWith('core-embed/');
+}); // Add our custom block(s) to the editor, so they show on reload
+// TODO persist editor state, only do this when there's no editor state persisted
+
+var htmlPreview = '';
+glitchBlocks.forEach(function (b) {
+  var block = createBlock(b.name, {});
+  dispatch('core/editor').insertBlock(block);
+  dispatch('core/editor').resetEditorBlocks(select('core/editor').getBlocks());
+  htmlPreview += getBlockContent(block);
+});
+document.querySelector('#preview').innerHTML = htmlPreview; // Create a download link named after the first block we find 
+// (all the blocks should be inculded, but we need a name)
+
+var blockName = glitchBlocks[0].name;
+document.querySelector('#download-plugin').innerHTML = "<a href=\"/".concat(blockName, ".zip\">Download Block Plugin for WordPress</a>");
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./block.js":"block.js"}],"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var global = arguments[3];
+var OVERLAY_ID = '__parcel__error__overlay__';
+var OldModule = module.bundle.Module;
+
+function Module(moduleName) {
+  OldModule.call(this, moduleName);
+  this.hot = {
+    data: module.bundle.hotData,
+    _acceptCallbacks: [],
+    _disposeCallbacks: [],
+    accept: function (fn) {
+      this._acceptCallbacks.push(fn || function () {});
+    },
+    dispose: function (fn) {
+      this._disposeCallbacks.push(fn);
+    }
+  };
+  module.bundle.hotData = null;
+}
+
+module.bundle.Module = Module;
+var checkedAssets, assetsToAccept;
+var parent = module.bundle.parent;
+
+if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
+  var hostname = "" || location.hostname;
+  var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44888" + '/');
+
+  ws.onmessage = function (event) {
+    checkedAssets = {};
+    assetsToAccept = [];
+    var data = JSON.parse(event.data);
+
+    if (data.type === 'update') {
+      var handled = false;
+      data.assets.forEach(function (asset) {
+        if (!asset.isNew) {
+          var didAccept = hmrAcceptCheck(global.parcelRequire, asset.id);
+
+          if (didAccept) {
+            handled = true;
+          }
+        }
+      }); // Enable HMR for CSS by default.
+
+      handled = handled || data.assets.every(function (asset) {
+        return asset.type === 'css' && asset.generated.js;
+      });
+
+      if (handled) {
+        console.clear();
+        data.assets.forEach(function (asset) {
+          hmrApply(global.parcelRequire, asset);
+        });
+        assetsToAccept.forEach(function (v) {
+          hmrAcceptRun(v[0], v[1]);
+        });
+      } else {
+        window.location.reload();
+      }
+    }
+
+    if (data.type === 'reload') {
+      ws.close();
+
+      ws.onclose = function () {
+        location.reload();
+      };
+    }
+
+    if (data.type === 'error-resolved') {
+      console.log('[parcel] ✨ Error resolved');
+      removeErrorOverlay();
+    }
+
+    if (data.type === 'error') {
+      console.error('[parcel] 🚨  ' + data.error.message + '\n' + data.error.stack);
+      removeErrorOverlay();
+      var overlay = createErrorOverlay(data);
+      document.body.appendChild(overlay);
+    }
+  };
+}
+
+function removeErrorOverlay() {
+  var overlay = document.getElementById(OVERLAY_ID);
+
+  if (overlay) {
+    overlay.remove();
+  }
+}
+
+function createErrorOverlay(data) {
+  var overlay = document.createElement('div');
+  overlay.id = OVERLAY_ID; // html encode message and stack trace
+
+  var message = document.createElement('div');
+  var stackTrace = document.createElement('pre');
+  message.innerText = data.error.message;
+  stackTrace.innerText = data.error.stack;
+  overlay.innerHTML = '<div style="background: black; font-size: 16px; color: white; position: fixed; height: 100%; width: 100%; top: 0px; left: 0px; padding: 30px; opacity: 0.85; font-family: Menlo, Consolas, monospace; z-index: 9999;">' + '<span style="background: red; padding: 2px 4px; border-radius: 2px;">ERROR</span>' + '<span style="top: 2px; margin-left: 5px; position: relative;">🚨</span>' + '<div style="font-size: 18px; font-weight: bold; margin-top: 20px;">' + message.innerHTML + '</div>' + '<pre>' + stackTrace.innerHTML + '</pre>' + '</div>';
+  return overlay;
+}
+
+function getParents(bundle, id) {
+  var modules = bundle.modules;
+
+  if (!modules) {
+    return [];
+  }
+
+  var parents = [];
+  var k, d, dep;
+
+  for (k in modules) {
+    for (d in modules[k][1]) {
+      dep = modules[k][1][d];
+
+      if (dep === id || Array.isArray(dep) && dep[dep.length - 1] === id) {
+        parents.push(k);
+      }
+    }
+  }
+
+  if (bundle.parent) {
+    parents = parents.concat(getParents(bundle.parent, id));
+  }
+
+  return parents;
+}
+
+function hmrApply(bundle, asset) {
+  var modules = bundle.modules;
+
+  if (!modules) {
+    return;
+  }
+
+  if (modules[asset.id] || !bundle.parent) {
+    var fn = new Function('require', 'module', 'exports', asset.generated.js);
+    asset.isNew = !modules[asset.id];
+    modules[asset.id] = [fn, asset.deps];
+  } else if (bundle.parent) {
+    hmrApply(bundle.parent, asset);
+  }
+}
+
+function hmrAcceptCheck(bundle, id) {
+  var modules = bundle.modules;
+
+  if (!modules) {
+    return;
+  }
+
+  if (!modules[id] && bundle.parent) {
+    return hmrAcceptCheck(bundle.parent, id);
+  }
+
+  if (checkedAssets[id]) {
+    return;
+  }
+
+  checkedAssets[id] = true;
+  var cached = bundle.cache[id];
+  assetsToAccept.push([bundle, id]);
+
+  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
+    return true;
+  }
+
+  return getParents(global.parcelRequire, id).some(function (id) {
+    return hmrAcceptCheck(global.parcelRequire, id);
+  });
+}
+
+function hmrAcceptRun(bundle, id) {
+  var cached = bundle.cache[id];
+  bundle.hotData = {};
+
+  if (cached) {
+    cached.hot.data = bundle.hotData;
+  }
+
+  if (cached && cached.hot && cached.hot._disposeCallbacks.length) {
+    cached.hot._disposeCallbacks.forEach(function (cb) {
+      cb(bundle.hotData);
+    });
+  }
+
+  delete bundle.cache[id];
+  bundle(id);
+  cached = bundle.cache[id];
+
+  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
+    cached.hot._acceptCallbacks.forEach(function (cb) {
+      cb();
+    });
+
+    return true;
+  }
+}
+},{}]},{},["../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
+//# sourceMappingURL=/src.e31bb0bc.js.map
