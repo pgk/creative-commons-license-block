@@ -35,3 +35,4 @@ Files
 - `src/index.html` - The entry point for ParcelJS, this is what you see in your browser when developing
 - `plugin/*` - These files get added to the plugin ZIP file
 - `lib/*` - These are helpers for `server.js` to build the plugin and serve up API calls
+- `gutenberg.js` - This can be used to generate all the Gutenberg packages available on `window.wp`

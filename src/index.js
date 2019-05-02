@@ -83,8 +83,8 @@ const glitchBlocks = getBlockTypes()
   .filter( b => ! b.name.startsWith( 'core/' ) )
   .filter( b => ! b.name.startsWith( 'core-embed/' ) );
 
-
 // Add our custom block(s) to the editor, so they show on reload
+// TODO persist editor state, only do this when there's no editor state persisted
 let htmlPreview = '';
 glitchBlocks.forEach( b => {
   const block = createBlock( b.name, {} );
