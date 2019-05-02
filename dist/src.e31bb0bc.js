@@ -25941,7 +25941,6 @@ var registerCoreBlocks = wp.blockLibrary.registerCoreBlocks;
 var _wp$data = wp.data,
     withSelect = _wp$data.withSelect,
     withDispatch = _wp$data.withDispatch,
-    withRegistry = _wp$data.withRegistry,
     dispatch = _wp$data.dispatch,
     select = _wp$data.select;
 /**

@@ -18,7 +18,7 @@ const {
 const { createBlock, getBlockContent, getBlockTypes } = wp.blocks;
 const { Popover } = wp.components;
 const { registerCoreBlocks } = wp.blockLibrary;
-const { withSelect, withDispatch, withRegistry, dispatch, select } = wp.data;
+const { withSelect, withDispatch, dispatch, select } = wp.data;
   
 /**
  * Import our block! We keep it separate so it can be downloaded as a plugin without this custom loader
