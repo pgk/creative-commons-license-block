@@ -1,5 +1,12 @@
 /* global wp */
 
+/**
+ * This is the glue that takes your custom block and displays it on the page
+ *
+ * It creates a block editor, adds your custom block, and then renders
+ * the output. Think of this as a little Gutenberg without WordPress
+ */
+
 // Seem to need these for Parcel to render the JSX
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -93,10 +100,10 @@ glitchBlocks.forEach( b => {
   htmlPreview += getBlockContent( block );
 } );
 
+// Show what the document looks like rendered
 document.querySelector( '#preview' ).innerHTML = htmlPreview;
 
 // Create a download link named after the first block we find 
-// (all the blocks should be inculded, but we need a name)
-
+// (all blocks should be inculded in the file, but we need a name)
 const blockName = glitchBlocks[0].name;
 document.querySelector( '#download-plugin' ).innerHTML = `<a href="/${blockName}.zip">Download Block Plugin for WordPress</a>`;
