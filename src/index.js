@@ -35,7 +35,8 @@ import './block.js';
 /**
  * Create a basic block editor
  */
-const Editor = ( { blocks, resetEditorBlocks } ) => 
+const Editor = ( { blocks, resetEditorBlocks } ) => {
+  
 		<Fragment>
 			<div className="playground__body">
 				<BlockEditorProvider
