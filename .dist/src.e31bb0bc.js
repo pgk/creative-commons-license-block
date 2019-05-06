@@ -25942,7 +25942,8 @@ var _wp$blockEditor = wp.blockEditor,
 var _wp$blocks = wp.blocks,
     createBlock = _wp$blocks.createBlock,
     getBlockContent = _wp$blocks.getBlockContent,
-    getBlockTypes = _wp$blocks.getBlockTypes;
+    getBlockTypes = _wp$blocks.getBlockTypes,
+    parse = _wp$blocks.parse;
 var Popover = wp.components.Popover;
 var registerCoreBlocks = wp.blockLibrary.registerCoreBlocks;
 var _wp$data = wp.data,
@@ -25960,12 +25961,19 @@ var _wp$data = wp.data,
 var Editor = function Editor(_ref) {
   var blocks = _ref.blocks,
       resetEditorBlocks = _ref.resetEditorBlocks;
+
+  var onChange = function onChange(foo) {
+    resetEditorBlocks();
+    document.querySelector('#preview').innerHTML = parse();
+    console.log(foo);
+  };
+
   return _react.default.createElement(Fragment, null, _react.default.createElement("div", {
     className: "playground__body"
   }, _react.default.createElement(BlockEditorProvider, {
     value: blocks,
     onInput: resetEditorBlocks,
-    onChange: resetEditorBlocks
+    onChange: onChange
   }, _react.default.createElement("div", {
     className: "editor-styles-wrapper"
   }, _react.default.createElement(WritingFlow, null, _react.default.createElement(ObserveTyping, null, _react.default.createElement(BlockList, null)))), _react.default.createElement(Popover.Slot, null))));
@@ -26014,8 +26022,8 @@ glitchBlocks.forEach(function (b) {
   dispatch('core/editor').resetEditorBlocks(select('core/editor').getBlocks());
   htmlPreview += getBlockContent(block);
 }); // Show what the document looks like rendered
-
-document.querySelector('#preview').innerHTML = htmlPreview; // Create a download link named after the first block we find 
+// document.querySelector( '#preview' ).innerHTML = htmlPreview;
+// Create a download link named after the first block we find 
 // (all blocks should be inculded in the file, but we need a name)
 
 var blockName = glitchBlocks[0].name;

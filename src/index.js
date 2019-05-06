@@ -22,7 +22,7 @@ const {
 	WritingFlow,
 	ObserveTyping,
 } = wp.blockEditor;
-const { createBlock, getBlockContent, getBlockTypes } = wp.blocks;
+const { createBlock, getBlockContent, getBlockTypes, parse } = wp.blocks;
 const { Popover } = wp.components;
 const { registerCoreBlocks } = wp.blockLibrary;
 const { withSelect, withDispatch, dispatch, select } = wp.data;
@@ -36,13 +36,17 @@ import './block.js';
  * Create a basic block editor
  */
 const Editor = ( { blocks, resetEditorBlocks } ) => {
-  
-		<Fragment>
+  const onChange = ( foo ) => {
+    resetEditorBlocks();
+    document.querySelector( '#preview' ).innerHTML = parse();
+    console.log( foo );
+  }
+  return <Fragment>
 			<div className="playground__body">
 				<BlockEditorProvider
 					value={ blocks }
 					onInput={ resetEditorBlocks }
-					onChange={ resetEditorBlocks }
+					onChange={ onChange }
 				>
 					<div className="editor-styles-wrapper">
 						<WritingFlow>
@@ -55,6 +59,7 @@ const Editor = ( { blocks, resetEditorBlocks } ) => {
 				</BlockEditorProvider>
 			</div>
 		</Fragment>
+};
 
 /**
  * This connects the Editor to our data layer's select and dispatch
@@ -102,7 +107,7 @@ glitchBlocks.forEach( b => {
 } );
 
 // Show what the document looks like rendered
-document.querySelector( '#preview' ).innerHTML = htmlPreview;
+// document.querySelector( '#preview' ).innerHTML = htmlPreview;
 
 // Create a download link named after the first block we find 
 // (all blocks should be inculded in the file, but we need a name)
