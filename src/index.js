@@ -36,10 +36,10 @@ import './block.js';
  * Create a basic block editor
  */
 const Editor = ( { blocks, resetEditorBlocks } ) => {
-  const onChange = ( foo ) => {
+  const onChange = ( blocks ) => {
     resetEditorBlocks();
-    document.querySelector( '#preview' ).innerHTML = parse();
-    console.log( foo );
+    // document.querySelector( '#preview' ).innerHTML = parse( blocks );
+    console.log( blocks );
   }
   return <Fragment>
 			<div className="playground__body">

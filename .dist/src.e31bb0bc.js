@@ -25962,10 +25962,10 @@ var Editor = function Editor(_ref) {
   var blocks = _ref.blocks,
       resetEditorBlocks = _ref.resetEditorBlocks;
 
-  var onChange = function onChange(foo) {
-    resetEditorBlocks();
-    document.querySelector('#preview').innerHTML = parse();
-    console.log(foo);
+  var onChange = function onChange(blocks) {
+    resetEditorBlocks(); // document.querySelector( '#preview' ).innerHTML = parse( blocks );
+
+    console.log(blocks);
   };
 
   return _react.default.createElement(Fragment, null, _react.default.createElement("div", {
