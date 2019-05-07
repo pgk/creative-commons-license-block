@@ -39,18 +39,17 @@ const Editor = ( { blocks, resetEditorBlocks } ) => {
 	let state = blocks;
   let lastState = blocks;
 
+  let html = state ? serialize( state ) : '';
+
 	const onChange = ( blocks ) => {
+    console.log( 'onChange called', blocks );
 		resetEditorBlocks();
     lastState = state;
 		state = blocks;
+    html = serialize( blocks );
 	}
-  
-  let html = state ? serialize( state ) : '';
 
 	const preview = ( foo ) => {
-    if ( foo ) {
-      html = serialize( foo );
-    } 
     return { __html: html };
 	};
 

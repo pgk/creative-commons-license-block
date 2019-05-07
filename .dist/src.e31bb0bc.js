@@ -25961,20 +25961,17 @@ var Editor = function Editor(_ref) {
       resetEditorBlocks = _ref.resetEditorBlocks;
   var state = blocks;
   var lastState = blocks;
+  var html = state ? serialize(state) : '';
 
   var onChange = function onChange(blocks) {
+    console.log('onChange called', blocks);
     resetEditorBlocks();
     lastState = state;
     state = blocks;
+    html = serialize(blocks);
   };
 
-  var html = state ? serialize(state) : '';
-
   var preview = function preview(foo) {
-    if (foo) {
-      html = serialize(foo);
-    }
-
     return {
       __html: html
     };
