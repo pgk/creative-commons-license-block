@@ -113,16 +113,11 @@ const glitchBlocks = getBlockTypes()
 
 // Add our custom block(s) to the editor, so they show on reload
 // TODO persist editor state, only do this when there's no editor state persisted
-let htmlPreview = '';
 glitchBlocks.forEach( b => {
 	const block = createBlock( b.name, {} );
 	dispatch( 'core/editor' ).insertBlock( block );
 	dispatch( 'core/editor' ).resetEditorBlocks( select( 'core/editor' ).getBlocks() );
-	htmlPreview += getBlockContent( block );
 } );
-
-// Show what the document looks like rendered
-// document.querySelector( '#preview' ).innerHTML = htmlPreview;
 
 // Create a download link named after the first block we find 
 // (all blocks should be inculded in the file, but we need a name)

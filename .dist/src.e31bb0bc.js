@@ -25901,9 +25901,7 @@ registerBlockType('block-kit/block', {
    */
   save: function save(_ref2) {
     var attributes = _ref2.attributes;
-    return _react.default.createElement("div", null, _react.default.createElement("p", null, "This is from the block's ", _react.default.createElement("tt", null, "save()"), " method, and shows what the block will look like when rendered."), _react.default.createElement("img", {
-      src: "//lorempixel.com/600/300/city"
-    }));
+    return _react.default.createElement("div", null, _react.default.createElement("p", null, "This is from the block's ", _react.default.createElement("tt", null, "save()"), " method, and shows what the block will look like when rendered."));
   }
 });
 },{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./style.scss":"style.scss","./editor.scss":"editor.scss"}],"index.js":[function(require,module,exports) {
@@ -26028,15 +26026,11 @@ var glitchBlocks = getBlockTypes().filter(function (b) {
 }); // Add our custom block(s) to the editor, so they show on reload
 // TODO persist editor state, only do this when there's no editor state persisted
 
-var htmlPreview = '';
 glitchBlocks.forEach(function (b) {
   var block = createBlock(b.name, {});
   dispatch('core/editor').insertBlock(block);
   dispatch('core/editor').resetEditorBlocks(select('core/editor').getBlocks());
-  htmlPreview += getBlockContent(block);
-}); // Show what the document looks like rendered
-// document.querySelector( '#preview' ).innerHTML = htmlPreview;
-// Create a download link named after the first block we find 
+}); // Create a download link named after the first block we find 
 // (all blocks should be inculded in the file, but we need a name)
 
 var blockName = glitchBlocks[0].name;
