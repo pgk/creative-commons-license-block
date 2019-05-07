@@ -25971,13 +25971,13 @@ var Editor = function Editor(_ref) {
   var html = '';
 
   var preview = function preview(blocks) {
-    if (blocks) {
-      html = serialize(blocks);
+    if (state) {
+      html = serialize(state);
+      console.log(html);
+      return {
+        __html: html
+      };
     }
-
-    return {
-      __html: html
-    };
   };
 
   return _react.default.createElement(Fragment, null, _react.default.createElement("h1", {

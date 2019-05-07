@@ -48,10 +48,11 @@ const Editor = ( { blocks, resetEditorBlocks } ) => {
   let html = '';
 
 	const preview = ( blocks ) => {
-    if ( blocks ) {
-      html = serialize( blocks );
+    if ( state ) {
+      html = serialize( state );
+      console.log( html );
+  		return { __html: html };
     }
-		return { __html: html };
 	};
 
 	return <Fragment>
