@@ -44,7 +44,7 @@ const Editor = ( { blocks, resetEditorBlocks } ) => {
 	}
 
 	const preview = ( blocks ) => ( {
-		__html: serialize( blocks )
+		__html: blocks ? serialize( blocks ) : ""
 	} );
 
 	return <Fragment>

@@ -25970,7 +25970,7 @@ var Editor = function Editor(_ref) {
 
   var preview = function preview(blocks) {
     return {
-      __html: serialize(blocks)
+      __html: blocks ? serialize(blocks) : ""
     };
   };
 
