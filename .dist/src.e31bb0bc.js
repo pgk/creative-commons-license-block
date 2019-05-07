@@ -25943,7 +25943,7 @@ var _wp$blocks = wp.blocks,
     createBlock = _wp$blocks.createBlock,
     getBlockContent = _wp$blocks.getBlockContent,
     getBlockTypes = _wp$blocks.getBlockTypes,
-    parse = _wp$blocks.parse;
+    serialize = _wp$blocks.serialize;
 var Popover = wp.components.Popover;
 var registerCoreBlocks = wp.blockLibrary.registerCoreBlocks;
 var _wp$data = wp.data,
@@ -25961,23 +25961,34 @@ var _wp$data = wp.data,
 var Editor = function Editor(_ref) {
   var blocks = _ref.blocks,
       resetEditorBlocks = _ref.resetEditorBlocks;
+  var state = blocks;
 
   var onChange = function onChange(blocks) {
-    resetEditorBlocks(); // document.querySelector( '#preview' ).innerHTML = parse( blocks );
-
-    console.log(blocks);
+    resetEditorBlocks();
+    state = blocks;
   };
 
-  return _react.default.createElement(Fragment, null, _react.default.createElement("div", {
+  var preview = function preview(blocks) {
+    return {
+      __html: serialize(blocks)
+    };
+  };
+
+  return _react.default.createElement(Fragment, null, _react.default.createElement("h1", {
+    title: "This is what you'll see in Gutenberg"
+  }, "Editor"), _react.default.createElement("div", {
     className: "playground__body"
   }, _react.default.createElement(BlockEditorProvider, {
-    value: blocks,
+    value: state,
     onInput: resetEditorBlocks,
     onChange: onChange
   }, _react.default.createElement("div", {
     className: "editor-styles-wrapper"
-  }, _react.default.createElement(WritingFlow, null, _react.default.createElement(ObserveTyping, null, _react.default.createElement(BlockList, null)))), _react.default.createElement(Popover.Slot, null))), _react.default.createElement("div", {
-    className: "playground__preview"
+  }, _react.default.createElement(WritingFlow, null, _react.default.createElement(ObserveTyping, null, _react.default.createElement(BlockList, null)))), _react.default.createElement(Popover.Slot, null))), _react.default.createElement("h1", {
+    title: "This is what you'll see when published"
+  }, "Published"), _react.default.createElement("div", {
+    className: "playground__preview",
+    dangerouslySetInnerHTML: preview(state)
   }));
 };
 /**

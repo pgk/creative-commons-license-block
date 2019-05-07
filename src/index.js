@@ -22,11 +22,11 @@ const {
 	WritingFlow,
 	ObserveTyping,
 } = wp.blockEditor;
-const { createBlock, getBlockContent, getBlockTypes, parse } = wp.blocks;
+const { createBlock, getBlockContent, getBlockTypes, serialize } = wp.blocks;
 const { Popover } = wp.components;
 const { registerCoreBlocks } = wp.blockLibrary;
 const { withSelect, withDispatch, dispatch, select } = wp.data;
-  
+
 /**
  * Import our block! We keep it separate so it can be downloaded as a plugin without this custom loader
  */
@@ -36,31 +36,44 @@ import './block.js';
  * Create a basic block editor
  */
 const Editor = ( { blocks, resetEditorBlocks } ) => {
-  const onChange = ( blocks ) => {
-    resetEditorBlocks();
-    // document.querySelector( '#preview' ).innerHTML = parse( blocks );
-    console.log( blocks );
-  }
-  return <Fragment>
-			<div className="playground__body">
-				<BlockEditorProvider
-					value={ blocks }
-					onInput={ resetEditorBlocks }
-					onChange={ onChange }
-				>
-					<div className="editor-styles-wrapper">
-						<WritingFlow>
-							<ObserveTyping>
-								<BlockList />
-							</ObserveTyping>
-						</WritingFlow>
-					</div>
-					<Popover.Slot />
-				</BlockEditorProvider>
-			</div>
-      <div className="playground__preview">
-      </div>
-		</Fragment>
+	let state = blocks;
+
+	const onChange = ( blocks ) => {
+		resetEditorBlocks();
+		state = blocks;
+	}
+
+	const preview = ( blocks ) => ( {
+		__html: serialize( blocks )
+	} );
+
+	return <Fragment>
+		<h1 title="This is what you'll see in Gutenberg">
+			Editor
+    </h1>
+
+		<div className="playground__body">
+			<BlockEditorProvider
+				value={state}
+				onInput={resetEditorBlocks}
+				onChange={onChange}
+			>
+				<div className="editor-styles-wrapper">
+					<WritingFlow>
+						<ObserveTyping>
+							<BlockList />
+						</ObserveTyping>
+					</WritingFlow>
+				</div>
+				<Popover.Slot />
+			</BlockEditorProvider>
+		</div>
+
+		<h1 title="This is what you'll see when published">
+			Published
+    </h1>
+		<div className="playground__preview" dangerouslySetInnerHTML={ preview( state ) }></div>
+	</Fragment>
 };
 
 /**
@@ -95,17 +108,17 @@ render(
 // Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
 // Presumably, this is the the block we are working on
 const glitchBlocks = getBlockTypes()
-  .filter( b => ! b.name.startsWith( 'core/' ) )
-  .filter( b => ! b.name.startsWith( 'core-embed/' ) );
+	.filter( b => !b.name.startsWith( 'core/' ) )
+	.filter( b => !b.name.startsWith( 'core-embed/' ) );
 
 // Add our custom block(s) to the editor, so they show on reload
 // TODO persist editor state, only do this when there's no editor state persisted
 let htmlPreview = '';
 glitchBlocks.forEach( b => {
-  const block = createBlock( b.name, {} );
-  dispatch( 'core/editor' ).insertBlock( block );
-  dispatch( 'core/editor' ).resetEditorBlocks( select( 'core/editor' ).getBlocks() );
-  htmlPreview += getBlockContent( block );
+	const block = createBlock( b.name, {} );
+	dispatch( 'core/editor' ).insertBlock( block );
+	dispatch( 'core/editor' ).resetEditorBlocks( select( 'core/editor' ).getBlocks() );
+	htmlPreview += getBlockContent( block );
 } );
 
 // Show what the document looks like rendered
@@ -113,5 +126,5 @@ glitchBlocks.forEach( b => {
 
 // Create a download link named after the first block we find 
 // (all blocks should be inculded in the file, but we need a name)
-const blockName = glitchBlocks[0].name;
-document.querySelector( '#download-plugin' ).innerHTML = `<a href="/${blockName}.zip">Download Block Plugin for WordPress</a>`;
+const blockName = glitchBlocks[ 0 ].name;
+document.querySelector( '#download-plugin' ).innerHTML = `<a href="/${ blockName }.zip">Download Block Plugin for WordPress</a>`;
