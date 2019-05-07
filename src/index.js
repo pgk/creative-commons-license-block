@@ -37,15 +37,22 @@ import './block.js';
  */
 const Editor = ( { blocks, resetEditorBlocks } ) => {
 	let state = blocks;
+  let lastState = blocks;
 
 	const onChange = ( blocks ) => {
 		resetEditorBlocks();
+    lastState = state;
 		state = blocks;
 	}
+  
+  let html = '';
 
-	const preview = ( blocks ) => ( {
-		__html: blocks ? serialize( blocks ) : ""
-	} );
+	const preview = ( blocks ) => {
+    if ( blocks ) {
+      html = serialize( blocks );
+    }
+		return { __html: html };
+	};
 
 	return <Fragment>
 		<h1 title="This is what you'll see in Gutenberg">
@@ -55,7 +62,7 @@ const Editor = ( { blocks, resetEditorBlocks } ) => {
 		<div className="playground__body">
 			<BlockEditorProvider
 				value={state}
-				onInput={resetEditorBlocks}
+				onInput={onChange}
 				onChange={onChange}
 			>
 				<div className="editor-styles-wrapper">

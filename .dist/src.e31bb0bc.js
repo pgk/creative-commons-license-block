@@ -25960,15 +25960,23 @@ var Editor = function Editor(_ref) {
   var blocks = _ref.blocks,
       resetEditorBlocks = _ref.resetEditorBlocks;
   var state = blocks;
+  var lastState = blocks;
 
   var onChange = function onChange(blocks) {
     resetEditorBlocks();
+    lastState = state;
     state = blocks;
   };
 
+  var html = '';
+
   var preview = function preview(blocks) {
+    if (blocks) {
+      html = serialize(blocks);
+    }
+
     return {
-      __html: blocks ? serialize(blocks) : ""
+      __html: html
     };
   };
 
@@ -25978,7 +25986,7 @@ var Editor = function Editor(_ref) {
     className: "playground__body"
   }, _react.default.createElement(BlockEditorProvider, {
     value: state,
-    onInput: resetEditorBlocks,
+    onInput: onChange,
     onChange: onChange
   }, _react.default.createElement("div", {
     className: "editor-styles-wrapper"
