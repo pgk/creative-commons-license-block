@@ -36,17 +36,12 @@ import './block.js';
  * Create a basic block editor
  */
 const Editor = ( { blocks, resetEditorBlocks } ) => {
-	let state = blocks;
-  let lastState = blocks;
+  let html = blocks ? serialize( blocks ) : '';
 
-  let html = state ? serialize( state ) : '';
-
-	const onChange = ( blocks ) => {
-    console.log( 'onChange called', blocks );
+	const onChange = ( newBlocks ) => {
+    console.log( 'onChange called', newBlocks );
 		resetEditorBlocks();
-    lastState = state;
-		state = blocks;
-    html = serialize( blocks );
+    html = serialize( newBlocks );
 	}
 
 	const preview = ( foo ) => {

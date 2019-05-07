@@ -25959,16 +25959,12 @@ var _wp$data = wp.data,
 var Editor = function Editor(_ref) {
   var blocks = _ref.blocks,
       resetEditorBlocks = _ref.resetEditorBlocks;
-  var state = blocks;
-  var lastState = blocks;
-  var html = state ? serialize(state) : '';
+  var html = blocks ? serialize(blocks) : '';
 
-  var onChange = function onChange(blocks) {
-    console.log('onChange called', blocks);
+  var onChange = function onChange(newBlocks) {
+    console.log('onChange called', newBlocks);
     resetEditorBlocks();
-    lastState = state;
-    state = blocks;
-    html = serialize(blocks);
+    html = serialize(newBlocks);
   };
 
   var preview = function preview(foo) {
