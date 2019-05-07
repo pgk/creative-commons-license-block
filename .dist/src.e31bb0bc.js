@@ -25976,7 +25976,9 @@ var Editor = function Editor(_ref) {
     onChange: onChange
   }, _react.default.createElement("div", {
     className: "editor-styles-wrapper"
-  }, _react.default.createElement(WritingFlow, null, _react.default.createElement(ObserveTyping, null, _react.default.createElement(BlockList, null)))), _react.default.createElement(Popover.Slot, null))));
+  }, _react.default.createElement(WritingFlow, null, _react.default.createElement(ObserveTyping, null, _react.default.createElement(BlockList, null)))), _react.default.createElement(Popover.Slot, null))), _react.default.createElement("div", {
+    className: "playground__preview"
+  }));
 };
 /**
  * This connects the Editor to our data layer's select and dispatch

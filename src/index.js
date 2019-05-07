@@ -58,6 +58,8 @@ const Editor = ( { blocks, resetEditorBlocks } ) => {
 					<Popover.Slot />
 				</BlockEditorProvider>
 			</div>
+      <div className="playground__preview">
+      </div>
 		</Fragment>
 };
 
