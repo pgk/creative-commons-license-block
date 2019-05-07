@@ -45,14 +45,13 @@ const Editor = ( { blocks, resetEditorBlocks } ) => {
 		state = blocks;
 	}
   
-  let html = '';
+  let html = state ? serialize( state ) : '';
 
-	const preview = ( blocks ) => {
-    if ( state ) {
-      html = serialize( state );
-      console.log( html );
-  		return { __html: html };
-    }
+	const preview = ( foo ) => {
+    if ( foo ) {
+      html = serialize( foo );
+    } 
+    return { __html: html };
 	};
 
 	return <Fragment>
@@ -62,7 +61,7 @@ const Editor = ( { blocks, resetEditorBlocks } ) => {
 
 		<div className="playground__body">
 			<BlockEditorProvider
-				value={state}
+				value={blocks}
 				onInput={onChange}
 				onChange={onChange}
 			>
@@ -80,7 +79,7 @@ const Editor = ( { blocks, resetEditorBlocks } ) => {
 		<h1 title="This is what you'll see when published">
 			Published
     </h1>
-		<div className="playground__preview" dangerouslySetInnerHTML={ preview( state ) }></div>
+		<div className="playground__preview" dangerouslySetInnerHTML={ preview( blocks ) }></div>
 	</Fragment>
 };
 

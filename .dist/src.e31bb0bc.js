@@ -25968,16 +25968,16 @@ var Editor = function Editor(_ref) {
     state = blocks;
   };
 
-  var html = '';
+  var html = state ? serialize(state) : '';
 
-  var preview = function preview(blocks) {
-    if (state) {
-      html = serialize(state);
-      console.log(html);
-      return {
-        __html: html
-      };
+  var preview = function preview(foo) {
+    if (foo) {
+      html = serialize(foo);
     }
+
+    return {
+      __html: html
+    };
   };
 
   return _react.default.createElement(Fragment, null, _react.default.createElement("h1", {
@@ -25985,7 +25985,7 @@ var Editor = function Editor(_ref) {
   }, "Editor"), _react.default.createElement("div", {
     className: "playground__body"
   }, _react.default.createElement(BlockEditorProvider, {
-    value: state,
+    value: blocks,
     onInput: onChange,
     onChange: onChange
   }, _react.default.createElement("div", {
@@ -25994,7 +25994,7 @@ var Editor = function Editor(_ref) {
     title: "This is what you'll see when published"
   }, "Published"), _react.default.createElement("div", {
     className: "playground__preview",
-    dangerouslySetInnerHTML: preview(state)
+    dangerouslySetInnerHTML: preview(blocks)
   }));
 };
 /**
