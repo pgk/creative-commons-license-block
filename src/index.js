@@ -42,6 +42,7 @@ const Editor = ( { blocks, resetEditorBlocks } ) => {
     console.log( 'onChange called', newBlocks );
 		resetEditorBlocks();
     html = serialize( newBlocks );
+    console.log( 'onChange called' );
 	}
 
 	const preview = ( foo ) => {
@@ -73,7 +74,7 @@ const Editor = ( { blocks, resetEditorBlocks } ) => {
 		<h1 title="This is what you'll see when published">
 			Published
     </h1>
-		<div className="playground__preview" dangerouslySetInnerHTML={ preview( blocks ) }></div>
+		<div className="playground__preview" key={html} dangerouslySetInnerHTML={ preview( blocks ) }></div>
 	</Fragment>
 };
 

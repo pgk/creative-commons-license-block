@@ -25965,6 +25965,7 @@ var Editor = function Editor(_ref) {
     console.log('onChange called', newBlocks);
     resetEditorBlocks();
     html = serialize(newBlocks);
+    console.log('onChange called');
   };
 
   var preview = function preview(foo) {
@@ -25987,6 +25988,7 @@ var Editor = function Editor(_ref) {
     title: "This is what you'll see when published"
   }, "Published"), _react.default.createElement("div", {
     className: "playground__preview",
+    key: html,
     dangerouslySetInnerHTML: preview(blocks)
   }));
 };
