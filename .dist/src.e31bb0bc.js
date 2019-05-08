@@ -25965,10 +25965,12 @@ var Editor = function Editor(_ref) {
     console.log('onChange called', newBlocks);
     resetEditorBlocks();
     html = serialize(newBlocks);
+    console.log(html);
     console.log('onChange called');
   };
 
   var preview = function preview(foo) {
+    console.log(html);
     return {
       __html: html
     };
