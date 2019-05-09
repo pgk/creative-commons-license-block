@@ -42,8 +42,8 @@ const Editor = ( { blocks, resetEditorBlocks } ) => {
     console.log( 'onChange called', newBlocks );
 		resetEditorBlocks();
     html = serialize( newBlocks );
-    console.log( html );
-    console.log( 'onChange called' );
+    // console.log( html );
+    // console.log( 'onChange called' );
 	}
 
 	const preview = ( foo ) => {

@@ -25964,9 +25964,8 @@ var Editor = function Editor(_ref) {
   var onChange = function onChange(newBlocks) {
     console.log('onChange called', newBlocks);
     resetEditorBlocks();
-    html = serialize(newBlocks);
-    console.log(html);
-    console.log('onChange called');
+    html = serialize(newBlocks); // console.log( html );
+    // console.log( 'onChange called' );
   };
 
   var preview = function preview(foo) {
