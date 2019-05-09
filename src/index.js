@@ -36,6 +36,12 @@ import './block.js';
  * Create a basic block editor
  */
 const Editor = ( { blocks, resetEditorBlocks } ) => {
+  console.log( 'Editor created' );
+  
+  const glitchBlocks = getBlockTypes()
+	  .filter( b => !b.name.startsWith( 'core/' ) )
+  	.filter( b => !b.name.startsWith( 'core-embed/' ) );
+
   let html = blocks ? serialize( blocks ) : '';
 
 	const onChange = ( newBlocks ) => {

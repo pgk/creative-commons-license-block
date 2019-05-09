@@ -18,14 +18,14 @@ import './editor.scss';
  *
  * @see https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-registration/
  */
-registerBlockType( 'block-kit/block', {
+registerBlockType( 'gutenberg-block-kit/remix', {
     // This is the display title for your block, which can be translated with our translation 
     // functions. The block inserter will show this name.
-    title: __( 'My Block' ),
+    title: __( 'Glitch Remix' ),
 
     // This is a short description for your block, which can be translated with our translation 
     // functions. This will be shown in the block inspector.
-    description: __( 'This will be shown in the block inspector.' ),
+    description: __( 'Add a Glitch remix button' ),
 
     // Blocks are grouped into categories to help users browse and discover them.
     // The core provided categories are: common, formatting, layout, widgets, embed
@@ -56,9 +56,8 @@ registerBlockType( 'block-kit/block', {
                     read more</a> or go ahead and remix:
                 </p>
                 <p>
-                    <a href="https://glitch.com/edit/#!/remix/gutenberg-block-kit" class="glitch-remix" target="_blank">remix button</a>
+                    <a href="https://glitch.com/edit/#!/remix/gutenberg-block-kit" class="glitch-remix" target="_blank"><img src="https://cdn.gomix.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Fremix-button.svg" alt="Remix on Glitch" /></a>
                 </p>
-                <img src="//placekitten.com/600/300" />
             </div>
         );
     },

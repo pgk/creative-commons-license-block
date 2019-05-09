@@ -25852,13 +25852,13 @@ var registerBlockType = wp.blocks.registerBlockType; //  Import CSS.
  *
  * @see https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-registration/
  */
-registerBlockType('block-kit/block', {
+registerBlockType('gutenberg-block-kit/remix', {
   // This is the display title for your block, which can be translated with our translation 
   // functions. The block inserter will show this name.
-  title: __('My Block'),
+  title: __('Glitch Remix'),
   // This is a short description for your block, which can be translated with our translation 
   // functions. This will be shown in the block inspector.
-  description: __('This will be shown in the block inspector.'),
+  description: __('Add a Glitch remix button'),
   // Blocks are grouped into categories to help users browse and discover them.
   // The core provided categories are: common, formatting, layout, widgets, embed
   category: 'common',
@@ -25889,9 +25889,10 @@ registerBlockType('block-kit/block', {
       href: "https://glitch.com/edit/#!/remix/gutenberg-block-kit",
       class: "glitch-remix",
       target: "_blank"
-    }, "remix button")), _react.default.createElement("img", {
-      src: "//placekitten.com/600/300"
-    }));
+    }, _react.default.createElement("img", {
+      src: "https://cdn.gomix.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Fremix-button.svg",
+      alt: "Remix on Glitch"
+    }))));
   },
 
   /**
@@ -25959,6 +25960,12 @@ var _wp$data = wp.data,
 var Editor = function Editor(_ref) {
   var blocks = _ref.blocks,
       resetEditorBlocks = _ref.resetEditorBlocks;
+  console.log('Editor created');
+  var glitchBlocks = getBlockTypes().filter(function (b) {
+    return !b.name.startsWith('core/');
+  }).filter(function (b) {
+    return !b.name.startsWith('core-embed/');
+  });
   var html = blocks ? serialize(blocks) : '';
 
   var onChange = function onChange(newBlocks) {
@@ -26067,7 +26074,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42949" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44898" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
