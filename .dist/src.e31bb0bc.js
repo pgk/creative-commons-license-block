@@ -25916,15 +25916,7 @@ require("./block.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* global wp */
-
-/**
- * This is the glue that takes your custom block and displays it on the page
- *
- * It creates a block editor, adds your custom block, and then renders
- * the output. Think of this as a little Gutenberg without WordPress
- */
-// Seem to need these for Parcel to render the JSX
+function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
 
 /**
  * Import the things we need from Gutenberg on the window.wp object
@@ -25971,27 +25963,43 @@ glitchBlocks.forEach(function (b) {
   dispatch('core/editor').resetEditorBlocks(select('core/editor').getBlocks());
 });
 /**
+ *
+ */
+
+var Preview = function Preview(_ref) {
+  _objectDestructuringEmpty(_ref);
+
+  return _react.default.createElement("div", {
+    className: "playground__preview",
+    key: previewHtml,
+    dangerouslySetInnerHTML: preview()
+  });
+};
+/**
  * Create a basic block editor
  */
 
-var Editor = function Editor(_ref) {
-  var blocks = _ref.blocks,
-      resetEditorBlocks = _ref.resetEditorBlocks;
-  console.log('Editor created');
+
+var Editor = function Editor(_ref2) {
+  var blocks = _ref2.blocks,
+      resetEditorBlocks = _ref2.resetEditorBlocks;
+  var previewHtml = {
+    __html: blocks ? serialize(blocks) : ''
+  };
   var html = blocks ? serialize(blocks) : '';
+  var oldBlocks;
 
   var onChange = function onChange(newBlocks) {
-    console.log('onChange called', newBlocks);
     resetEditorBlocks();
-    html = serialize(newBlocks); // console.log( html );
-    // console.log( 'onChange called' );
+    html = serialize(newBlocks);
+    previewHtml = {
+      __html: serialize(newBlocks)
+    };
+    oldBlocks = newBlocks;
   };
 
-  var preview = function preview(foo) {
-    console.log(html);
-    return {
-      __html: html
-    };
+  var preview = function preview() {
+    return previewHtml;
   };
 
   return _react.default.createElement(Fragment, null, _react.default.createElement("h1", {
@@ -26008,8 +26016,8 @@ var Editor = function Editor(_ref) {
     title: "This is what you'll see when published"
   }, "Published"), _react.default.createElement("div", {
     className: "playground__preview",
-    key: html,
-    dangerouslySetInnerHTML: preview(blocks)
+    key: previewHtml,
+    dangerouslySetInnerHTML: preview()
   }), _react.default.createElement("h1", null, "Download Block Plugin for WordPress"), _react.default.createElement("a", {
     href: '/' + glitchBlocks[0].name + '.zip'
   }, "Download Block Plugin for WordPress"));

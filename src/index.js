@@ -50,25 +50,28 @@ glitchBlocks.forEach( b => {
 } );
 
 /**
+ *
+ */
+const Preview = ( {} ) => {
+  return <div className="playground__preview" key={ previewHtml } dangerouslySetInnerHTML={ preview() }></div>
+}
+
+/**
  * Create a basic block editor
  */
 const Editor = ( { blocks, resetEditorBlocks } ) => {
-  console.log( 'Editor created' );
-  
+  let previewHtml = { __html: blocks ? serialize( blocks ) : '' };
   let html = blocks ? serialize( blocks ) : '';
+  let oldBlocks;
 
 	const onChange = ( newBlocks ) => {
-    console.log( 'onChange called', newBlocks );
 		resetEditorBlocks();
     html = serialize( newBlocks );
-    // console.log( html );
-    // console.log( 'onChange called' );
+    previewHtml = { __html: serialize( newBlocks ) };
+    oldBlocks = newBlocks;
 	}
 
-	const preview = ( foo ) => {
-    console.log( html );
-    return { __html: html };
-	};
+	const preview = () => previewHtml;
 
 	return <Fragment>
 		<h1 title="This is what you'll see in Gutenberg">
@@ -95,7 +98,8 @@ const Editor = ( { blocks, resetEditorBlocks } ) => {
 		<h1 title="This is what you'll see when published">
 			Published
     </h1>
-		<div className="playground__preview" key={html} dangerouslySetInnerHTML={ preview( blocks ) }></div>
+		<div className="playground__preview" key={ previewHtml } dangerouslySetInnerHTML={ preview() }></div>
+    
     <h1>Download Block Plugin for WordPress</h1>
     {/* Create a download link named after the first block we find */ }
     {/* (all blocks should be inculded in the file, but we need a name) */}
