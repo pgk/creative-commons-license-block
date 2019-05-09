@@ -25973,11 +25973,6 @@ var glitchBlocks = getBlockTypes().filter(function (b) {
 }); // Add our custom block(s) to the editor, so they show on reload
 // TODO persist editor state, only do this when there's no editor state persisted
 
-glitchBlocks.forEach(function (b) {
-  var block = createBlock(b.name, {});
-  dispatch('core/editor').insertBlock(block);
-  dispatch('core/editor').resetEditorBlocks(select('core/editor').getBlocks());
-});
 /**
  * Create a basic block editor
  */
@@ -25993,6 +25988,16 @@ function (_React$Component) {
     _classCallCheck(this, Editor);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Editor).call(this, props));
+
+    if (props.blocks.length = []) {
+      console.log('Adding blocks');
+      glitchBlocks.forEach(function (b) {
+        var block = createBlock(b.name, {});
+        dispatch('core/editor').insertBlock(block);
+        dispatch('core/editor').resetEditorBlocks(select('core/editor').getBlocks());
+      });
+    }
+
     _this.state = {
       previewHtml: serialize(props.blocks)
     };
@@ -26012,6 +26017,8 @@ function (_React$Component) {
       var _this2 = this;
 
       var onChange = function onChange(newBlocks) {
+        console.log(newBlocks);
+
         _this2.props.resetEditorBlocks();
 
         _this2.setState({
