@@ -58,7 +58,7 @@ class Editor extends React.Component {
     this.state = { previewHtml: serialize( props.blocks ) };
   }
   
-  preview( __html ) {
+  innerHtml( __html ) {
     return { __html }
   }
                  
@@ -93,7 +93,7 @@ class Editor extends React.Component {
       <h1 title="This is what you'll see when published">
         Published
       </h1>
-      <div className="playground__preview" dangerouslySetInnerHTML={ this.preview( this.state.previewHtml ) }></div>
+      <div className="playground__preview" dangerouslySetInnerHTML={ this.innerHtml( this.state.previewHtml ) }></div>
 
       <h1>Download Block Plugin for WordPress</h1>
       {/* Create a download link named after the first block we find */ }

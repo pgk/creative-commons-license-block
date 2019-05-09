@@ -26000,8 +26000,8 @@ function (_React$Component) {
   }
 
   _createClass(Editor, [{
-    key: "preview",
-    value: function preview(__html) {
+    key: "innerHtml",
+    value: function innerHtml(__html) {
       return {
         __html: __html
       };
@@ -26033,7 +26033,7 @@ function (_React$Component) {
         title: "This is what you'll see when published"
       }, "Published"), _react.default.createElement("div", {
         className: "playground__preview",
-        dangerouslySetInnerHTML: this.preview(this.state.previewHtml)
+        dangerouslySetInnerHTML: this.innerHtml(this.state.previewHtml)
       }), _react.default.createElement("h1", null, "Download Block Plugin for WordPress"), _react.default.createElement("a", {
         href: '/' + glitchBlocks[0].name + '.zip'
       }, "Download Block Plugin for WordPress"));
