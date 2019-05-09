@@ -22,18 +22,17 @@ const {
 	WritingFlow,
 	ObserveTyping,
 } = wp.blockEditor;
-const { createBlock, getBlockContent, getBlockTypes, serialize } = wp.blocks;
+const { createBlock, getBlockContent, getBlockTypes, serialize, parse } = wp.blocks;
 const { Popover } = wp.components;
 const { registerCoreBlocks } = wp.blockLibrary;
 const { withSelect, withDispatch, dispatch, select } = wp.data;
 
-/**
- * Import our block! We keep it separate so it can be downloaded as a plugin without this custom loader
- */
-import './block.js';
-
 // Add all the core blocks. The custom blocks are registered in src/blocks.js
 registerCoreBlocks();
+
+// Import our block! We keep it separate so it can be downloaded as a plugin without this custom loader
+import './block.js';
+
 
 const BLOCK_PERSIST = 'BLOCK_PERSIST';
 
@@ -52,12 +51,13 @@ const glitchBlocks = getBlockTypes()
 class Editor extends React.Component {
   constructor( props ) {
     super( props );
+    // If we don't have anything persisted in the editor, add our custom blocks
     if ( props.blocks.length == 0 ) {
       glitchBlocks.forEach( b => {
         const block = createBlock( b.name, {} );
         dispatch( 'core/editor' ).insertBlock( block );
-        dispatch( 'core/editor' ).resetEditorBlocks( select( 'core/editor' ).getBlocks() );
       } );
+      dispatch( 'core/editor' ).resetEditorBlocks( select( 'core/editor' ).getBlocks() );
 
     }
     this.state = { previewHtml: serialize( props.blocks ) };
@@ -66,14 +66,17 @@ class Editor extends React.Component {
   innerHtml( __html ) {
     return { __html }
   }
+  
+  clearPersistance() {
+    localStorage.removeItem( BLOCK_PERSIST );
+  }
                  
   render() {
     const onChange = ( newBlocks ) => {
       this.props.resetEditorBlocks();
-      this.setState( { previewHtml: serialize( newBlocks ) } );
-      // window.setTimeout( () => { 
-        localStorage.setItem( BLOCK_PERSIST, newBlocks ); 
-                               // } );
+      const previewHtml = serialize( newBlocks );
+      this.setState( { previewHtml } );
+      localStorage.setItem( BLOCK_PERSIST, previewHtml ); 
     }
 
     return <Fragment>
@@ -107,6 +110,9 @@ class Editor extends React.Component {
       {/* Create a download link named after the first block we find */ }
       {/* (all blocks should be inculded in the file, but we need a name) */}
       <a href={'/' + glitchBlocks[ 0 ].name + '.zip'}>Download Block Plugin for WordPress</a>
+      
+      <h1>Reset Editor</h1>
+      <a onClick={ this.clearPersistance }>Clear Editor</a>
     </Fragment>
   }
 };
@@ -121,9 +127,9 @@ class Editor extends React.Component {
 const App = compose(
 	withSelect( ( select ) => {
 		const { getEditorBlocks } = select( 'core/editor' );
-		return {
-			blocks: localStorage.getItem( BLOCK_PERSIST ) || getEditorBlocks()
-		}
+    const persistedContent = localStorage.getItem( BLOCK_PERSIST );
+    const blocks = persistedContent ? parse( persistedContent ) : getEditorBlocks();
+		return { blocks }
 	} ),
 	withDispatch( ( dispatch ) => {
 		const { resetEditorBlocks } = dispatch( 'core/editor' );

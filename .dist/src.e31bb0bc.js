@@ -25950,20 +25950,18 @@ var _wp$blocks = wp.blocks,
     createBlock = _wp$blocks.createBlock,
     getBlockContent = _wp$blocks.getBlockContent,
     getBlockTypes = _wp$blocks.getBlockTypes,
-    serialize = _wp$blocks.serialize;
+    serialize = _wp$blocks.serialize,
+    parse = _wp$blocks.parse;
 var Popover = wp.components.Popover;
 var registerCoreBlocks = wp.blockLibrary.registerCoreBlocks;
 var _wp$data = wp.data,
     withSelect = _wp$data.withSelect,
     withDispatch = _wp$data.withDispatch,
     dispatch = _wp$data.dispatch,
-    select = _wp$data.select;
-/**
- * Import our block! We keep it separate so it can be downloaded as a plugin without this custom loader
- */
+    select = _wp$data.select; // Add all the core blocks. The custom blocks are registered in src/blocks.js
 
-// Add all the core blocks. The custom blocks are registered in src/blocks.js
-registerCoreBlocks();
+registerCoreBlocks(); // Import our block! We keep it separate so it can be downloaded as a plugin without this custom loader
+
 var BLOCK_PERSIST = 'BLOCK_PERSIST'; // Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
 // Presumably, this is the the block we are working on
 
@@ -25988,14 +25986,14 @@ function (_React$Component) {
 
     _classCallCheck(this, Editor);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Editor).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Editor).call(this, props)); // If we don't have anything persisted in the editor, add our custom blocks
 
     if (props.blocks.length == 0) {
       glitchBlocks.forEach(function (b) {
         var block = createBlock(b.name, {});
         dispatch('core/editor').insertBlock(block);
-        dispatch('core/editor').resetEditorBlocks(select('core/editor').getBlocks());
       });
+      dispatch('core/editor').resetEditorBlocks(select('core/editor').getBlocks());
     }
 
     _this.state = {
@@ -26012,6 +26010,11 @@ function (_React$Component) {
       };
     }
   }, {
+    key: "clearPersistance",
+    value: function clearPersistance() {
+      localStorage.removeItem(BLOCK_PERSIST);
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -26019,12 +26022,13 @@ function (_React$Component) {
       var onChange = function onChange(newBlocks) {
         _this2.props.resetEditorBlocks();
 
+        var previewHtml = serialize(newBlocks);
+
         _this2.setState({
-          previewHtml: serialize(newBlocks)
-        }); // window.setTimeout( () => { 
+          previewHtml: previewHtml
+        });
 
-
-        localStorage.setItem(BLOCK_PERSIST, newBlocks); // } );
+        localStorage.setItem(BLOCK_PERSIST, previewHtml);
       };
 
       return _react.default.createElement(Fragment, null, _react.default.createElement("h1", {
@@ -26044,7 +26048,9 @@ function (_React$Component) {
         dangerouslySetInnerHTML: this.innerHtml(this.state.previewHtml)
       }), _react.default.createElement("h1", null, "Download Block Plugin for WordPress"), _react.default.createElement("a", {
         href: '/' + glitchBlocks[0].name + '.zip'
-      }, "Download Block Plugin for WordPress"));
+      }, "Download Block Plugin for WordPress"), _react.default.createElement("h1", null, "Reset Editor"), _react.default.createElement("a", {
+        onClick: this.clearPersistance
+      }, "Clear Editor"));
     }
   }]);
 
@@ -26064,8 +26070,10 @@ var App = compose(withSelect(function (select) {
   var _select = select('core/editor'),
       getEditorBlocks = _select.getEditorBlocks;
 
+  var persistedContent = localStorage.getItem(BLOCK_PERSIST);
+  var blocks = persistedContent ? parse(persistedContent) : getEditorBlocks();
   return {
-    blocks: localStorage.getItem(BLOCK_PERSIST) || getEditorBlocks()
+    blocks: blocks
   };
 }), withDispatch(function (dispatch) {
   var _dispatch = dispatch('core/editor'),
