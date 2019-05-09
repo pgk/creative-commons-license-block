@@ -1,6 +1,10 @@
+/**
+ * This is for block styles that should only appear in the editor
+ */ 
+
 @import "common.scss";
   
-.wp-block-automattic-glitch-block  {
+.wp-block-block-kit-block {
   background: $green;
   border: 0.2rem solid $black;
   color: $black;

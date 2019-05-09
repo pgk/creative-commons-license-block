@@ -2,6 +2,10 @@ body {
   padding: 32px;
 }
 
+.playground__body {
+  border-bottom: 1px solid #e5e5e5;
+}
+
 .wp-block-block-kit-block {
   background: maroon;
   border: 0.2rem solid black;

@@ -25991,7 +25991,7 @@ var Editor = function Editor(_ref) {
     className: "playground__preview",
     key: html,
     dangerouslySetInnerHTML: preview(blocks)
-  }));
+  }), _react.default.createElement("h1", null, "Download Block Plugin for WordPress"));
 };
 /**
  * This connects the Editor to our data layer's select and dispatch

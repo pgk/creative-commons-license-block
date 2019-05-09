@@ -2,6 +2,10 @@ body {
   padding: 32px;
 }
 
+.playground__body {
+  border-bottom: 1px solid #e5e5e5;
+}
+
 .wp-block-block-kit-block {
   background: maroon;
   border: 0.2rem solid black;
@@ -10,11 +14,18 @@ body {
   max-width: 740px;
   padding: 2rem;
 }
+/**
+ * This is for block styles that should only appear in the editor
+ */
 body {
   padding: 32px;
 }
 
-.wp-block-automattic-glitch-block {
+.playground__body {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.wp-block-block-kit-block {
   background: rgba(128, 128, 0, 0.25);
   border: 0.2rem solid black;
   color: black;

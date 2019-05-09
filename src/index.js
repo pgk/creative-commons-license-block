@@ -77,6 +77,7 @@ const Editor = ( { blocks, resetEditorBlocks } ) => {
 			Published
     </h1>
 		<div className="playground__preview" key={html} dangerouslySetInnerHTML={ preview( blocks ) }></div>
+    <h1>Download Block Plugin for WordPress</h1>
 	</Fragment>
 };
 
