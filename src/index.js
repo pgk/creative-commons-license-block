@@ -1,4 +1,4 @@
-/* global wp */
+/* global wp, localStorage */
 
 /**
  * This is the glue that takes your custom block and displays it on the page
@@ -35,6 +35,8 @@ import './block.js';
 // Add all the core blocks. The custom blocks are registered in src/blocks.js
 registerCoreBlocks();
 
+const BLOCK_PERSIST = 'BLOCK_PERSIST';
+
 // Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
 // Presumably, this is the the block we are working on
 const glitchBlocks = getBlockTypes()
@@ -67,9 +69,11 @@ class Editor extends React.Component {
                  
   render() {
     const onChange = ( newBlocks ) => {
-      console.log( newBlocks );
       this.props.resetEditorBlocks();
       this.setState( { previewHtml: serialize( newBlocks ) } );
+      // window.setTimeout( () => { 
+        localStorage.setItem( BLOCK_PERSIST, newBlocks ); 
+                               // } );
     }
 
     return <Fragment>
@@ -118,7 +122,7 @@ const App = compose(
 	withSelect( ( select ) => {
 		const { getEditorBlocks } = select( 'core/editor' );
 		return {
-			blocks: getEditorBlocks()
+			blocks: localStorage.getItem( BLOCK_PERSIST ) || getEditorBlocks()
 		}
 	} ),
 	withDispatch( ( dispatch ) => {

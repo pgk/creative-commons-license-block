@@ -25963,7 +25963,8 @@ var _wp$data = wp.data,
  */
 
 // Add all the core blocks. The custom blocks are registered in src/blocks.js
-registerCoreBlocks(); // Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
+registerCoreBlocks();
+var BLOCK_PERSIST = 'BLOCK_PERSIST'; // Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
 // Presumably, this is the the block we are working on
 
 var glitchBlocks = getBlockTypes().filter(function (b) {
@@ -26016,13 +26017,14 @@ function (_React$Component) {
       var _this2 = this;
 
       var onChange = function onChange(newBlocks) {
-        console.log(newBlocks);
-
         _this2.props.resetEditorBlocks();
 
         _this2.setState({
           previewHtml: serialize(newBlocks)
-        });
+        }); // window.setTimeout( () => { 
+
+
+        localStorage.setItem(BLOCK_PERSIST, newBlocks); // } );
       };
 
       return _react.default.createElement(Fragment, null, _react.default.createElement("h1", {
@@ -26063,7 +26065,7 @@ var App = compose(withSelect(function (select) {
       getEditorBlocks = _select.getEditorBlocks;
 
   return {
-    blocks: getEditorBlocks()
+    blocks: localStorage.getItem(BLOCK_PERSIST) || getEditorBlocks()
   };
 }), withDispatch(function (dispatch) {
   var _dispatch = dispatch('core/editor'),
