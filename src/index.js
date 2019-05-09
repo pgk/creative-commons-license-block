@@ -50,8 +50,7 @@ const glitchBlocks = getBlockTypes()
 class Editor extends React.Component {
   constructor( props ) {
     super( props );
-    if ( props.blocks.length = [] ) {
-      console.log( 'Adding blocks' );
+    if ( props.blocks.length == 0 ) {
       glitchBlocks.forEach( b => {
         const block = createBlock( b.name, {} );
         dispatch( 'core/editor' ).insertBlock( block );

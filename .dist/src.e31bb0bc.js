@@ -25989,8 +25989,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Editor).call(this, props));
 
-    if (props.blocks.length = []) {
-      console.log('Adding blocks');
+    if (props.blocks.length == 0) {
       glitchBlocks.forEach(function (b) {
         var block = createBlock(b.name, {});
         dispatch('core/editor').insertBlock(block);
