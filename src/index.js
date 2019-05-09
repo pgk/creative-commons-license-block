@@ -52,26 +52,24 @@ glitchBlocks.forEach( b => {
 /**
  *
  */
-const Preview = ( {} ) => {
-  return <div className="playground__preview" key={ previewHtml } dangerouslySetInnerHTML={ preview() }></div>
+const Preview = ( { previewHtml } ) => {
+  console.log( 'Preview', previewHtml );
+  const preview = { __html: previewHtml };
+  return <div className="playground__preview" dangerouslySetInnerHTML={ preview }></div>
 }
 
 /**
  * Create a basic block editor
  */
 const Editor = ( { blocks, resetEditorBlocks } ) => {
-  let previewHtml = { __html: blocks ? serialize( blocks ) : '' };
-  let html = blocks ? serialize( blocks ) : '';
-  let oldBlocks;
+  let newBlocks = blocks;
+  let previewHtml = blocks ? serialize( blocks ) : NaN;
 
 	const onChange = ( newBlocks ) => {
 		resetEditorBlocks();
-    html = serialize( newBlocks );
-    previewHtml = { __html: serialize( newBlocks ) };
-    oldBlocks = newBlocks;
+    previewHtml = serialize( newBlocks );
+    console.log( 'onChange', previewHtml );
 	}
-
-	const preview = () => previewHtml;
 
 	return <Fragment>
 		<h1 title="This is what you'll see in Gutenberg">
@@ -98,7 +96,7 @@ const Editor = ( { blocks, resetEditorBlocks } ) => {
 		<h1 title="This is what you'll see when published">
 			Published
     </h1>
-		<div className="playground__preview" key={ previewHtml } dangerouslySetInnerHTML={ preview() }></div>
+    <Preview previewHtml={previewHtml}></Preview>
     
     <h1>Download Block Plugin for WordPress</h1>
     {/* Create a download link named after the first block we find */ }
