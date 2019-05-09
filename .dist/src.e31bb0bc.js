@@ -25954,18 +25954,30 @@ var _wp$data = wp.data,
  * Import our block! We keep it separate so it can be downloaded as a plugin without this custom loader
  */
 
+// Add all the core blocks. The custom blocks are registered in src/blocks.js
+registerCoreBlocks(); // Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
+// Presumably, this is the the block we are working on
+
+var glitchBlocks = getBlockTypes().filter(function (b) {
+  return !b.name.startsWith('core/');
+}).filter(function (b) {
+  return !b.name.startsWith('core-embed/');
+}); // Add our custom block(s) to the editor, so they show on reload
+// TODO persist editor state, only do this when there's no editor state persisted
+
+glitchBlocks.forEach(function (b) {
+  var block = createBlock(b.name, {});
+  dispatch('core/editor').insertBlock(block);
+  dispatch('core/editor').resetEditorBlocks(select('core/editor').getBlocks());
+});
 /**
  * Create a basic block editor
  */
+
 var Editor = function Editor(_ref) {
   var blocks = _ref.blocks,
       resetEditorBlocks = _ref.resetEditorBlocks;
   console.log('Editor created');
-  var glitchBlocks = getBlockTypes().filter(function (b) {
-    return !b.name.startsWith('core/');
-  }).filter(function (b) {
-    return !b.name.startsWith('core-embed/');
-  });
   var html = blocks ? serialize(blocks) : '';
 
   var onChange = function onChange(newBlocks) {
@@ -25998,7 +26010,9 @@ var Editor = function Editor(_ref) {
     className: "playground__preview",
     key: html,
     dangerouslySetInnerHTML: preview(blocks)
-  }), _react.default.createElement("h1", null, "Download Block Plugin for WordPress"));
+  }), _react.default.createElement("h1", null, "Download Block Plugin for WordPress"), _react.default.createElement("a", {
+    href: '/' + glitchBlocks[0].name + '.zip'
+  }, "Download Block Plugin for WordPress"));
 };
 /**
  * This connects the Editor to our data layer's select and dispatch
@@ -26023,29 +26037,9 @@ var App = compose(withSelect(function (select) {
   return {
     resetEditorBlocks: resetEditorBlocks
   };
-}))(Editor); // Add all the core blocks. The custom blocks are registered in src/blocks.js
+}))(Editor); // Render the editor on the page
 
-registerCoreBlocks(); // Render the editor on the page
-
-render(_react.default.createElement(App, null), document.querySelector('#editor')); // Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
-// Presumably, this is the the block we are working on
-
-var glitchBlocks = getBlockTypes().filter(function (b) {
-  return !b.name.startsWith('core/');
-}).filter(function (b) {
-  return !b.name.startsWith('core-embed/');
-}); // Add our custom block(s) to the editor, so they show on reload
-// TODO persist editor state, only do this when there's no editor state persisted
-
-glitchBlocks.forEach(function (b) {
-  var block = createBlock(b.name, {});
-  dispatch('core/editor').insertBlock(block);
-  dispatch('core/editor').resetEditorBlocks(select('core/editor').getBlocks());
-}); // Create a download link named after the first block we find 
-// (all blocks should be inculded in the file, but we need a name)
-
-var blockName = glitchBlocks[0].name;
-document.querySelector('#download-plugin').innerHTML = "<a href=\"/".concat(blockName, ".zip\">Download Block Plugin for WordPress</a>");
+render(_react.default.createElement(App, null), document.querySelector('#editor'));
 },{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./block.js":"block.js"}],"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

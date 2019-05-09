@@ -32,16 +32,29 @@ const { withSelect, withDispatch, dispatch, select } = wp.data;
  */
 import './block.js';
 
+// Add all the core blocks. The custom blocks are registered in src/blocks.js
+registerCoreBlocks();
+
+// Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
+// Presumably, this is the the block we are working on
+const glitchBlocks = getBlockTypes()
+	.filter( b => !b.name.startsWith( 'core/' ) )
+	.filter( b => !b.name.startsWith( 'core-embed/' ) );
+
+// Add our custom block(s) to the editor, so they show on reload
+// TODO persist editor state, only do this when there's no editor state persisted
+glitchBlocks.forEach( b => {
+	const block = createBlock( b.name, {} );
+	dispatch( 'core/editor' ).insertBlock( block );
+	dispatch( 'core/editor' ).resetEditorBlocks( select( 'core/editor' ).getBlocks() );
+} );
+
 /**
  * Create a basic block editor
  */
 const Editor = ( { blocks, resetEditorBlocks } ) => {
   console.log( 'Editor created' );
   
-  const glitchBlocks = getBlockTypes()
-	  .filter( b => !b.name.startsWith( 'core/' ) )
-  	.filter( b => !b.name.startsWith( 'core-embed/' ) );
-
   let html = blocks ? serialize( blocks ) : '';
 
 	const onChange = ( newBlocks ) => {
@@ -84,6 +97,9 @@ const Editor = ( { blocks, resetEditorBlocks } ) => {
     </h1>
 		<div className="playground__preview" key={html} dangerouslySetInnerHTML={ preview( blocks ) }></div>
     <h1>Download Block Plugin for WordPress</h1>
+    {/* Create a download link named after the first block we find */ }
+    {/* (all blocks should be inculded in the file, but we need a name) */}
+    <a href={'/' + glitchBlocks[ 0 ].name + '.zip'}>Download Block Plugin for WordPress</a>
 	</Fragment>
 };
 
@@ -107,30 +123,8 @@ const App = compose(
 	} )
 )( Editor );
 
-// Add all the core blocks. The custom blocks are registered in src/blocks.js
-registerCoreBlocks();
-
 // Render the editor on the page
 render(
 	<App />,
 	document.querySelector( '#editor' )
 );
-
-// Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
-// Presumably, this is the the block we are working on
-const glitchBlocks = getBlockTypes()
-	.filter( b => !b.name.startsWith( 'core/' ) )
-	.filter( b => !b.name.startsWith( 'core-embed/' ) );
-
-// Add our custom block(s) to the editor, so they show on reload
-// TODO persist editor state, only do this when there's no editor state persisted
-glitchBlocks.forEach( b => {
-	const block = createBlock( b.name, {} );
-	dispatch( 'core/editor' ).insertBlock( block );
-	dispatch( 'core/editor' ).resetEditorBlocks( select( 'core/editor' ).getBlocks() );
-} );
-
-// Create a download link named after the first block we find 
-// (all blocks should be inculded in the file, but we need a name)
-const blockName = glitchBlocks[ 0 ].name;
-document.querySelector( '#download-plugin' ).innerHTML = `<a href="/${ blockName }.zip">Download Block Plugin for WordPress</a>`;
