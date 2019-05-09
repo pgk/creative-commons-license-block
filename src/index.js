@@ -52,10 +52,17 @@ glitchBlocks.forEach( b => {
 /**
  *
  */
-const Preview = ( { previewHtml } ) => {
-  console.log( 'Preview', previewHtml );
-  const preview = { __html: previewHtml };
-  return <div className="playground__preview" dangerouslySetInnerHTML={ preview }></div>
+class Preview extends React.Component {
+  constructor( props ) {
+    super( props );
+    this.state = { previewHtml: props.previewHtml };
+  }
+  
+  render() {
+    console.log( 'Preview', this.state.previewHtml );
+    const preview = { __html: this.state.previewHtml };
+    return <div className="playground__preview" dangerouslySetInnerHTML={ preview }></div>
+  }
 }
 
 /**

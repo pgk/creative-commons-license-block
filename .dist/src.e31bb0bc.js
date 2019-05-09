@@ -25916,15 +25916,23 @@ require("./block.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* global wp */
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-/**
- * This is the glue that takes your custom block and displays it on the page
- *
- * It creates a block editor, adds your custom block, and then renders
- * the output. Think of this as a little Gutenberg without WordPress
- */
-// Seem to need these for Parcel to render the JSX
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 /**
  * Import the things we need from Gutenberg on the window.wp object
@@ -25974,25 +25982,47 @@ glitchBlocks.forEach(function (b) {
  *
  */
 
-var Preview = function Preview(_ref) {
-  var previewHtml = _ref.previewHtml;
-  console.log('Preview', previewHtml);
-  var preview = {
-    __html: previewHtml
-  };
-  return _react.default.createElement("div", {
-    className: "playground__preview",
-    dangerouslySetInnerHTML: preview
-  });
-};
+var Preview =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Preview, _React$Component);
+
+  function Preview(props) {
+    var _this;
+
+    _classCallCheck(this, Preview);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Preview).call(this, props));
+    _this.state = {
+      previewHtml: props.previewHtml
+    };
+    return _this;
+  }
+
+  _createClass(Preview, [{
+    key: "render",
+    value: function render() {
+      console.log('Preview', this.state.previewHtml);
+      var preview = {
+        __html: this.state.previewHtml
+      };
+      return _react.default.createElement("div", {
+        className: "playground__preview",
+        dangerouslySetInnerHTML: preview
+      });
+    }
+  }]);
+
+  return Preview;
+}(_react.default.Component);
 /**
  * Create a basic block editor
  */
 
 
-var Editor = function Editor(_ref2) {
-  var blocks = _ref2.blocks,
-      resetEditorBlocks = _ref2.resetEditorBlocks;
+var Editor = function Editor(_ref) {
+  var blocks = _ref.blocks,
+      resetEditorBlocks = _ref.resetEditorBlocks;
   var newBlocks = blocks;
   var previewHtml = blocks ? serialize(blocks) : NaN;
 
