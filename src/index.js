@@ -27,23 +27,21 @@ const { Popover } = wp.components;
 const { registerCoreBlocks } = wp.blockLibrary;
 const { withSelect, withDispatch, dispatch, select } = wp.data;
 
+const BLOCK_PERSIST = 'BLOCK_PERSIST';
+
+
 // Add all the core blocks. The custom blocks are registered in src/blocks.js
 registerCoreBlocks();
 
 // Import our block! We keep it separate so it can be downloaded as a plugin without this custom loader
 import './block.js';
 
-
-const BLOCK_PERSIST = 'BLOCK_PERSIST';
-
 // Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
 // Presumably, this is the the block we are working on
+// Please don't use a core namespace for your block
 const glitchBlocks = getBlockTypes()
 	.filter( b => !b.name.startsWith( 'core/' ) )
 	.filter( b => !b.name.startsWith( 'core-embed/' ) );
-
-// Add our custom block(s) to the editor, so they show on reload
-// TODO persist editor state, only do this when there's no editor state persisted
 
 /**
  * Create a basic block editor
@@ -112,7 +110,7 @@ class Editor extends React.Component {
       <a href={'/' + glitchBlocks[ 0 ].name + '.zip'}>Download Block Plugin for WordPress</a>
       
       <h1>Reset Editor</h1>
-      <a onClick={ this.clearPersistance }>Clear Editor</a>
+      {/* <a onClick={ this.clearPersistance }>Clear Editor</a> */}
     </Fragment>
   }
 };

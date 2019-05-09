@@ -25958,20 +25958,19 @@ var _wp$data = wp.data,
     withSelect = _wp$data.withSelect,
     withDispatch = _wp$data.withDispatch,
     dispatch = _wp$data.dispatch,
-    select = _wp$data.select; // Add all the core blocks. The custom blocks are registered in src/blocks.js
+    select = _wp$data.select;
+var BLOCK_PERSIST = 'BLOCK_PERSIST'; // Add all the core blocks. The custom blocks are registered in src/blocks.js
 
 registerCoreBlocks(); // Import our block! We keep it separate so it can be downloaded as a plugin without this custom loader
 
-var BLOCK_PERSIST = 'BLOCK_PERSIST'; // Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
+// Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
 // Presumably, this is the the block we are working on
-
+// Please don't use a core namespace for your block
 var glitchBlocks = getBlockTypes().filter(function (b) {
   return !b.name.startsWith('core/');
 }).filter(function (b) {
   return !b.name.startsWith('core-embed/');
-}); // Add our custom block(s) to the editor, so they show on reload
-// TODO persist editor state, only do this when there's no editor state persisted
-
+});
 /**
  * Create a basic block editor
  */
@@ -26048,9 +26047,7 @@ function (_React$Component) {
         dangerouslySetInnerHTML: this.innerHtml(this.state.previewHtml)
       }), _react.default.createElement("h1", null, "Download Block Plugin for WordPress"), _react.default.createElement("a", {
         href: '/' + glitchBlocks[0].name + '.zip'
-      }, "Download Block Plugin for WordPress"), _react.default.createElement("h1", null, "Reset Editor"), _react.default.createElement("a", {
-        onClick: this.clearPersistance
-      }, "Clear Editor"));
+      }, "Download Block Plugin for WordPress"), _react.default.createElement("h1", null, "Reset Editor"));
     }
   }]);
 
