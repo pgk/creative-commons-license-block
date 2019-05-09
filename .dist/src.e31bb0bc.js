@@ -25979,77 +25979,71 @@ glitchBlocks.forEach(function (b) {
   dispatch('core/editor').resetEditorBlocks(select('core/editor').getBlocks());
 });
 /**
- *
+ * Create a basic block editor
  */
 
-var Preview =
+var Editor =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(Preview, _React$Component);
+  _inherits(Editor, _React$Component);
 
-  function Preview(props) {
+  function Editor(props) {
     var _this;
 
-    _classCallCheck(this, Preview);
+    _classCallCheck(this, Editor);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Preview).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Editor).call(this, props));
     _this.state = {
-      previewHtml: props.previewHtml
+      previewHtml: serialize(props.blocks)
     };
     return _this;
   }
 
-  _createClass(Preview, [{
+  _createClass(Editor, [{
+    key: "preview",
+    value: function preview(__html) {
+      return {
+        __html: __html
+      };
+    }
+  }, {
     key: "render",
     value: function render() {
-      console.log('Preview', this.state.previewHtml);
-      var preview = {
-        __html: this.state.previewHtml
+      var _this2 = this;
+
+      var onChange = function onChange(newBlocks) {
+        _this2.props.resetEditorBlocks();
+
+        _this2.setState({
+          previewHtml: serialize(newBlocks)
+        });
       };
-      return _react.default.createElement("div", {
+
+      return _react.default.createElement(Fragment, null, _react.default.createElement("h1", {
+        title: "This is what you'll see in Gutenberg"
+      }, "Editor"), _react.default.createElement("div", {
+        className: "playground__body"
+      }, _react.default.createElement(BlockEditorProvider, {
+        value: this.props.blocks,
+        onInput: onChange,
+        onChange: onChange
+      }, _react.default.createElement("div", {
+        className: "editor-styles-wrapper"
+      }, _react.default.createElement(WritingFlow, null, _react.default.createElement(ObserveTyping, null, _react.default.createElement(BlockList, null)))), _react.default.createElement(Popover.Slot, null))), _react.default.createElement("h1", {
+        title: "This is what you'll see when published"
+      }, "Published"), _react.default.createElement("div", {
         className: "playground__preview",
-        dangerouslySetInnerHTML: preview
-      });
+        dangerouslySetInnerHTML: this.preview(this.state.previewHtml)
+      }), _react.default.createElement("h1", null, "Download Block Plugin for WordPress"), _react.default.createElement("a", {
+        href: '/' + glitchBlocks[0].name + '.zip'
+      }, "Download Block Plugin for WordPress"));
     }
   }]);
 
-  return Preview;
+  return Editor;
 }(_react.default.Component);
-/**
- * Create a basic block editor
- */
 
-
-var Editor = function Editor(_ref) {
-  var blocks = _ref.blocks,
-      resetEditorBlocks = _ref.resetEditorBlocks;
-  var newBlocks = blocks;
-  var previewHtml = blocks ? serialize(blocks) : NaN;
-
-  var onChange = function onChange(newBlocks) {
-    resetEditorBlocks();
-    previewHtml = serialize(newBlocks);
-    console.log('onChange', previewHtml);
-  };
-
-  return _react.default.createElement(Fragment, null, _react.default.createElement("h1", {
-    title: "This is what you'll see in Gutenberg"
-  }, "Editor"), _react.default.createElement("div", {
-    className: "playground__body"
-  }, _react.default.createElement(BlockEditorProvider, {
-    value: blocks,
-    onInput: onChange,
-    onChange: onChange
-  }, _react.default.createElement("div", {
-    className: "editor-styles-wrapper"
-  }, _react.default.createElement(WritingFlow, null, _react.default.createElement(ObserveTyping, null, _react.default.createElement(BlockList, null)))), _react.default.createElement(Popover.Slot, null))), _react.default.createElement("h1", {
-    title: "This is what you'll see when published"
-  }, "Published"), _react.default.createElement(Preview, {
-    previewHtml: previewHtml
-  }), _react.default.createElement("h1", null, "Download Block Plugin for WordPress"), _react.default.createElement("a", {
-    href: '/' + glitchBlocks[0].name + '.zip'
-  }, "Download Block Plugin for WordPress"));
-};
+;
 /**
  * This connects the Editor to our data layer's select and dispatch
  * 
@@ -26057,7 +26051,6 @@ var Editor = function Editor(_ref) {
  * wp.data's select and dispatch, so when we call getEditorBlocks()
  * it can select from wp.data's store
  */
-
 
 var App = compose(withSelect(function (select) {
   var _select = select('core/editor'),

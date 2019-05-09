@@ -50,66 +50,57 @@ glitchBlocks.forEach( b => {
 } );
 
 /**
- *
- */
-class Preview extends React.Component {
-  constructor( props ) {
-    super( props );
-    this.state = { previewHtml: props.previewHtml };
-  }
-  
-  render() {
-    console.log( 'Preview', this.state.previewHtml );
-    const preview = { __html: this.state.previewHtml };
-    return <div className="playground__preview" dangerouslySetInnerHTML={ preview }></div>
-  }
-}
-
-/**
  * Create a basic block editor
  */
-const Editor = ( { blocks, resetEditorBlocks } ) => {
-  let newBlocks = blocks;
-  let previewHtml = blocks ? serialize( blocks ) : NaN;
+class Editor extends React.Component {
+  constructor( props ) {
+    super( props );
+    this.state = { previewHtml: serialize( props.blocks ) };
+  }
+  
+  preview( __html ) {
+    return { __html }
+  }
+                 
+  render() {
+    const onChange = ( newBlocks ) => {
+      this.props.resetEditorBlocks();
+      this.setState( { previewHtml: serialize( newBlocks ) } );
+    }
 
-	const onChange = ( newBlocks ) => {
-		resetEditorBlocks();
-    previewHtml = serialize( newBlocks );
-    console.log( 'onChange', previewHtml );
-	}
+    return <Fragment>
+      <h1 title="This is what you'll see in Gutenberg">
+        Editor
+      </h1>
 
-	return <Fragment>
-		<h1 title="This is what you'll see in Gutenberg">
-			Editor
-    </h1>
+      <div className="playground__body">
+        <BlockEditorProvider
+          value={this.props.blocks}
+          onInput={onChange}
+          onChange={onChange}
+        >
+          <div className="editor-styles-wrapper">
+            <WritingFlow>
+              <ObserveTyping>
+                <BlockList />
+              </ObserveTyping>
+            </WritingFlow>
+          </div>
+          <Popover.Slot />
+        </BlockEditorProvider>
+      </div>
 
-		<div className="playground__body">
-			<BlockEditorProvider
-				value={blocks}
-				onInput={onChange}
-				onChange={onChange}
-			>
-				<div className="editor-styles-wrapper">
-					<WritingFlow>
-						<ObserveTyping>
-							<BlockList />
-						</ObserveTyping>
-					</WritingFlow>
-				</div>
-				<Popover.Slot />
-			</BlockEditorProvider>
-		</div>
+      <h1 title="This is what you'll see when published">
+        Published
+      </h1>
+      <div className="playground__preview" dangerouslySetInnerHTML={ this.preview( this.state.previewHtml ) }></div>
 
-		<h1 title="This is what you'll see when published">
-			Published
-    </h1>
-    <Preview previewHtml={previewHtml}></Preview>
-    
-    <h1>Download Block Plugin for WordPress</h1>
-    {/* Create a download link named after the first block we find */ }
-    {/* (all blocks should be inculded in the file, but we need a name) */}
-    <a href={'/' + glitchBlocks[ 0 ].name + '.zip'}>Download Block Plugin for WordPress</a>
-	</Fragment>
+      <h1>Download Block Plugin for WordPress</h1>
+      {/* Create a download link named after the first block we find */ }
+      {/* (all blocks should be inculded in the file, but we need a name) */}
+      <a href={'/' + glitchBlocks[ 0 ].name + '.zip'}>Download Block Plugin for WordPress</a>
+    </Fragment>
+  }
 };
 
 /**
