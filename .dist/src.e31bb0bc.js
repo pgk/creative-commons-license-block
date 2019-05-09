@@ -25948,7 +25948,6 @@ var _wp$blockEditor = wp.blockEditor,
     ObserveTyping = _wp$blockEditor.ObserveTyping;
 var _wp$blocks = wp.blocks,
     createBlock = _wp$blocks.createBlock,
-    getBlockContent = _wp$blocks.getBlockContent,
     getBlockTypes = _wp$blocks.getBlockTypes,
     serialize = _wp$blocks.serialize,
     parse = _wp$blocks.parse;
@@ -25966,10 +25965,12 @@ registerCoreBlocks(); // Import our block! We keep it separate so it can be down
 // Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
 // Presumably, this is the the block we are working on
 // Please don't use a core namespace for your block
-var glitchBlocks = getBlockTypes().filter(function (b) {
-  return !b.name.startsWith('core/');
+var glitchBlocks = getBlockTypes().map(function (b) {
+  return b.name;
 }).filter(function (b) {
-  return !b.name.startsWith('core-embed/');
+  return !b.startsWith('core/');
+}).filter(function (b) {
+  return !b.startsWith('core-embed/');
 });
 /**
  * Create a basic block editor
@@ -25988,9 +25989,8 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Editor).call(this, props)); // If we don't have anything persisted in the editor, add our custom blocks
 
     if (props.blocks.length == 0) {
-      glitchBlocks.forEach(function (b) {
-        var block = createBlock(b.name, {});
-        dispatch('core/editor').insertBlock(block);
+      glitchBlocks.forEach(function (blockName) {
+        dispatch('core/editor').insertBlock(createBlock(blockName, {}));
       });
       dispatch('core/editor').resetEditorBlocks(select('core/editor').getBlocks());
     }

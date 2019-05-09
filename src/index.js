@@ -17,18 +17,17 @@ import ReactDOM from 'react-dom';
 const { compose } = wp.compose;
 const { render, Fragment } = wp.element;
 const {
-	BlockEditorProvider,
-	BlockList,
-	WritingFlow,
-	ObserveTyping,
+    BlockEditorProvider,
+    BlockList,
+    WritingFlow,
+    ObserveTyping,
 } = wp.blockEditor;
-const { createBlock, getBlockContent, getBlockTypes, serialize, parse } = wp.blocks;
+const { createBlock, getBlockTypes, serialize, parse } = wp.blocks;
 const { Popover } = wp.components;
 const { registerCoreBlocks } = wp.blockLibrary;
 const { withSelect, withDispatch, dispatch, select } = wp.data;
 
 const BLOCK_PERSIST = 'BLOCK_PERSIST';
-
 
 // Add all the core blocks. The custom blocks are registered in src/blocks.js
 registerCoreBlocks();
@@ -40,8 +39,9 @@ import './block.js';
 // Presumably, this is the the block we are working on
 // Please don't use a core namespace for your block
 const glitchBlocks = getBlockTypes()
-	.filter( b => !b.name.startsWith( 'core/' ) )
-	.filter( b => !b.name.startsWith( 'core-embed/' ) );
+  .map( b => b.name )
+    .filter( b => !b.startsWith( 'core/' ) )
+    .filter( b => !b.startsWith( 'core-embed/' ) )
 
 /**
  * Create a basic block editor
@@ -51,13 +51,13 @@ class Editor extends React.Component {
     super( props );
     // If we don't have anything persisted in the editor, add our custom blocks
     if ( props.blocks.length == 0 ) {
-      glitchBlocks.forEach( b => {
-        const block = createBlock( b.name, {} );
-        dispatch( 'core/editor' ).insertBlock( block );
+      glitchBlocks.forEach( blockName => {
+        dispatch( 'core/editor' ).insertBlock( createBlock( blockName, {} ) );
       } );
+      
       dispatch( 'core/editor' ).resetEditorBlocks( select( 'core/editor' ).getBlocks() );
-
     }
+    
     this.state = { previewHtml: serialize( props.blocks ) };
   }
   
@@ -123,20 +123,20 @@ class Editor extends React.Component {
  * it can select from wp.data's store
  */
 const App = compose(
-	withSelect( ( select ) => {
-		const { getEditorBlocks } = select( 'core/editor' );
+    withSelect( ( select ) => {
+        const { getEditorBlocks } = select( 'core/editor' );
     const persistedContent = localStorage.getItem( BLOCK_PERSIST );
     const blocks = persistedContent ? parse( persistedContent ) : getEditorBlocks();
-		return { blocks }
-	} ),
-	withDispatch( ( dispatch ) => {
-		const { resetEditorBlocks } = dispatch( 'core/editor' );
-		return { resetEditorBlocks };
-	} )
+        return { blocks }
+    } ),
+    withDispatch( ( dispatch ) => {
+        const { resetEditorBlocks } = dispatch( 'core/editor' );
+        return { resetEditorBlocks };
+    } )
 )( Editor );
 
 // Render the editor on the page
 render(
-	<App />,
-	document.querySelector( '#editor' )
+    <App />,
+    document.querySelector( '#editor' )
 );
