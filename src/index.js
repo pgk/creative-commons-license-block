@@ -58,7 +58,7 @@ class Editor extends React.Component {
   
   clearPersistance() {
     localStorage.removeItem( BLOCK_PERSIST );
-    this.props.trashPost();
+    this.props.removeBlocks( this.props.getBlocks().map( b => b.clientId ) )
     this.populateDefaultBlocks();
   }
   
@@ -109,11 +109,11 @@ class Editor extends React.Component {
 
       <h1>Download Block Plugin for WordPress</h1>
       {/* Create a download link named after the first block we find */ }
-      {/* (all blocks should be inculded in the file, but we need a name) */}
+      {/* all blocks should be inculded in the file, but we need a name */}
       <a href={'/' + this.props.defaultBlocks[ 0 ] + '.zip'}>Download Block Plugin for WordPress</a>
       
       <h1>Reset Editor</h1>
-      <a onClick={ this.clearPersistance }>Clear Editor</a>
+      <button onClick={ this.clearPersistance }>Clear Editor</button>
     </Fragment>
   }
 };
@@ -133,8 +133,8 @@ const App = compose(
       return { blocks, getBlocks }
     } ),
     withDispatch( ( dispatch ) => {
-        const { resetEditorBlocks, insertBlock, trashPost } = dispatch( 'core/editor' );
-        return { resetEditorBlocks, insertBlock, trashPost };
+        const { resetEditorBlocks, insertBlock, removeBlocks } = dispatch( 'core/editor' );
+        return { resetEditorBlocks, insertBlock, removeBlocks };
     } )
 )( Editor );
 

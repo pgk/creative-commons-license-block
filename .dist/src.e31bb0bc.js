@@ -25998,7 +25998,9 @@ function (_React$Component) {
     key: "clearPersistance",
     value: function clearPersistance() {
       localStorage.removeItem(BLOCK_PERSIST);
-      this.props.trashPost();
+      this.props.removeBlocks(this.props.getBlocks().map(function (b) {
+        return b.clientId;
+      }));
       this.populateDefaultBlocks();
     }
   }, {
@@ -26044,7 +26046,7 @@ function (_React$Component) {
         dangerouslySetInnerHTML: this.innerHtml(this.state.previewHtml)
       }), _react.default.createElement("h1", null, "Download Block Plugin for WordPress"), _react.default.createElement("a", {
         href: '/' + this.props.defaultBlocks[0] + '.zip'
-      }, "Download Block Plugin for WordPress"), _react.default.createElement("h1", null, "Reset Editor"), _react.default.createElement("a", {
+      }, "Download Block Plugin for WordPress"), _react.default.createElement("h1", null, "Reset Editor"), _react.default.createElement("button", {
         onClick: this.clearPersistance
       }, "Clear Editor"));
     }
@@ -26077,12 +26079,12 @@ var App = compose(withSelect(function (select) {
   var _dispatch = dispatch('core/editor'),
       resetEditorBlocks = _dispatch.resetEditorBlocks,
       insertBlock = _dispatch.insertBlock,
-      trashPost = _dispatch.trashPost;
+      removeBlocks = _dispatch.removeBlocks;
 
   return {
     resetEditorBlocks: resetEditorBlocks,
     insertBlock: insertBlock,
-    trashPost: trashPost
+    removeBlocks: removeBlocks
   };
 }))(Editor); // Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
 // Presumably, this is the the block we are working on
