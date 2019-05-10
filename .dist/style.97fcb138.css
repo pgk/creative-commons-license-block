@@ -1,15 +1,10 @@
 /**
- * Put page-level and published block styles here
- * TODO split page-level and published styles into 2 files
+ * Put published block styles here
  */
-body {
-  padding: 32px;
-}
-
-.playground__body {
-  border-bottom: 1px solid #e5e5e5;
-}
-
+/**
+ * Styles for both the block editor and the published view
+ * This is included by editor.scss and style.scss
+ */
 .wp-block-block-kit-block {
   background: maroon;
   border: 0.2rem solid black;

@@ -1,0 +1,13 @@
+/*
+ * Styles for the Glitch editor page
+ * These will not be included in the downloadable plugin
+ */
+body {
+  padding: 32px;
+}
+
+.playground__body {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/*# sourceMappingURL=/src.80ee2152.css.map */

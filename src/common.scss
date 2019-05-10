@@ -1,22 +1,8 @@
+/**
+ * Styles for both the block editor and the published view
+ * This is included by editor.scss and style.scss
+ */
 $blue: rgb(0, 128, 0);
 $green: rgba(128, 128, 0, 0.25);
 $red: rgb(128, 0, 0);
 $black: rgb(0, 0, 0);
-
-body {
-  // background: url(//lorempixel.com/1920/1920/animals/) no-repeat center center fixed; 
-  // background-size: cover;
-  padding: 32px;
-}
-
-img {
-  // opacity: 0.75;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  // color: white;
-}
-
-.playground__body {
-  border-bottom: 1px solid #e5e5e5;
-}
