@@ -69,7 +69,7 @@ registerBlockType( 'gutenberg-block-kit/remix', {
      */
     save: function ( { attributes } ) {
         return (
-            <div {..attributes}>
+            <div {...attributes}>
                 <p>This is from the block's <tt>save()</tt> method, and shows what the block will look like when rendered.</p>
             </div>
         );

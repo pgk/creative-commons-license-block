@@ -25902,7 +25902,7 @@ registerBlockType('gutenberg-block-kit/remix', {
    */
   save: function save(_ref2) {
     var attributes = _ref2.attributes;
-    return _react.default.createElement("div", null, _react.default.createElement("p", null, "This is from the block's ", _react.default.createElement("tt", null, "save()"), " method, and shows what the block will look like when rendered."));
+    return _react.default.createElement("div", attributes, _react.default.createElement("p", null, "This is from the block's ", _react.default.createElement("tt", null, "save()"), " method, and shows what the block will look like when rendered."));
   }
 });
 },{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./style.scss":"style.scss","./editor.scss":"editor.scss"}],"index.js":[function(require,module,exports) {
