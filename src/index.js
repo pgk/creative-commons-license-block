@@ -36,7 +36,7 @@ const BLOCK_PERSIST = 'BLOCK_PERSIST';
 registerCoreBlocks();
 
 /**
- * Create a basic block editor
+ * Create a block editor
  */
 class Editor extends React.Component {
   constructor( props ) {
@@ -51,7 +51,7 @@ class Editor extends React.Component {
       props.resetEditorBlocks( props.getBlocks() );
     }
     
-    this.state = { previewHtml: serialize( props.blocks ) };
+    this.state = { previewHtml: serialize( props.getBlocks() ) };
     this.onChange = this.onChange.bind( this );
   }
   
@@ -101,7 +101,7 @@ class Editor extends React.Component {
       <h1>Download Block Plugin for WordPress</h1>
       {/* Create a download link named after the first block we find */ }
       {/* (all blocks should be inculded in the file, but we need a name) */}
-      <a href={'/' + glitchBlocks[ 0 ].name + '.zip'}>Download Block Plugin for WordPress</a>
+      <a href={'/' + this.props.defaultBlocks[ 0 ] + '.zip'}>Download Block Plugin for WordPress</a>
       
       <h1>Reset Editor</h1>
       {/* <a onClick={ this.clearPersistance }>Clear Editor</a> */}

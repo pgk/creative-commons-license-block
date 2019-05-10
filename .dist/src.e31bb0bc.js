@@ -25960,7 +25960,7 @@ var BLOCK_PERSIST = 'BLOCK_PERSIST'; // Add all the core blocks. The custom bloc
 
 registerCoreBlocks();
 /**
- * Create a basic block editor
+ * Create a block editor
  */
 
 var Editor =
@@ -25983,7 +25983,7 @@ function (_React$Component) {
     }
 
     _this.state = {
-      previewHtml: serialize(props.blocks)
+      previewHtml: serialize(props.getBlocks())
     };
     _this.onChange = _this.onChange.bind(_assertThisInitialized(_this));
     return _this;
@@ -26030,7 +26030,7 @@ function (_React$Component) {
         className: "playground__preview",
         dangerouslySetInnerHTML: this.innerHtml(this.state.previewHtml)
       }), _react.default.createElement("h1", null, "Download Block Plugin for WordPress"), _react.default.createElement("a", {
-        href: '/' + glitchBlocks[0].name + '.zip'
+        href: '/' + this.props.defaultBlocks[0] + '.zip'
       }, "Download Block Plugin for WordPress"), _react.default.createElement("h1", null, "Reset Editor"));
     }
   }]);
