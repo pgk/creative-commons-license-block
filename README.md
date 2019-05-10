@@ -1,21 +1,18 @@
 Gutenberg Block Kit
 ===================
 
-This is a minimal Gutenberg block development environment for Glitch. We 
-want to get you up and running as fast as possible so that you can turn
-your idea into a block.
+The fastest way to get started building blocks for the Gutenberg block editor. 
+Develop your block, see live updates as you code, then download your block as 
+a WordPress plugin.
 
 Getting Started
 ---------------
 
-You will want to [remix this project](https://glitch.com/edit/#!/remix/gutenberg-block-kit)
-to get an editable version of the code here. After you click the [remix
-this project](https://glitch.com/edit/#!/remix/gutenberg-block-kit) link, 
-use the Show link at the top of the editor to see your new block.
+[Remix this project](https://glitch.com/edit/#!/remix/gutenberg-block-kit)
+to get an editable version of the code here.
 
-Now you click on `src/block.js` on the file list on the left side, and 
-start making changes. You should quickly see your changes as the editor
-window updates.
+Open `src/block.js` from the file list on the left side, and start making 
+changes. Your changes will show up on your project site as you make them.
 
 Going Further
 -------------

@@ -51,7 +51,7 @@ registerBlockType( 'gutenberg-block-kit/remix', {
             <div className={className}>
                 <p>
                     Welcome to the Gutenberg block kit! This is a tool to build blocks for the Gutenberg 
-                    block editor. To get started building your own block => 
+                    block editor. To get started building your own block  
                     <a href="https://glitch.com/~gutenberg-block-kit">visit the project page to 
                     read more</a> or go ahead and remix:
                 </p>
@@ -69,7 +69,7 @@ registerBlockType( 'gutenberg-block-kit/remix', {
      */
     save: function ( { attributes } ) {
         return (
-            <div>
+            <div {..attributes}>
                 <p>This is from the block's <tt>save()</tt> method, and shows what the block will look like when rendered.</p>
             </div>
         );

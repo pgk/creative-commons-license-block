@@ -25883,7 +25883,7 @@ registerBlockType('gutenberg-block-kit/remix', {
         setAttributes = _ref.setAttributes;
     return _react.default.createElement("div", {
       className: className
-    }, _react.default.createElement("p", null, "Welcome to the Gutenberg block kit! This is a tool to build blocks for the Gutenberg block editor. To get started building your own block =>", _react.default.createElement("a", {
+    }, _react.default.createElement("p", null, "Welcome to the Gutenberg block kit! This is a tool to build blocks for the Gutenberg block editor. To get started building your own block", _react.default.createElement("a", {
       href: "https://glitch.com/~gutenberg-block-kit"
     }, "visit the project page to read more"), " or go ahead and remix:"), _react.default.createElement("p", null, _react.default.createElement("a", {
       href: "https://glitch.com/edit/#!/remix/gutenberg-block-kit",
@@ -26129,7 +26129,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35487" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34233" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
