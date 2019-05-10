@@ -25976,16 +25976,14 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Editor).call(this, props)); // If we don't have anything persisted in the editor, add our custom blocks
 
     if (props.blocks.length === 0) {
-      props.defaultBlocks.forEach(function (blockName) {
-        props.insertBlock(createBlock(blockName, {}));
-      });
-      props.resetEditorBlocks(props.getBlocks());
+      _this.populateDefaultBlocks();
     }
 
     _this.state = {
       previewHtml: serialize(props.getBlocks())
     };
     _this.onChange = _this.onChange.bind(_assertThisInitialized(_this));
+    _this.clearPersistance = _this.clearPersistance.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -26000,6 +25998,21 @@ function (_React$Component) {
     key: "clearPersistance",
     value: function clearPersistance() {
       localStorage.removeItem(BLOCK_PERSIST);
+      this.props.trashPost();
+      this.populateDefaultBlocks();
+    }
+  }, {
+    key: "populateDefaultBlocks",
+    value: function populateDefaultBlocks() {
+      var _this$props = this.props,
+          defaultBlocks = _this$props.defaultBlocks,
+          insertBlock = _this$props.insertBlock,
+          resetEditorBlocks = _this$props.resetEditorBlocks,
+          getBlocks = _this$props.getBlocks;
+      defaultBlocks.forEach(function (blockName) {
+        insertBlock(createBlock(blockName, {}));
+      });
+      resetEditorBlocks(getBlocks());
     }
   }, {
     key: "onChange",
@@ -26031,7 +26044,9 @@ function (_React$Component) {
         dangerouslySetInnerHTML: this.innerHtml(this.state.previewHtml)
       }), _react.default.createElement("h1", null, "Download Block Plugin for WordPress"), _react.default.createElement("a", {
         href: '/' + this.props.defaultBlocks[0] + '.zip'
-      }, "Download Block Plugin for WordPress"), _react.default.createElement("h1", null, "Reset Editor"));
+      }, "Download Block Plugin for WordPress"), _react.default.createElement("h1", null, "Reset Editor"), _react.default.createElement("a", {
+        onClick: this.clearPersistance
+      }, "Clear Editor"));
     }
   }]);
 
@@ -26061,11 +26076,13 @@ var App = compose(withSelect(function (select) {
 }), withDispatch(function (dispatch) {
   var _dispatch = dispatch('core/editor'),
       resetEditorBlocks = _dispatch.resetEditorBlocks,
-      insertBlock = _dispatch.insertBlock;
+      insertBlock = _dispatch.insertBlock,
+      trashPost = _dispatch.trashPost;
 
   return {
     resetEditorBlocks: resetEditorBlocks,
-    insertBlock: insertBlock
+    insertBlock: insertBlock,
+    trashPost: trashPost
   };
 }))(Editor); // Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
 // Presumably, this is the the block we are working on
@@ -26110,7 +26127,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "32832" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45754" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

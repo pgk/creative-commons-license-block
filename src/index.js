@@ -44,15 +44,12 @@ class Editor extends React.Component {
     
     // If we don't have anything persisted in the editor, add our custom blocks
     if ( props.blocks.length === 0 ) {
-      props.defaultBlocks.forEach( blockName => {
-        props.insertBlock( createBlock( blockName, {} ) );
-      } );
-      
-      props.resetEditorBlocks( props.getBlocks() );
+      this.populateDefaultBlocks();
     }
     
     this.state = { previewHtml: serialize( props.getBlocks() ) };
     this.onChange = this.onChange.bind( this );
+    this.clearPersistance = this.clearPersistance.bind( this );
   }
   
   innerHtml( __html ) {
@@ -61,6 +58,18 @@ class Editor extends React.Component {
   
   clearPersistance() {
     localStorage.removeItem( BLOCK_PERSIST );
+    this.props.trashPost();
+    this.populateDefaultBlocks();
+  }
+  
+  populateDefaultBlocks() {
+    const { defaultBlocks, insertBlock, resetEditorBlocks, getBlocks } = this.props;
+
+    defaultBlocks.forEach( blockName => {
+      insertBlock( createBlock( blockName, {} ) );
+    } );
+
+    resetEditorBlocks( getBlocks() );
   }
   
   onChange( newBlocks ) {
@@ -104,7 +113,7 @@ class Editor extends React.Component {
       <a href={'/' + this.props.defaultBlocks[ 0 ] + '.zip'}>Download Block Plugin for WordPress</a>
       
       <h1>Reset Editor</h1>
-      {/* <a onClick={ this.clearPersistance }>Clear Editor</a> */}
+      <a onClick={ this.clearPersistance }>Clear Editor</a>
     </Fragment>
   }
 };
@@ -124,8 +133,8 @@ const App = compose(
       return { blocks, getBlocks }
     } ),
     withDispatch( ( dispatch ) => {
-        const { resetEditorBlocks, insertBlock } = dispatch( 'core/editor' );
-        return { resetEditorBlocks, insertBlock };
+        const { resetEditorBlocks, insertBlock, trashPost } = dispatch( 'core/editor' );
+        return { resetEditorBlocks, insertBlock, trashPost };
     } )
 )( Editor );
 
