@@ -25955,16 +25955,13 @@ var Popover = wp.components.Popover;
 var registerCoreBlocks = wp.blockLibrary.registerCoreBlocks;
 var _wp$data = wp.data,
     withSelect = _wp$data.withSelect,
-    withDispatch = _wp$data.withDispatch,
-    dispatch = _wp$data.dispatch,
-    select = _wp$data.select;
+    withDispatch = _wp$data.withDispatch;
 var BLOCK_PERSIST = 'BLOCK_PERSIST'; // Add all the core blocks. The custom blocks are registered in src/blocks.js
 
-registerCoreBlocks(); // Import our block! We keep it separate so it can be downloaded as a plugin without this custom loader
-
-// Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
+registerCoreBlocks(); // Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
 // Presumably, this is the the block we are working on
 // Please don't use a core namespace for your block
+
 var glitchBlocks = getBlockTypes().map(function (b) {
   return b.name;
 }).filter(function (b) {
@@ -25990,9 +25987,9 @@ function (_React$Component) {
 
     if (props.blocks.length == 0) {
       glitchBlocks.forEach(function (blockName) {
-        dispatch('core/editor').insertBlock(createBlock(blockName, {}));
+        props.insertBlock(createBlock(blockName, {}));
       });
-      dispatch('core/editor').resetEditorBlocks(select('core/editor').getBlocks());
+      props.resetEditorBlocks(props.getBlocks());
     }
 
     _this.state = {
@@ -26065,19 +26062,23 @@ function (_React$Component) {
 
 var App = compose(withSelect(function (select) {
   var _select = select('core/editor'),
-      getEditorBlocks = _select.getEditorBlocks;
+      getEditorBlocks = _select.getEditorBlocks,
+      getBlocks = _select.getBlocks;
 
   var persistedContent = localStorage.getItem(BLOCK_PERSIST);
   var blocks = persistedContent ? parse(persistedContent) : getEditorBlocks();
   return {
-    blocks: blocks
+    blocks: blocks,
+    getBlocks: getBlocks
   };
 }), withDispatch(function (dispatch) {
   var _dispatch = dispatch('core/editor'),
-      resetEditorBlocks = _dispatch.resetEditorBlocks;
+      resetEditorBlocks = _dispatch.resetEditorBlocks,
+      insertBlock = _dispatch.insertBlock;
 
   return {
-    resetEditorBlocks: resetEditorBlocks
+    resetEditorBlocks: resetEditorBlocks,
+    insertBlock: insertBlock
   };
 }))(Editor); // Render the editor on the page
 
