@@ -25926,9 +25926,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -25958,17 +25958,7 @@ var _wp$data = wp.data,
     withDispatch = _wp$data.withDispatch;
 var BLOCK_PERSIST = 'BLOCK_PERSIST'; // Add all the core blocks. The custom blocks are registered in src/blocks.js
 
-registerCoreBlocks(); // Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
-// Presumably, this is the the block we are working on
-// Please don't use a core namespace for your block
-
-var glitchBlocks = getBlockTypes().map(function (b) {
-  return b.name;
-}).filter(function (b) {
-  return !b.startsWith('core/');
-}).filter(function (b) {
-  return !b.startsWith('core-embed/');
-});
+registerCoreBlocks();
 /**
  * Create a basic block editor
  */
@@ -25985,8 +25975,8 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Editor).call(this, props)); // If we don't have anything persisted in the editor, add our custom blocks
 
-    if (props.blocks.length == 0) {
-      glitchBlocks.forEach(function (blockName) {
+    if (props.blocks.length === 0) {
+      props.defaultBlocks.forEach(function (blockName) {
         props.insertBlock(createBlock(blockName, {}));
       });
       props.resetEditorBlocks(props.getBlocks());
@@ -25995,6 +25985,7 @@ function (_React$Component) {
     _this.state = {
       previewHtml: serialize(props.blocks)
     };
+    _this.onChange = _this.onChange.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -26011,30 +26002,26 @@ function (_React$Component) {
       localStorage.removeItem(BLOCK_PERSIST);
     }
   }, {
+    key: "onChange",
+    value: function onChange(newBlocks) {
+      this.props.resetEditorBlocks();
+      var previewHtml = serialize(newBlocks);
+      this.setState({
+        previewHtml: previewHtml
+      });
+      localStorage.setItem(BLOCK_PERSIST, previewHtml);
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-
-      var onChange = function onChange(newBlocks) {
-        _this2.props.resetEditorBlocks();
-
-        var previewHtml = serialize(newBlocks);
-
-        _this2.setState({
-          previewHtml: previewHtml
-        });
-
-        localStorage.setItem(BLOCK_PERSIST, previewHtml);
-      };
-
       return _react.default.createElement(Fragment, null, _react.default.createElement("h1", {
         title: "This is what you'll see in Gutenberg"
       }, "Editor"), _react.default.createElement("div", {
         className: "playground__body"
       }, _react.default.createElement(BlockEditorProvider, {
         value: this.props.blocks,
-        onInput: onChange,
-        onChange: onChange
+        onInput: this.onChange,
+        onChange: this.onChange
       }, _react.default.createElement("div", {
         className: "editor-styles-wrapper"
       }, _react.default.createElement(WritingFlow, null, _react.default.createElement(ObserveTyping, null, _react.default.createElement(BlockList, null)))), _react.default.createElement(Popover.Slot, null))), _react.default.createElement("h1", {
@@ -26080,9 +26067,21 @@ var App = compose(withSelect(function (select) {
     resetEditorBlocks: resetEditorBlocks,
     insertBlock: insertBlock
   };
-}))(Editor); // Render the editor on the page
+}))(Editor); // Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
+// Presumably, this is the the block we are working on
+// Please don't use a core namespace for your block
 
-render(_react.default.createElement(App, null), document.querySelector('#editor'));
+var glitchBlocks = getBlockTypes().map(function (b) {
+  return b.name;
+}).filter(function (b) {
+  return !b.startsWith('core/');
+}).filter(function (b) {
+  return !b.startsWith('core-embed/');
+}); // Render the editor on the page
+
+render(_react.default.createElement(App, {
+  defaultBlocks: glitchBlocks
+}), document.querySelector('#editor'));
 },{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./block.js":"block.js"}],"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

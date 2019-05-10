@@ -35,23 +35,16 @@ const BLOCK_PERSIST = 'BLOCK_PERSIST';
 // Add all the core blocks. The custom blocks are registered in src/blocks.js
 registerCoreBlocks();
 
-// Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
-// Presumably, this is the the block we are working on
-// Please don't use a core namespace for your block
-const glitchBlocks = getBlockTypes()
-  .map( b => b.name )
-    .filter( b => !b.startsWith( 'core/' ) )
-    .filter( b => !b.startsWith( 'core-embed/' ) )
-
 /**
  * Create a basic block editor
  */
 class Editor extends React.Component {
   constructor( props ) {
     super( props );
+    
     // If we don't have anything persisted in the editor, add our custom blocks
-    if ( props.blocks.length == 0 ) {
-      glitchBlocks.forEach( blockName => {
+    if ( props.blocks.length === 0 ) {
+      props.defaultBlocks.forEach( blockName => {
         props.insertBlock( createBlock( blockName, {} ) );
       } );
       
@@ -59,6 +52,7 @@ class Editor extends React.Component {
     }
     
     this.state = { previewHtml: serialize( props.blocks ) };
+    this.onChange = this.onChange.bind( this );
   }
   
   innerHtml( __html ) {
@@ -68,15 +62,15 @@ class Editor extends React.Component {
   clearPersistance() {
     localStorage.removeItem( BLOCK_PERSIST );
   }
+  
+  onChange( newBlocks ) {
+    this.props.resetEditorBlocks();
+    const previewHtml = serialize( newBlocks );
+    this.setState( { previewHtml } );
+    localStorage.setItem( BLOCK_PERSIST, previewHtml ); 
+  }
                  
   render() {
-    const onChange = ( newBlocks ) => {
-      this.props.resetEditorBlocks();
-      const previewHtml = serialize( newBlocks );
-      this.setState( { previewHtml } );
-      localStorage.setItem( BLOCK_PERSIST, previewHtml ); 
-    }
-
     return <Fragment>
       <h1 title="This is what you'll see in Gutenberg">
         Editor
@@ -85,8 +79,8 @@ class Editor extends React.Component {
       <div className="playground__body">
         <BlockEditorProvider
           value={this.props.blocks}
-          onInput={onChange}
-          onChange={onChange}
+          onInput={this.onChange}
+          onChange={this.onChange}
         >
           <div className="editor-styles-wrapper">
             <WritingFlow>
@@ -135,8 +129,16 @@ const App = compose(
     } )
 )( Editor );
 
+// Get a list of blocks whose names do not start with "core" (core/, core-embed/…)
+// Presumably, this is the the block we are working on
+// Please don't use a core namespace for your block
+const glitchBlocks = getBlockTypes()
+  .map( b => b.name )
+  .filter( b => !b.startsWith( 'core/' ) )
+  .filter( b => !b.startsWith( 'core-embed/' ) )
+
 // Render the editor on the page
 render(
-    <App />,
+    <App defaultBlocks={ glitchBlocks } />,
     document.querySelector( '#editor' )
 );
