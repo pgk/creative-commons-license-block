@@ -12,13 +12,13 @@
  *  1. Check out Gutenberg locally from https://github.com/wordpress/gutenberg
  *  2. Add/remove any packages changed below
  *  3. `npm install`
- *  4. Place this file in the gutenberg directory
- *  5. Run this command: `$(npm bin)/parcel build gutenberg.js -d dest/`
- *  6. Upload the files in dest/ to the Glitch assets 
+ *  4. Place this file in the gutenberg root directory (same as gutenberg.php)
+ *  5. Run this command: `$(npm bin)/parcel build gutenberg.js -d dist/`
+ *  6. Upload the files in dist/ to the Glitch assets
  *     6a. You should probably update the .js and .css files' sourcemaps with the CDN URLs
  *  7. Update src/index.html with the new CDN URLs
  *
- * Theoretcially, this _could_ be built on Glitch, but not all packages are currently 
+ * Theoretcially, this _could_ be built on Glitch, but not all packages are currently
  * published to npm and it exceeds the resource limits in tests.
  */
 
@@ -26,6 +26,7 @@
  * External dependencies
  */
 import '@babel/polyfill';
+import './playground/src/style.scss'
 
 /**
  * WordPress dependencies
