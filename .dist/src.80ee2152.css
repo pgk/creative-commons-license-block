@@ -6,6 +6,12 @@
  * Styles for both the block editor and the published view
  * This is included by editor.scss and style.scss
  */
+html,
+body,
+#editor {
+  height: 100%;
+}
+
 body {
   padding: 0;
 }
@@ -16,9 +22,21 @@ section {
 }
 
 @media only screen and (min-width: 1280px) {
-  section.playground {
+  .playground {
+    overflow: hidden;
+    border-bottom: 1px solid #e5e5e5;
+    height: 80%;
+  }
+
+  .playground section {
     float: left;
     width: 50%;
+    border-bottom: none;
+    height: 100%;
+    overflow: auto;
+  }
+  .playground section:last-child {
+    border-left: 1px solid #e5e5e5;
   }
 }
 

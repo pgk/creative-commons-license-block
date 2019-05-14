@@ -5,16 +5,14 @@
 
 @import "common.scss";
 
+html,
+body,
+#editor {
+  height: 100%;
+}
+
 body {
   padding: 0;
-}
-
-img {
-  // opacity: 0.75;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  // color: white;
 }
 
 section {
@@ -24,9 +22,21 @@ section {
 
 @media only screen and ( min-width: 1280px ) {
   
-  section.playground {
+  .playground {
+    overflow: hidden;
+    border-bottom: 1px solid $gray;
+    height: 80%;
+  }
+  
+  .playground section {
     float: left;
     width: 50%;
+    border-bottom: none;
+    height: 100%;
+    overflow: auto;
+    
+    &:last-child {
+      border-left: 1px solid $gray;
+    }
   }
-	
 }

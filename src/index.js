@@ -111,7 +111,8 @@ class Editor extends React.Component {
           </h1>
           <div className="playground__preview" dangerouslySetInnerHTML={ this.innerHtml( this.state.previewHtml ) }></div>
         </section>
-    </div>
+      </div>
+  
       <section>
         <h1>Download Block Plugin for WordPress</h1>
         {/* Create a download link named after the first block we find */ }
