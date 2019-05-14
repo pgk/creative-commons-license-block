@@ -22,6 +22,11 @@ section {
   padding: 1em 2em;
 }
 
-@media only screen and ( min-width: 960px ) {
+@media only screen and ( min-width: 1280px ) {
+  
+  section.playground {
+    float: left;
+    width: 50%;
+  }
 	
 }

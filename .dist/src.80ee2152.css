@@ -15,4 +15,11 @@ section {
   padding: 1em 2em;
 }
 
+@media only screen and (min-width: 1280px) {
+  section.playground {
+    float: left;
+    width: 50%;
+  }
+}
+
 /*# sourceMappingURL=/src.80ee2152.css.map */

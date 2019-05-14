@@ -81,36 +81,37 @@ class Editor extends React.Component {
                  
   render() {
     return <Fragment>
-      <section className="playground">
-        <h1 title="This is what you'll see in Gutenberg">
-          Editor
-        </h1>
+      <div className="playground">
+        <section>
+          <h1 title="This is what you'll see in Gutenberg">
+            Editor
+          </h1>
 
-        <div className="playground__body">
-          <BlockEditorProvider
-            value={this.props.blocks}
-            onInput={this.onChange}
-            onChange={this.onChange}
-          >
-            <div className="editor-styles-wrapper">
-              <WritingFlow>
-                <ObserveTyping>
-                  <BlockList />
-                </ObserveTyping>
-              </WritingFlow>
-            </div>
-            <Popover.Slot />
-          </BlockEditorProvider>
-        </div>
-      </section>
+          <div className="playground__body">
+            <BlockEditorProvider
+              value={this.props.blocks}
+              onInput={this.onChange}
+              onChange={this.onChange}
+            >
+              <div className="editor-styles-wrapper">
+                <WritingFlow>
+                  <ObserveTyping>
+                    <BlockList />
+                  </ObserveTyping>
+                </WritingFlow>
+              </div>
+              <Popover.Slot />
+            </BlockEditorProvider>
+          </div>
+        </section>
 
-      <section className="playground">
-        <h1 title="This is what you'll see when published">
-          Published
-        </h1>
-        <div className="playground__preview" dangerouslySetInnerHTML={ this.innerHtml( this.state.previewHtml ) }></div>
-      </section>
-
+        <section>
+          <h1 title="This is what you'll see when published">
+            Published
+          </h1>
+          <div className="playground__preview" dangerouslySetInnerHTML={ this.innerHtml( this.state.previewHtml ) }></div>
+        </section>
+    </div>
       <section>
         <h1>Download Block Plugin for WordPress</h1>
         {/* Create a download link named after the first block we find */ }
