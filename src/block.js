@@ -51,9 +51,8 @@ registerBlockType( 'gutenberg-block-kit/remix', {
             <div className={className}>
                 <p>
                     Welcome to the Gutenberg block kit! This is a tool to build blocks for the Gutenberg 
-                    block editor. To get started building your own block  
-                    <a href="https://glitch.com/~gutenberg-block-kit">visit the project page to 
-                    read more</a> or go ahead and remix:
+                    block editor. To get started building your own block <a href="https://glitch.com/~gutenberg-block-kit">visit 
+                    the project page to read more</a> or go ahead and remix:
                 </p>
                 <p>
                     <a href="https://glitch.com/edit/#!/remix/gutenberg-block-kit" class="glitch-remix" target="_blank"><img src="https://cdn.gomix.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Fremix-button.svg" alt="Remix on Glitch" /></a>
