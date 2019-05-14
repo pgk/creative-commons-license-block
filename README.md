@@ -5,6 +5,8 @@ The fastest way to get started building blocks for the Gutenberg block editor.
 Develop your block, see live updates as you code, then download your block as 
 a WordPress plugin.
 
+![Gutenberg Block Kit Logo](https://cdn.glitch.com/d2032613-1317-456e-be8e-bc0af5fd945c%2Fblock-kit-logo.svg?1557824541477)
+
 Getting Started
 ---------------
 
