@@ -81,39 +81,45 @@ class Editor extends React.Component {
                  
   render() {
     return <Fragment>
-      <h1 title="This is what you'll see in Gutenberg">
-        Editor
-      </h1>
+      <section className="playground">
+        <h1 title="This is what you'll see in Gutenberg">
+          Editor
+        </h1>
 
-      <div className="playground__body">
-        <BlockEditorProvider
-          value={this.props.blocks}
-          onInput={this.onChange}
-          onChange={this.onChange}
-        >
-          <div className="editor-styles-wrapper">
-            <WritingFlow>
-              <ObserveTyping>
-                <BlockList />
-              </ObserveTyping>
-            </WritingFlow>
-          </div>
-          <Popover.Slot />
-        </BlockEditorProvider>
-      </div>
+        <div className="playground__body">
+          <BlockEditorProvider
+            value={this.props.blocks}
+            onInput={this.onChange}
+            onChange={this.onChange}
+          >
+            <div className="editor-styles-wrapper">
+              <WritingFlow>
+                <ObserveTyping>
+                  <BlockList />
+                </ObserveTyping>
+              </WritingFlow>
+            </div>
+            <Popover.Slot />
+          </BlockEditorProvider>
+        </div>
+      </section>
 
-      <h1 title="This is what you'll see when published">
-        Published
-      </h1>
-      <div className="playground__preview" dangerouslySetInnerHTML={ this.innerHtml( this.state.previewHtml ) }></div>
+      <section className="playground">
+        <h1 title="This is what you'll see when published">
+          Published
+        </h1>
+        <div className="playground__preview" dangerouslySetInnerHTML={ this.innerHtml( this.state.previewHtml ) }></div>
+      </section>
 
-      <h1>Download Block Plugin for WordPress</h1>
-      {/* Create a download link named after the first block we find */ }
-      {/* all blocks should be inculded in the file, but we need a name */}
-      <a href={'/' + this.props.defaultBlocks[ 0 ] + '.zip'}>Download Block Plugin for WordPress</a>
-      
-      <h1>Reset Editor</h1>
-      <button onClick={ this.clearPersistance }>Clear Editor</button>
+      <section>
+        <h1>Download Block Plugin for WordPress</h1>
+        {/* Create a download link named after the first block we find */ }
+        {/* all blocks should be inculded in the file, but we need a name */}
+        <a href={'/' + this.props.defaultBlocks[ 0 ] + '.zip'}>Download Block Plugin for WordPress</a>
+
+        <h1>Reset Editor</h1>
+        <button onClick={ this.clearPersistance }>Clear Editor</button>
+      </section>
     </Fragment>
   }
 };

@@ -26029,7 +26029,9 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return _react.default.createElement(Fragment, null, _react.default.createElement("h1", {
+      return _react.default.createElement(Fragment, null, _react.default.createElement("section", {
+        className: "playground"
+      }, _react.default.createElement("h1", {
         title: "This is what you'll see in Gutenberg"
       }, "Editor"), _react.default.createElement("div", {
         className: "playground__body"
@@ -26039,16 +26041,18 @@ function (_React$Component) {
         onChange: this.onChange
       }, _react.default.createElement("div", {
         className: "editor-styles-wrapper"
-      }, _react.default.createElement(WritingFlow, null, _react.default.createElement(ObserveTyping, null, _react.default.createElement(BlockList, null)))), _react.default.createElement(Popover.Slot, null))), _react.default.createElement("h1", {
+      }, _react.default.createElement(WritingFlow, null, _react.default.createElement(ObserveTyping, null, _react.default.createElement(BlockList, null)))), _react.default.createElement(Popover.Slot, null)))), _react.default.createElement("section", {
+        className: "playground"
+      }, _react.default.createElement("h1", {
         title: "This is what you'll see when published"
       }, "Published"), _react.default.createElement("div", {
         className: "playground__preview",
         dangerouslySetInnerHTML: this.innerHtml(this.state.previewHtml)
-      }), _react.default.createElement("h1", null, "Download Block Plugin for WordPress"), _react.default.createElement("a", {
+      })), _react.default.createElement("section", null, _react.default.createElement("h1", null, "Download Block Plugin for WordPress"), _react.default.createElement("a", {
         href: '/' + this.props.defaultBlocks[0] + '.zip'
       }, "Download Block Plugin for WordPress"), _react.default.createElement("h1", null, "Reset Editor"), _react.default.createElement("button", {
         onClick: this.clearPersistance
-      }, "Clear Editor"));
+      }, "Clear Editor")));
     }
   }]);
 
@@ -26129,7 +26133,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41099" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36909" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

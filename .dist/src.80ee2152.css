@@ -2,12 +2,17 @@
  * Styles for the Glitch editor page
  * These will not be included in the downloadable plugin
  */
+/**
+ * Styles for both the block editor and the published view
+ * This is included by editor.scss and style.scss
+ */
 body {
-  padding: 32px;
+  padding: 0;
 }
 
-.playground__body {
+section {
   border-bottom: 1px solid #e5e5e5;
+  padding: 1em 2em;
 }
 
 /*# sourceMappingURL=/src.80ee2152.css.map */
