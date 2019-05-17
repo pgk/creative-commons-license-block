@@ -10,8 +10,9 @@ changes. Your changes will show up on your project site as you make them.
 Going Further
 -------------
 
-- [Learn more about making Gutenberg blocks](https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/)
+- [Learn more about making Gutenberg blocks](https://developer.wordpress.org/block-editor/)
 - Download your block as a WordPress plugin and try it out on your own site
+- [Bug reports? Got a cool feature we should add? Please let us know on Github](https://github.com/Automattic/gutenberg-block-kit/issues)
 
 Files
 -----
