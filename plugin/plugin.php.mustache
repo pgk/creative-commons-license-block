@@ -7,7 +7,7 @@
 /**
  * Enqueue assets for editor portion of Gutenberg
  */
-function {{{ pluginName }}}_editor_assets() {
+add_action( 'enqueue_block_editor_assets', function() {
 	// Files.
 	$block_path = 'dist/src.js';
 	$block_css = 'dist/src.css';
@@ -25,20 +25,17 @@ function {{{ pluginName }}}_editor_assets() {
 		[],
 		filemtime( plugin_dir_path( __FILE__ ) . $block_css )
 	);
-}
-add_action( 'enqueue_block_editor_assets', '{{{ pluginName }}}_editor_assets' );
+} );
 
 /**
  * Enqueue assets for front end
  */
-function {{{ pluginName }}}_view_assets() {
-	// Files.
-	// Enqueue Juxtapose style.
+add_action( 'enqueue_block_assets', function() {
+	// Enqueue style
 	wp_enqueue_style(
 		'{{{ pluginName }}}-css',
 		plugins_url( 'dist/style.css', __FILE__ ),
 		[],
 		filemtime( plugin_dir_path( __FILE__ ) . 'dist/style.css' )
 	);
-}
-add_action( 'enqueue_block_assets', '{{{ pluginName }}}_view_assets' );
+} );
