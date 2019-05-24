@@ -1,7 +1,7 @@
 /**
  * This is the file that creates the Gutenberg assets on the Glitch CDN
  *
- * It is here for reference and reproducability, you shouldn't actually need this
+ * It is here for reference and reproducability. You shouldn't actually need this
  * to do any block development.
  *
  * It imports all the packages, then exports them on `window.wp`. You may need
@@ -15,7 +15,7 @@
  *  4. Place this file in the gutenberg root directory (same as gutenberg.php)
  *  5. Run this command: `$(npm bin)/parcel build gutenberg.js -d dist/`
  *  6. Upload the files in dist/ to the Glitch assets
- *     6a. You should probably update the .js and .css files' sourcemaps with the CDN URLs
+ *     6a. You can update the .js and .css files' sourcemap URLs with the CDN URLs
  *  7. Update src/index.html with the new CDN URLs
  *
  * Theoretcially, this _could_ be built on Glitch, but not all packages are currently
