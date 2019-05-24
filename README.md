@@ -8,11 +8,9 @@ The fastest way to get started building blocks for the Gutenberg block editor. [
 Getting Started
 ---------------
 
-[Remix this project](https://glitch.com/edit/#!/remix/gutenberg-block-kit)
-to get an editable version of the code here.
+[Remix this project](https://glitch.com/edit/#!/remix/gutenberg-block-kit) to get an editable version of the code here.
 
-Open `src/block.js` from the file list on the left side, and start making 
-changes. Your changes will show up on your project site as you make them.
+Open `src/block.js` from the file list on the left side, and start making changes. Click the "Show" button at the top of the editor to open the live preview window. Your changes will show up on your project site as you make them.
 
 Going Further
 -------------
@@ -24,7 +22,7 @@ Going Further
 Files
 -----
 
-- `src/block.js` - This is the JavaScript for our custom block
+- `src/block.js` - This is the JavaScript for our custom block. Edit this and
 - `src/editor.scss` - A Sass stylesheet for the editor view of the block
 - `src/style.scss` - A Sass stylesheet for the published version of the block
 - `src/common.scss` - A place to put things used by both `editor.scss` and `style.scss`
