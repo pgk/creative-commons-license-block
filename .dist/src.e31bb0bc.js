@@ -25748,7 +25748,7 @@ if (undefined === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -25780,7 +25780,7 @@ function getBaseURL(url) {
 
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
-},{}],"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
 var bundle = require('./bundle-url');
 
 function updateLink(link) {
@@ -25815,17 +25815,17 @@ function reloadCSS() {
 }
 
 module.exports = reloadCSS;
-},{"./bundle-url":"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"style.scss":[function(require,module,exports) {
+},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"style.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"editor.scss":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"editor.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"block.js":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"block.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -25842,8 +25842,85 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /* global wp */
 var __ = wp.i18n.__;
-var registerBlockType = wp.blocks.registerBlockType; //  Import CSS.
+var registerBlockType = wp.blocks.registerBlockType;
+var BlockControls = wp.editor.BlockControls; //  Import CSS.
 
+var getCCLogoSvg = function getCCLogoSvg() {
+  return _react.default.createElement("svg", {
+    version: "1.1",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, _react.default.createElement("path", {
+    d: "M31.957,0.311c-8.682,0-16.322,3.213-22.226,9.203 C3.653,15.678,0.354,23.666,0.354,32c0,8.422,3.212,16.236,9.29,22.313c6.078,6.078,13.978,9.377,22.313,9.377 c8.334,0,16.409-3.299,22.66-9.463c5.904-5.817,9.029-13.544,9.029-22.227c0-8.595-3.125-16.408-9.116-22.399 C48.453,3.523,40.639,0.311,31.957,0.311z M32.043,6.041c7.12,0,13.458,2.691,18.406,7.641c4.862,4.861,7.466,11.286,7.466,18.318 c0,7.119-2.518,13.371-7.379,18.146c-5.123,5.035-11.721,7.727-18.493,7.727c-6.858,0-13.283-2.691-18.232-7.641 C8.862,45.283,6.084,38.772,6.084,32c0-6.858,2.778-13.369,7.727-18.406C18.673,8.646,24.924,6.041,32.043,6.041z"
+  }), _react.default.createElement("path", {
+    id: "c",
+    d: "M31.635,26.734c-1.79-3.264-4.844-4.563-8.389-4.563 c-5.16,0-9.267,3.65-9.267,9.828c0,6.283,3.861,9.829,9.442,9.829c3.581,0,6.635-1.966,8.319-4.949l-3.931-2.001 c-0.878,2.105-2.212,2.738-3.896,2.738c-2.914,0-4.248-2.422-4.248-5.617c0-3.193,1.124-5.616,4.248-5.616 c0.842,0,2.527,0.456,3.51,2.563L31.635,26.734z"
+  }));
+};
+
+var ccLicenses = {
+  'by-4.0': {
+    'url': 'https://creativecommons.org/licenses/by/4.0/',
+    'icon-compact': 'https://i.creativecommons.org/l/by/4.0/80x15.png',
+    'icon-normal': 'https://i.creativecommons.org/l/by/4.0/88x31.png',
+    'name': 'Creative Commons Attribution 4.0 International'
+  },
+  'by-sa-4.0': {
+    'url': 'https://creativecommons.org/licenses/by-sa/4.0/',
+    'icon-compact': 'https://i.creativecommons.org/l/by-sa/4.0/80x15.png',
+    'icon-normal': 'https://i.creativecommons.org/l/by-sa/4.0/88x31.png',
+    'name': 'Creative Commons Attribution-ShareAlike 4.0 International'
+  },
+  'by-nd-4.0': {
+    'url': 'https://creativecommons.org/licenses/by-nd/4.0/',
+    'icon-compact': 'https://i.creativecommons.org/l/by-nd/4.0/80x15.png',
+    'icon-normal': 'https://i.creativecommons.org/l/by-nd/4.0/88x31.png',
+    'name': 'Creative Commons Attribution-NoDerivatives 4.0 International'
+  },
+  'by-nc-4.0': {
+    'url': 'https://creativecommons.org/licenses/by-nc/4.0/',
+    'icon-compact': 'https://i.creativecommons.org/l/by-nc/4.0/80x15.png',
+    'icon-normal': 'https://i.creativecommons.org/l/by-nc/4.0/88x31.png',
+    'name': 'Creative Commons Attribution-NonCommercial 4.0 International'
+  },
+  'by-nc-sa-4.0': {
+    'url': 'https://creativecommons.org/licenses/by-nc-sa/4.0/',
+    'icon-compact': 'https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png',
+    'icon-normal': 'https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png',
+    'name': 'Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International'
+  },
+  'by-nc-nd-4.0': {
+    'url': 'https://creativecommons.org/licenses/by-nc-nd/4.0/',
+    'icon-compact': 'https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png',
+    'icon-normal': 'https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png',
+    'name': 'Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International'
+  }
+};
+
+function renderCCLicense(data) {
+  var compactIcon = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  var iconUrl = compactIcon ? data['icon-compact'] : data['icon-normal'];
+  return _react.default.createElement("div", null, _react.default.createElement("a", {
+    rel: "license",
+    href: data.url
+  }, _react.default.createElement("img", {
+    alt: "Creative Commons License",
+    style: {
+      borderWidth: 0
+    },
+    src: iconUrl
+  })), _react.default.createElement("br", null), "This work is licensed under a ", _react.default.createElement("a", {
+    rel: "license",
+    href: data.url
+  }, data.name, " License"), ".");
+}
+
+var showLicense = function showLicense(_ref) {
+  var attributes = _ref.attributes;
+  var selectedLicense = attributes.selectedLicense || 'by-4.0';
+  var preferCompactIcon = attributes.compactIcon && attributes.compactIcon === true;
+  console.log(selectedLicense);
+  return renderCCLicense(ccLicenses[selectedLicense], preferCompactIcon);
+};
 /**
  * Register our block with the editor
  * 
@@ -25852,47 +25929,84 @@ var registerBlockType = wp.blocks.registerBlockType; //  Import CSS.
  *
  * @see https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-registration/
  */
-registerBlockType('gutenberg-block-kit/remix', {
+
+
+registerBlockType('gutenberg-block-kit/creative-commons-license-block', {
   // This is the display title for your block, which can be translated with our translation 
   // functions. The block inserter will show this name.
-  title: __('Glitch Remix'),
+  title: __('Creative Commons License'),
   // This is a short description for your block, which can be translated with our translation 
   // functions. This will be shown in the block inspector.
-  description: __('Add a Glitch remix button'),
+  description: __('Add a Creative Commons License to your page'),
   // Blocks are grouped into categories to help users browse and discover them.
   // The core provided categories are: common, formatting, layout, widgets, embed
-  category: 'common',
+  category: 'widgets',
   // An icon property should be specified to make it easier to identify a block. These can be any 
   // of WordPress’ Dashicons, or a custom svg element.
   // See https://developer.wordpress.org/resource/dashicons/
-  icon: 'smiley',
+  icon: getCCLogoSvg(),
   // Sometimes a block could have aliases that help users discover it while searching. 
   // For example, an image block could also want to be discovered by photo. You can do so by 
   // providing an array of terms (which can be translated).
   keywords: [__('glitch')],
+  attributes: {
+    selectedLicense: {
+      type: 'string',
+      default: 'by-4.0'
+    },
+    compactIcon: {
+      type: 'boolean',
+      default: false
+    }
+  },
 
   /**
    * The edit function describes the structure of your block in the context of the editor. This 
    * represents what the editor will render when the block is used.
    * @see https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-edit-save/
    */
-  edit: function edit(_ref) {
-    var attributes = _ref.attributes,
-        className = _ref.className,
-        isSelected = _ref.isSelected,
-        setAttributes = _ref.setAttributes;
-    return _react.default.createElement("div", {
+  edit: function edit(_ref2) {
+    var attributes = _ref2.attributes,
+        className = _ref2.className,
+        isSelected = _ref2.isSelected,
+        setAttributes = _ref2.setAttributes;
+    var selectedLicense = showLicense({
+      attributes: attributes
+    });
+    var selectItems = Object.keys(ccLicenses).map(function (license) {
+      return _react.default.createElement("option", {
+        key: license,
+        value: license,
+        selected: license === selectedLicense
+      }, license);
+    });
+
+    function onChangeSelectedLicense(evt) {
+      var newLicense = evt.target.value;
+      setAttributes({
+        selectedLicense: newLicense === undefined ? 'by-4.0' : newLicense
+      });
+    }
+
+    function onToggleCompact(evt) {
+      var isCompact = evt.target.checked;
+      setAttributes({
+        compactIcon: isCompact
+      });
+    }
+
+    return [_react.default.createElement(BlockControls, {
+      key: "controls"
+    }, _react.default.createElement("label", null, "License:"), _react.default.createElement("div", null, _react.default.createElement("select", {
+      onChange: onChangeSelectedLicense
+    }, selectItems)), _react.default.createElement("label", null, "Compact?"), _react.default.createElement("input", {
+      type: "checkbox",
+      value: attributes.compactIcon,
+      onChange: onToggleCompact
+    })), _react.default.createElement("div", {
+      key: "output",
       className: className
-    }, _react.default.createElement("p", null, "Welcome to the Gutenberg block kit! This is a tool to build blocks for the Gutenberg block editor. To get started building your own block ", _react.default.createElement("a", {
-      href: "https://glitch.com/~gutenberg-block-kit"
-    }, "visit the project page to read more"), " or go ahead and remix:"), _react.default.createElement("p", null, _react.default.createElement("a", {
-      href: "https://glitch.com/edit/#!/remix/gutenberg-block-kit",
-      class: "glitch-remix",
-      target: "_blank"
-    }, _react.default.createElement("img", {
-      src: "https://cdn.gomix.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Fremix-button.svg",
-      alt: "Remix on Glitch"
-    }))));
+    }, selectedLicense)];
   },
 
   /**
@@ -25900,9 +26014,11 @@ registerBlockType('gutenberg-block-kit/remix', {
    * the final markup, which is then serialized by Gutenberg into post_content.
    * @see https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-edit-save/
    */
-  save: function save(_ref2) {
-    var attributes = _ref2.attributes;
-    return _react.default.createElement("div", attributes, _react.default.createElement("p", null, "This is from the block's ", _react.default.createElement("tt", null, "save()"), " method, and shows what the block will look like when rendered."));
+  save: function save(_ref3) {
+    var attributes = _ref3.attributes;
+    return showLicense({
+      attributes: attributes
+    });
   }
 });
 },{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./style.scss":"style.scss","./editor.scss":"editor.scss"}],"index.js":[function(require,module,exports) {
@@ -26103,7 +26219,7 @@ var glitchBlocks = getBlockTypes().map(function (b) {
 render(_react.default.createElement(App, {
   defaultBlocks: glitchBlocks
 }), document.querySelector('#editor'));
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./block.js":"block.js"}],"../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./block.js":"block.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -26131,7 +26247,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39070" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52323" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -26306,5 +26422,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../rbd/pnpm-volume/d2032613-1317-456e-be8e-bc0af5fd945c/node_modules/.registry.npmjs.org/parcel-bundler/1.12.3/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
+},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
 //# sourceMappingURL=/src.e31bb0bc.js.map

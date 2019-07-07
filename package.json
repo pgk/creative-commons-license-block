@@ -1,7 +1,7 @@
 {
-  "name": "Glitchenberg",
-  "version": "0.0.1",
-  "description": "I'm just a poor Glitch, I need no sympathy",
+  "name": "Creative Commons License Block for Gutenberg",
+  "version": "1.0.0",
+  "description": "Add a CC license to your pages",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -18,10 +18,10 @@
     "mustache": "^3.0.1"
   },
   "engines": {
-    "node": "8.x"
+    "node": "10.x"
   },
   "repository": {
-    "url": "https://glitch.com/edit/#!/george-gutenberg-experiment"
+    "url": "https://kountanis.com/wp/"
   },
   "license": "GPL-3.0",
   "keywords": [
